@@ -27,5 +27,4 @@ AI 平台主要分为“算法管理” 、 “算法商城” 、“在线训�
 
 
 【开发说明】
-前端采用 VUE 框架， 后端采用 Spring Cloud 微服务框架， 分布式技
-术实现采用 Docker 容器作虚拟化， 运用 Kubernetes 技术完成集群的管理和服务器调度； 服务器底层运用 Kubeflow 框架实现分布式训练， 在上层使用 Spring开源 API（kubernetes-client/java） 调用底层 Kubeflow 框架来实现集成。
+前端采用 VUE 框架， 后端采用 Spring Cloud 微服务框架， 分布式技术实现采用 Docker 容器作虚拟化， 运用 Kubernetes 技术完成集群的管理和服务器调度； 服务器底层运用 Kubeflow 框架实现分布式训练， 在上层使用Spring开源 API（kubernetes-client/java） 调用底层 Kubeflow 框架来实现集成。
