@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="../static/logo.png">
+                                           订单信息：<br/>
+           算法类型：{{  }}<br/>
+           算法配置：{{  }}<br/>
+           数据集：{{  }}<br/>
+           预计所需时间：{{  }}<br/>
+           交易金额：{{  }}<br/>
+           订单号：{{  }}<br/>
+           支付方式：
+
+            <input name="s_option" value="basketball" type="checkbox"> 微信
+        <input name="s_option" value="football" type="checkbox"> 支付宝
+            <input name="s_option" value="badminton"  type="checkbox"> 银行卡
+            <input name="s_option" value="badminton"  type="checkbox"> 支付币
+       <table><br/>
+<tr>
+      <from action="/cancel" method="post">
+           <input type="submit" value="取消">
+       </from>
+
+</tr>
+           <tr>
+              <form action="/pay" method="post">
+           <input type="submit" value="支付">
+       </form>
+           </tr>
+           </table>
+</body>
+</html>
