@@ -2,18 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>AutoLD</title>
 </head>
 
 <body>
-        <img src="..\static\logo.png" width="150" height="150">
-        <form action='/reg_result' method="post">
-        手机号：<input type='text' name='username'><br>
-        验证码：<input type='text' name='vcode'><input type="button"  value="发送验证码"/><br>
-        密  码：<input type='password' name='password'><br>
-        重复密码：<input type="password" name="repwd"><br>
-        <input type="checkbox" name="agreement" value="yes">我已认真阅读并同意《AutoLD服务协议》<br>
+    <img src="..\static\logo.png" width="150" height="150">
+    <form action='/reg_result' method="post">
+        <div>
+            <label>手机号：</label>
+            <input type='text' name='username'>
+        </div>
+        <div>
+            <label>验证码：</label>
+            <input type='text' name='vcode'>
+            <button>发送验证码</button>
+        </div>
+        <div>
+            <label>密 码 ：</label>
+            <input type='password' name='password'>
+        </div>
+        <div>
+            <label>重复密码：</label>
+            <input type="password" name="repwd">
+        </div>
+        <div>
+            <input type="checkbox" name="agreement" value="yes">我已认真阅读并同意
+            <strong><a href="https://baidu.com" target="_blank">《AutoLD服务协议》</a></strong>
+        </div>
         <input type='submit' value='注册'>
-        </form>
+    </form>
 </body>
 </html>
