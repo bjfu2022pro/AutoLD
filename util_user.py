@@ -18,15 +18,15 @@ def get_conn():
     return conn, cursor
 
 
-def finder(value, keyword="username"):
+def finder(value, property="username"):
     """
     :param value: 筛选的值
-    :param keyword:
+    :param property:筛选的属性
     :return: 返回一个元组，元组内元素是每一个符合value的数据库条目组成的元素
-    作用：以筛选keyword属性为value的数据库条目
+    作用：以筛选property属性为value的数据库条目
     """
     conn, cursor = get_conn()
-    sql = f"select * from user where {keyword}=\'{value}\'"
+    sql = f"select * from user where {property}=\'{value}\'"
     cursor.execute(sql)
     result = cursor.fetchall()
     conn_close(conn, cursor)
@@ -70,15 +70,15 @@ def add_user(name, password):
     conn_close(conn, cursor)
 
 
-def delete_user(value, keyword="id"):
+def delete_user(value, property="id"):
     """
-    删除keyword属性符合value值的用户
+    删除property属性符合value值的用户
     :param value: 筛选值
-    :param keyword:筛选条件
+    :param property:筛选条件
     :return: 无
     """
     conn, cursor = get_conn()
-    sql = f"delete from user where {keyword} = %s"
+    sql = f"delete from user where {property} = %s"
     cursor.execute(sql, [value])
     conn.commit()
     conn_close(conn, cursor)
