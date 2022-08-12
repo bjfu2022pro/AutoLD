@@ -7,10 +7,10 @@ def get_conn():
     返回一个数据库连接对象和一个数据库指针对象
     """
     conn = pymysql.connect(
-        host="localhost",
+        host="47.94.193.86",
         port=3306,
         user="root",
-        password="a13732541297",
+        password="BJFUAutoLD666!!!",
         database="autold",
         charset="utf8"
     )
