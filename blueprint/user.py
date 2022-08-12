@@ -3,11 +3,11 @@ import sys
 sys.path.append("..") 
 import util_user
 
-bp = Blueprint("user", __name__, "/user")
+bp = Blueprint("user", __name__, "/")
 
 
 @bp.route('/')
-@bp.route('/login', methods=['get', 'post']) #127.0.0.1:5000/user/login
+@bp.route('/login', methods=['get', 'post']) 
 def login():
     return render_template("login.html")
 
