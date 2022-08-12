@@ -8,6 +8,7 @@
     <script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
     <style>
         .main{
+            border-radius: 25px;
             width: 600px;
             height: 350px;
             border: 1px solid #b8e8ea;
@@ -15,6 +16,10 @@
             margin: 50px auto;
             position: relative;
         }
+        .intext{
+            text-align:center;
+        }
+        
     </style>
 </head>
 
@@ -25,41 +30,41 @@
             <form action="/reg_result" method="post" style="margin: 10px auto;">
                 <div><label></label></div>
                 <div class="row mb-3">
-                    <label class="col-md-3 col-form-label col-sm-12" align="center">手机号：</label>
-                    <div class="col-md-8 col-sm-12" align="left">
+                    <label class="col-md-3 col-form-label col-sm-3 intext">手机号：</label>
+                    <div class="col-md-8 col-sm-8">
                         <input type="text" class="form-control" placeholder="Enter Phone number" name="username">
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-3 col-sm-12" align="center">
+                    <div class="col-md-3 col-sm-3 intext" >
                         <label>验证码：</label>
                     </div>
-                    <div class="col-md-5 col-sm-12" align="left">
+                    <div class="col-md-5 col-sm-5" align="left">
                         <input type="text" class="form-control" placeholder="Verification Code" name="vcode">
                     </div>
-                    <div class="col-md-3 col-sm-12">
+                    <div class="col-md-3 col-sm-3">
                         <button type="button" class="btn btn-light" style="width: 130px;">发送验证码</button>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-3 col-sm-12" align="center">
+                    <div class="col-md-3 col-sm-3 intext" >
                         <label>密码：</label>
                     </div>
-                    <div class="col-md-8 col-sm-12" align="left">
+                    <div class="col-md-8 col-sm-8" align="left">
                         <input type="password" class="form-control" placeholder="Enter password" name="password">
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-3 col-sm-12" align="center">
+                    <div class="col-md-3 col-sm-3 intext">
                         <label>重复密码：</label>
                     </div>
-                    <div class="col-md-8 col-sm-12" align="left">
+                    <div class="col-md-8 col-sm-8" align="left">
                         <input type="password" class="form-control" placeholder="Repeat password" name="repwd">
                     </div>
                 </div>
                 <div class ="mb-2 row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
+                    <div class="col-md-1 col-sm-1"></div>
+                    <div class="col-md-10 col-sm-10">
                         <div class="form-check">
                             <label class="form-check-label">
                               <input class="form-check-input" type="checkbox" name="remember"> 我已认真阅读并同意
