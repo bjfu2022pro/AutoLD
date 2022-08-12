@@ -7,9 +7,18 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
-    return 'Hello Flask!'
+@app.route('/login')
+def login():
+    return render_template("login1-1.html")
 
+
+@app.route('/login_result', methods=['get', 'post'])
+def login_checker():
+    username = request.values.get('phonenumber')
+    password = request.values.get('password')
+    info = util_user.login_check(username, password)
+    print(info)
+    return info
 
 
 @app.route('/register')
