@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <style>
+        #main{
+            width:1100px;
+            height:300px;
+            MARGIN-RIGHT: auto;
+            MARGIN-LEFT: auto;
+        }
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color:#b8e8ea;">
+
+    <!-- div1 start -->
+    <div class="collapse navbar-collapse justify-content-start">
+
+        <!-- Brand -->
+        <a href="/home"><img src="../static/img/logo.png" alt="logo" width="82" height="60"></a>
+        <a class="navbar-brand" href="/home">&nbsp;&nbsp;&nbsp;AutoLD</a>
+
+        <!-- navbar-nav -->
+        <ul class="navbar-nav">
+
+            <!-- Links -->
+            <li class="nav-item">
+                <a class="nav-link" href="/home">让深度学习和呼吸一样自然</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- div2 end -->
+    <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+            <li class="nav-item ">
+                <a class="nav-link" href="/usercontrol">个人中心</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="main">
+    <div style="margin-left:750px;margin-top: 230px">
+        <form action="register.html">
+            <h1 style="margin-left: 96px;color: #0d6efd">AutoLD</h1><br>
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="tel" class="col-form-label">手机号</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" id="telephone" class="btn btn-outline-secondary" aria-describedby="passwordHelpInline" placeholder="请输入手机号">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="password" class="col-form-label">密码</label>
+                </div>
+                <div class="col-auto" style="margin-left: 16px">
+                    <input type="password" id="password"  class="btn btn-outline-secondary"aria-describedby="passwordHelpInline" placeholder="请输入密码">
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-outline-secondary" style="margin-left: 76px;width: 70px;height: 35px" >登录</button>
+            <button type="button" class="btn btn-outline-secondary" style="margin-left: 30px;width: 70px;height: 35px">注册</button>
+            <br><br>
+            <button type="button" class="btn btn-outline-secondary" style="margin-left: 20px;width: 85px;height: 30px;font-size:10px" >账号密码</button>
+            <button type="button" class="btn btn-outline-secondary" style="margin-left: 19px;width: 85px;height: 30px;font-size: 10px" >短信验证</button>
+            <button type="button" class="btn btn-outline-secondary" style="margin-left: 18px;width: 85px;height: 30px;font-size: 10px" >忘记密码</button>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
