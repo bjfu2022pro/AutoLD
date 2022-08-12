@@ -30,5 +30,9 @@ def register_check():
         return info
 
 
+@app.route('/usercontrol')
+def user_control():
+    return render_template("usercontrol.html")
+
 if __name__ == '__main__':
     app.run()
