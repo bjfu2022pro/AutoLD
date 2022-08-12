@@ -3,82 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+        <style>
+        .标题框{
+            width: 800px;
+            height: 80px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .确认按钮{
+            width: 170px;
+            height: 30px;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color:#b8e8ea;">
 
-    <form action="/跳转到确认订单页面" method="post">
-        <img src="logo.png">让深度学习和呼吸一样自然
-        <input type="image" name="头像">
-        <input type="submit" value="个人中心"><br>
-        算力筛选<br>
-        GPU型号
-        <input type="radio" name="RTX">RTX
-        <input type="radio" name="XXXX">XXXX
-        <input type="radio" name="xxx">XXX
-        <input type="radio" name="xx">XX<br>
-        RAM大小
-        <input type="range" name="滑动条"><br>
+            <!-- div1 start -->
+            <div class="container justify-content-start">
 
-        型号排序 算力大小排序 价格排序<br>
+                <!-- Brand -->
+                <a href="/home"><img src="../static/img/logo.png" alt="logo" width="82" height="60"></a>
+                <a class="navbar-brand" href="/home">&nbsp;&nbsp;&nbsp;AutoLD</a>
 
-        GPU1------GPU信息------租用时间
-        <select class="form-control" name="manufacturer" id="manufacturer">
-            <option></option>
-            <option selected="selected">--请选择租用时间--</option>
-            <option >1天</option>
-            <option >5天</option>
-            <option >10天</option>
-            <option >15天</option>
-        </select>
-        <input type="radio" name="确认购买1">确认购买<br>
+                <!-- navbar-nav -->
+                <ul class="navbar-nav">
 
-        GPU2------GPU信息------租用时间
-        <select class="form-control" name="manufacturer" id="manufacturer">
-            <option></option>
-            <option selected="selected">--请选择租用时间--</option>
-            <option >1天</option>
-            <option >5天</option>
-            <option >10天</option>
-            <option >15天</option>
-        </select>
-        <input type="radio" name="确认购买2">确认购买<br>
+                    <!-- Links -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">让深度学习和呼吸一样自然</a>
+                    </li>
+                </ul>
+            </div>
 
-        GPU3------GPU信息------租用时间
-        <select class="form-control" name="manufacturer" id="manufacturer">
-            <option></option>
-            <option selected="selected">--请选择租用时间--</option>
-            <option >1天</option>
-            <option >5天</option>
-            <option >10天</option>
-            <option >15天</option>
-        </select>
-        <input type="radio" name="确认购买3">确认购买<br>
+            <!-- div2 start -->
+            <div class="container justify-content-end">
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/usercontrol">个人中心</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+  <div class="标题框">
+      <div class="container mt-3">
+          <h2>算力筛选</h2>
 
-        GPU4------GPU信息------租用时间
-        <select class="form-control" name="manufacturer" id="manufacturer">
-            <option></option>
-            <option selected="selected">--请选择租用时间--</option>
-            <option >1天</option>
-            <option >5天</option>
-            <option >10天</option>
-            <option >15天</option>
-        </select>
-        <input type="radio" name="确认购买4">确认购买<br>
+  <form action="#">
+      <h6>GPU型号：</h6>
+    <div class="form-check" style="display:inline-block; padding-left: 20px">
+        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>
+      <label class="form-check-label" for="radio1">RTX </label>
+    </div>
+    <div class="form-check" style="display:inline-block; padding-left: 80px">
+      <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">
+      <label class="form-check-label" for="radio2">XXXX</label>
+    </div>
+    <div class="form-check" style="display:inline-block; padding-left: 80px">
+      <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option2">
+      <label class="form-check-label">XXXX</label>
+    </div>
+    <div class="form-check" style="display:inline-block; padding-left: 80px">
+      <input type="radio" class="form-check-input" id="radio4" name="optradio" value="option2">
+      <label class="form-check-label">XXXX</label>
+    </div>
+      <p></p>
+      <h6>RAM大小:</h6>
+      <input id="defaultSlider" type="range" min="0" max="1000px" />
+  </form>
+      </div>
 
-        GPU5------GPU信息------租用时间
-        <select class="form-control" name="manufacturer" id="manufacturer">
-            <option></option>
-            <option selected="selected">--请选择租用时间--</option>
-            <option >1天</option>
-            <option >5天</option>
-            <option >10天</option>
-            <option >15天</option>
-        </select>
-        <input type="radio" name="确认购买5">确认购买<br>
+  </div>
 
+  <div class="container mt-3">
+  <table class="table table-hover table-bordered">
+    <tbody>
+      <tr align="center">
+        <td>GPU一</td>
+        <td>GPU一信息</td>
+          <td>
+              <form action="">
+              <label for="sel1" class="form-label">选择租用时间：</label>
+                    <select class="form-select" id="sel1" name="sellist1">
+                      <option>1</option>
+                      <option>5</option>
+                      <option>10</option>
+                      <option>15</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-3">确认购买</button>
+              </form>
+          </td>
+      </tr>
+      <tr align="center">
+        <td>GPU二</td>
+        <td>GPU二信息</td>
+          <td>
+              <form action="">
+              <label for="sel1" class="form-label">选择租用时间：</label>
+                    <select class="form-select" id="sel1" name="sellist1">
+                      <option>1</option>
+                      <option>5</option>
+                      <option>10</option>
+                      <option>15</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-3">确认购买</button>
+              </form>
+          </td>
+      </tr>
+      <tr align="center">
+        <td>GPU三</td>
+        <td>GPU三信息</td>
+          <td>
+              <form action="">
+              <label for="sel1" class="form-label">选择租用时间：</label>
+                    <select class="form-select" id="sel1" name="sellist1">
+                      <option>1</option>
+                      <option>5</option>
+                      <option>10</option>
+                      <option>15</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-3">确认购买</button>
+              </form>
+          </td>
+      </tr>
+      <tr align="center">
+        <td>GPU四</td>
+        <td>GPU四信息</td>
+          <td>
+              <form action="">
+              <label for="sel1" class="form-label">选择租用时间：</label>
+                    <select class="form-select" id="sel1" name="sellist1">
+                      <option>1</option>
+                      <option>5</option>
+                      <option>10</option>
+                      <option>15</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-3">确认购买</button>
+              </form>
+          </td>
+      </tr>
+      <tr align="center">
+        <td>GPU五</td>
+        <td>GPU五信息</td>
+          <td>
+              <form action="">
+              <label for="sel1" class="form-label">选择租用时间：</label>
+                    <select class="form-select" id="sel1" name="sellist1">
+                      <option>1</option>
+                      <option>5</option>
+                      <option>10</option>
+                      <option>15</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-3">确认购买</button>
+              </form>
+          </td>
+      </tr>
+    </tbody>
+</table>
 
-        <input type="submit" value="提交订单">
-    </form>
+</div>
+</div>
 
 </body>
 </html>
