@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, jsonify, render_template, request
 import sys 
 sys.path.append("..") 
 import util_user
@@ -19,9 +19,9 @@ def login():
 
 @bp.route('/login_result', methods=['get', 'post'])
 def login_checker():
-    username = request.values.get('phonenumber')
+    email = request.values.get('phonenumber')
     password = request.values.get('password')
-    info = util_user.login_check(username, password)
+    info = util_user.login_check(email, password)
     print(info)
     return info
 
@@ -33,14 +33,14 @@ def register():
 
 @bp.route('/reg_result', methods=['get', 'post'])
 def register_check():
-    username = request.values.get('username')
+    email = request.values.get('email')
     vcode = request.values.get('vcode')
     password = str(request.values.get('password'))
     repwd = str(request.values.get('repwd'))
     if password != repwd:
         return "两次密码不一致"
     else:
-        info = util_user.add_user(username, password)
+        info = util_user.add_user(email, password)
         return info
 
 
@@ -54,9 +54,9 @@ def password_forget():
     return render_template("password_forget.html")
 
 
-@bp.route('/mail')
+@bp.route('/mail', methods=['post', 'get'])
 def send_vcode():
-    email = request.args.get("email")
+    email = request.values.get("email")
     vcode = "".join(random.sample(string.digits, 4))
     mail_body = "您的验证码是：{}".format(vcode)
     message = Message(
@@ -66,4 +66,4 @@ def send_vcode():
     )
     mail.send(message)
     util_email.captcha_insert(email, vcode)
-    return "success"
+    return jsonify({"code":200})

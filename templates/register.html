@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
     <script type="text/javascript" src="../static/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
+    <script src="../static/js/register.js"></script>
     <style>
         ul{
             list-style: none;
@@ -68,9 +69,9 @@
             <form action="/reg_result" method="post" style="margin: 10px auto;">
                 <div><label></label></div>
                 <div class="row mb-3">
-                    <label class="col-md-3 col-form-label col-sm-3 col-3 intext">手机号：</label>
+                    <label class="col-md-3 col-form-label col-sm-3 col-3 intext">邮箱：</label>
                     <div class="col-md-8 col-sm-8 col-8">
-                        <input type="text" class="form-control" placeholder="Enter Phone number" name="username" required>
+                        <input type="text" class="form-control" placeholder="Enter Email address" name="email" id="email" required>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -81,7 +82,7 @@
                         <input type="text" class="form-control" placeholder="Verification Code" name="vcode" required>
                     </div>
                     <div class="col-md-3 col-sm-3 col-3">
-                        <button type="button" class="btn btn-light" >发送验证码</button>
+                        <button type="button" class="btn btn-light" id="captcha_btn">发送验证码</button>
                     </div>
                 </div>
                 <div class="row mb-3">
