@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 @app.route('/')
-@app.route('/login')
+@app.route('/login', methods=['get', 'post'])
 def login():
     return render_template("login.html")
 
@@ -42,6 +42,12 @@ def register_check():
 @app.route('/usercontrol')
 def user_control():
     return render_template("usercontrol.html")
+
+
+@app.route('/password_forget')
+def password_forget():
+    return render_template("password_forget.html")
+
 
 if __name__ == '__main__':
     app.run()
