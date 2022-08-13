@@ -5,8 +5,8 @@
     <title>AutoLD</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
     <script src="../static/js/bootstrap.bundle.min.js"></script>
-    <script src="../static/js/jquery-3.4.1.min.js"></script>
     <style>
         ul{
                 list-style: none;
@@ -17,21 +17,10 @@
             height: 30px;
             margin: auto;
         }
-        .标题框 {
-            width: 800px;
-            height: 80px;
-            margin: 100px auto;
-            position: relative;
-        }
-
-        .确认按钮 {
-            width: 170px;
-            height: 30px;
-            margin: auto;
-        }
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color:#b8e8ea;">
 
         <!-- div1 start -->
@@ -54,72 +43,67 @@
             </ul>
         </div>
     </nav>
-<div class="标题框">
-    <div class="container mt-3">
-        <h2>算力筛选</h2>
 
-        <form action="#">
-            <h6>GPU型号：</h6>
-            <div class="form-check" style="display:inline-block; padding-left: 20px">
-                <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>
-                <label class="form-check-label" for="radio1">RTX </label>
+<div class="标题框" style="width: 700px;height:50px;margin: 120px auto">
+    <div class="container mt-3">
+        <h2>算法筛选</h2>
+        <p></p>
+        <form action="#" style="width: 800px;margin: 40px auto">
+            作用：
+            <div class="form-check" style="display:inline-block; padding-left: 40px">
+                <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1">
+                <label class="form-check-label" for="radio1">图像识别 </label>
             </div>
-            <div class="form-check" style="display:inline-block; padding-left: 80px">
+            <div class="form-check" style="display:inline-block; padding-left: 70px">
                 <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">
-                <label class="form-check-label" for="radio2">XXXX</label>
+                <label class="form-check-label" for="radio2">语音合成</label>
             </div>
-            <div class="form-check" style="display:inline-block; padding-left: 80px">
+            <div class="form-check" style="display:inline-block; padding-left: 70px">
                 <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option2">
-                <label class="form-check-label">XXXX</label>
+                <label class="form-check-label">Option 3</label>
             </div>
-            <div class="form-check" style="display:inline-block; padding-left: 80px">
+            <div class="form-check" style="display:inline-block; padding-left: 70px">
                 <input type="radio" class="form-check-input" id="radio4" name="optradio" value="option2">
-                <label class="form-check-label">XXXX</label>
+                <label class="form-check-label">Option 4</label>
             </div>
-            <p></p>
-            <h6>RAM大小:</h6>
-            <input id="defaultSlider" type="range" min="0" max="1000px"/>
         </form>
     </div>
 
 </div>
 
 <div class="container mt-3">
-    <table class="table table-hover table-bordered" style="width: 1200px;margin: 20px auto">
+    <table class="table table-hover table-bordered" style="width: 1200px;margin: 40px auto">
+        <thead>
+        <tr align="center">
+            <th>算法名称</th>
+            <th>算法介绍</th>
+        </tr>
+        </thead>
         <tbody>
-        {% for ca in calculate_select %}
-            {% if ca[3] %}
+        {% for AI in AI_select %}
+            {% if AI[3] %}
                 <tr align="center">
                     <td>
                         <div class="form-check" style="width: 200px;margin: 20px auto">
                             <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1"
-                            >{{ ca[1] }}
+                            >{{ AI[1] }}
                             <label class="form-check-label" for="radio1"></label>
                         </div>
                     </td>
                     <td>
-                        <div style="width: 700px;margin: 20px auto">{{ ca[2] }}</div>
-                    </td>
-                    <td>
-                        <form action="">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>租用时间</option>
-                                <option value="1">一天</option>
-                                <option value="2">两天</option>
-                                <option value="3">三天</option>
-                                <option value="4">四天</option>
-                                <option value="5">五天</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary mt-3">确认购买</button>
-                        </form>
+                        <div style="width: 700px;margin: 20px auto">{{ AI[2] }}</div>
                     </td>
                 </tr>
             {% endif %}
         {% endfor %}
         </tbody>
     </table>
-
 </div>
+<div class="确认按钮">
+    <a href="/calculate_mall" class="btn btn-success" role="button">确认后前往算力商城</a>
+</div>
+
+
 </div>
 
 </body>

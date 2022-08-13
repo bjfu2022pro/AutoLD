@@ -37,7 +37,7 @@ function captchaBtn(){
                             clearInterval(timer);
                         }
                     },1000)
-                    alert("验证码发送成功");
+                    alert("验证码发送成功,五分钟内有效");
                 }else if(code == 100){
                     alert("该邮箱已被注册");
                 }
@@ -55,16 +55,16 @@ function regbtn(){
         var strLength=email.length;
         var index1=email.indexOf("@");
         var index2=email.indexOf(".",index1);
+        if(!email){
+            alert("请输入邮箱!");
+            return;
+        }
         if(index1==-1||index2==-1||index2<=index1+1||index1==0||index2==strLength-1){
            alert("邮箱地址不合法!");
            return;
         }
         if(!agreement.checked){
             alert("请先同意服务协议!");
-            return;
-        }
-        if(!email){
-            alert("请输入邮箱!");
             return;
         }
         if(!vcode){
@@ -98,6 +98,8 @@ function regbtn(){
                     alert("两次密码输入不一致！");
                 }else if(code == 300){
                     alert("验证码不正确！");
+                }else if(code == 400){
+                    alert("您还没有发送验证码！")
                 }
             }
         })

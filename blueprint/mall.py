@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request
 from flask import Flask
 import sys
 sys.path.append("..")
-import util_algorithmic_mall
+import util_AIgorithmic_mall
 import util_calculate_mall
 
 
@@ -21,6 +21,7 @@ def algorithmic():
 
 @bp.route('/calculate_mall', methods=['get', 'post'])
 def calculate():
+    calculate_select=util_calculate_mall.find_all()
     calculate_select=util_calculate_mall.find_all()
     return render_template("calculate_mall.html",calculate_select=calculate_select)
 
