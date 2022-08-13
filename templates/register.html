@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
     <script type="text/javascript" src="../static/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
+    <script src="../static/js/register.js"></script>
     <style>
         ul{
             list-style: none;
@@ -68,9 +69,9 @@
             <form action="/reg_result" method="post" style="margin: 10px auto;">
                 <div><label></label></div>
                 <div class="row mb-3">
-                    <label class="col-md-3 col-form-label col-sm-3 col-3 intext">手机号：</label>
+                    <label class="col-md-3 col-form-label col-sm-3 col-3 intext">邮箱：</label>
                     <div class="col-md-8 col-sm-8 col-8">
-                        <input type="text" class="form-control" placeholder="Enter Phone number" name="username" required>
+                        <input type="text" class="form-control" placeholder="Enter Email address" name="email" id="email" required>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -78,10 +79,10 @@
                         <label>验证码：</label>
                     </div>
                     <div class="col-md-5 col-sm-5 col-5" align="left">
-                        <input type="text" class="form-control" placeholder="Verification Code" name="vcode" required>
+                        <input type="text" class="form-control" placeholder="Verification Code" name="vcode" id="vcode" required>
                     </div>
                     <div class="col-md-3 col-sm-3 col-3">
-                        <button type="button" class="btn btn-light" >发送验证码</button>
+                        <button type="button" class="btn btn-light" id="captcha_btn">发送验证码</button>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -89,7 +90,7 @@
                         <label>密码：</label>
                     </div>
                     <div class="col-md-8 col-sm-8 col-8" align="left">
-                        <input type="password" class="form-control" placeholder="Enter password" name="password" required>
+                        <input type="password" class="form-control" placeholder="Enter password" name="password" id="password" required>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -97,7 +98,7 @@
                         <label>重复密码：</label>
                     </div>
                     <div class="col-md-8 col-sm-8 col-8" align="left">
-                        <input type="password" class="form-control" placeholder="Repeat password" name="repwd" required>
+                        <input type="password" class="form-control" placeholder="Repeat password" name="repwd" id="repwd" required>
                     </div>
                 </div>
                 <div class ="mb-2 row">
@@ -105,14 +106,14 @@
                     <div class="col-md-10 col-sm-10 col-10">
                         <div class="form-check">
                             <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" name="remember"> 我已认真阅读并同意
+                              <input class="form-check-input" type="checkbox" id="agreement"> 我已认真阅读并同意
                               <a href="http://baidu.com"><strong>《AutoLD用户服务协议》</strong></a>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="col-12" align="center">
-                    <button type="submit" class="btn btn-primary">注册</button>
+                    <button type="button" class="btn btn-primary" id="reg_btn">注册</button>
                 </div>
                 <button style="position: absolute; right: 10px; bottom: 10px" type="button" 
                 class="btn btn-light" onclick="window.location.href = '/login'">返回登录</button>
