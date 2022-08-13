@@ -1,5 +1,5 @@
 from flask import Flask
-from blueprint import user_bp
+from blueprint import user_bp , mall_bp
 import config
 from flask_mail import Mail
 
@@ -9,6 +9,7 @@ mail = Mail()
 mail.init_app(app)
 
 app.register_blueprint(user_bp)
+app.register_blueprint(mall_bp)
 
 
 if __name__ == '__main__':
