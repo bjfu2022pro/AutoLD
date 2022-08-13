@@ -84,91 +84,35 @@
 <div class="container mt-3">
     <table class="table table-hover table-bordered" style="width: 1200px;margin: 20px auto">
         <tbody>
-        <tr align="center">
-            <td>GPU一</td>
-            <td>GPU一信息</td>
-            <td>
-                <form action="">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>租用时间</option>
-                        <option value="1">一天</option>
-                        <option value="2">两天</option>
-                        <option value="3">三天</option>
-                        <option value="4">四天</option>
-                        <option value="5">五天</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary mt-3">确认购买</button>
-                </form>
-            </td>
-        </tr>
-        <tr align="center">
-            <td>GPU二</td>
-            <td>GPU二信息</td>
-            <td>
-                <form action="">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>租用时间</option>
-                        <option value="1">一天</option>
-                        <option value="2">两天</option>
-                        <option value="3">三天</option>
-                        <option value="4">四天</option>
-                        <option value="5">五天</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary mt-3">确认购买</button>
-                </form>
-            </td>
-        </tr>
-        <tr align="center">
-            <td>GPU三</td>
-            <td>GPU三信息</td>
-            <td>
-                <form action="">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>租用时间</option>
-                        <option value="1">一天</option>
-                        <option value="2">两天</option>
-                        <option value="3">三天</option>
-                        <option value="4">四天</option>
-                        <option value="5">五天</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary mt-3">确认购买</button>
-                </form>
-            </td>
-        </tr>
-        <tr align="center">
-            <td>GPU四</td>
-            <td>GPU四信息</td>
-            <td>
-                <form action="">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>租用时间</option>
-                        <option value="1">一天</option>
-                        <option value="2">两天</option>
-                        <option value="3">三天</option>
-                        <option value="4">四天</option>
-                        <option value="5">五天</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary mt-3">确认购买</button>
-                </form>
-            </td>
-        </tr>
-        <tr align="center">
-            <td>GPU五</td>
-            <td>GPU五信息</td>
-            <td>
-                <form action="">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>租用时间</option>
-                        <option value="1">一天</option>
-                        <option value="2">两天</option>
-                        <option value="3">三天</option>
-                        <option value="4">四天</option>
-                        <option value="5">五天</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary mt-3">确认购买</button>
-                </form>
-            </td>
-        </tr>
+        {% for ca in calculate_select %}
+            {% if ca[3] %}
+                <tr align="center">
+                    <td>
+                        <div class="form-check" style="width: 200px;margin: 20px auto">
+                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1"
+                            >{{ ca[1] }}
+                            <label class="form-check-label" for="radio1"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="width: 700px;margin: 20px auto">{{ ca[2] }}</div>
+                    </td>
+                    <td>
+                        <form action="">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>租用时间</option>
+                                <option value="1">一天</option>
+                                <option value="2">两天</option>
+                                <option value="3">三天</option>
+                                <option value="4">四天</option>
+                                <option value="5">五天</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary mt-3">确认购买</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
         </tbody>
     </table>
 

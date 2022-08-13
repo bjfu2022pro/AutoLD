@@ -37,7 +37,7 @@ function captchaBtn(){
                             clearInterval(timer);
                         }
                     },1000)
-                    alert("验证码发送成功");
+                    alert("验证码发送成功,五分钟内有效");
                 }else if(code == 100){
                     alert("该邮箱已被注册");
                 }
@@ -98,6 +98,8 @@ function regbtn(){
                     alert("两次密码输入不一致！");
                 }else if(code == 300){
                     alert("验证码不正确！");
+                }else if(code == 400){
+                    alert("您还没有发送验证码！")
                 }
             }
         })

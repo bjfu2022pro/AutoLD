@@ -51,23 +51,25 @@ def register_check():
     """
     注册检查
     """
-    email = request.values.get('email')
+    email = request.values.get('email')                                 #获取前端传递的数据
     vcode = request.values.get('vcode')
     password = str(request.values.get('password'))
     repwd = str(request.values.get('repwd'))
-    date_email = util_user.finder(email, "email", "email_captcha")
-    deltime = datetime.timedelta(seconds=300)
-    if date_email:
+    date_email = util_user.finder(email, "email", "email_captcha")      #获取服务器里当前邮箱的验证码信息
+    deltime = datetime.timedelta(seconds=300)                           #过期时间5分钟
+    if date_email:                                                      #判断邮箱已经发过验证码
         create_time = date_email[0][3]
-        time_inter = datetime.datetime.now()-create_time
-        if vcode == date_email[0][2] and time_inter < deltime:
-            if password != repwd:
-                return jsonify({"code":100})
+        time_inter = datetime.datetime.now()-create_time                #验证码时间
+        if vcode == date_email[0][2] and time_inter < deltime:          #确认验证码是否正确
+            if password != repwd:                                       #两次输入密码是否正确
+                return jsonify({"code":100})                            #返回code100密码不正确
             else:
                 util_user.add_user(email, password)
                 return jsonify({"code":200})
         else :
             return jsonify({"code":300})
+    else:
+        return jsonify({"code":400})
 
 
 @bp.route('/usercontrol')
