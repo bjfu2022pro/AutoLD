@@ -29,7 +29,7 @@
     <style>
         #shell {
             width: 900px;
-            height: 400px;
+            height: 440px;
             border: 8px solid #96d9bb;
             border-radius: 13px;
             top: 200px;
@@ -61,9 +61,16 @@
             position: absolute;
             right: 20px;
         }
-
+        .xiugai{
+            boder:transparent;
+        }
         .table-striped > tbody > tr.activeRow {
             background-color: #aad9ca;
+        }
+        a{
+            text-decoration: none;
+            font-size:2px;
+            color: #000;
         }
     </style>
 </head>
@@ -103,6 +110,7 @@
                 <td>交易金额</td>
                 <td>预计所需时间</td>
                 <td>订单号</td>
+                <td>付款人</td>
             </tr>
             <tr>
                 <td height="230px"></td>
@@ -111,8 +119,20 @@
                 <td height="230px"></td>
                 <td height="230px"></td>
                 <td height="230px"></td>
+                <td height="230px"></td>
             </tr>
-        </table>
+            <tr align="center">
+                <td height="4px"><a href="/">修改</a></td>
+                <td height="4px"><a href="/">修改</a></td>
+                <td height="4px"><a href="/">修改</a></td>
+                <td height="4px"></td>
+                <td height="4px"></td>
+                <td height="4px"></td>
+                <td height="4px"></td>
+            </tr>
+            </table>
+    </div>
+    <div style="height: 5px">
 
     </div>
     <div class="zhifu" align="center">
@@ -123,8 +143,8 @@
         <br/>
     </div>
     <div class="anniu">
-        <button type="button" class="btn btn-danger" style="height: 40px;width: 70px">取消</button>
-        <button type="button" class="btn btn-info" style="height: 40px;width: 70px;">支付</button>
+        <button type="button" class="btn btn-info" style="height: 40px;width: 70px">取消</button>
+        <button type="button" class="btn btn-warning" style="height: 40px;width: 70px;">支付</button>
 
     </div>
 </div>
