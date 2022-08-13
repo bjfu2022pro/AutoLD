@@ -83,17 +83,16 @@ def delete_user(value, property="id"):
     conn_close(conn, cursor)
 
 
-def update_info(id, name, password):
+def update_info(name, password):
     """
     更新用户信息
-    :param id: 用户id，此为筛选条件
-    :param name: 新用户名
+    :param name: 用户名,此为筛选条件
     :param password: 新密码
     :return: 无
     """
     conn, cursor = get_conn()
-    sql = "update user set username =%s, password=%s where id = %s"
-    cursor.execute(sql,(name, password, id))
+    sql = "update user set password=%s where username = %s"
+    cursor.execute(sql, (password, name))
     conn.commit()
     conn_close(conn, cursor)
 
