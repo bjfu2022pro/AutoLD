@@ -1,123 +1,93 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AutoLD</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <script type="text/javascript" src="../static/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
-    <script src="../static/js/register.js"></script>
-    <style>
-        ul{
-            list-style: none;
-        }
-        .main{
-            border-radius: 25px;
-            width: 600px;
-            height: 350px;
-            border: 1px solid #b8e8ea;
-            background-color: #b8e8ea;
-            margin: 150px auto;
-            position: relative;
-        }
-        .intext{
-            text-align:center;
-        }
-        .btn{
-            width: 130px;
-        }
-        @media screen and (max-width: 576px) {
-            .main{
-                width: 500px;
-            }
-            .btn{
-                width: 110px;
-            }
-        }
-    </style>
-</head>
-
+<html>
+    <head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <title></title>
+          <meta name="description" content="">
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+          <meta name="robots" content="all,follow">
+          <!-- Bootstrap CSS-->
+          <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+          <!-- Font Awesome CSS-->
+          <link rel="stylesheet" href="../static/vendor/font-awesome/css/font-awesome.min.css">
+          <!-- Fontastic Custom icon font-->
+          <link rel="stylesheet" href="../static/css/user/fontastic.css">
+          <!-- Google fonts - Poppins -->
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+          <!-- theme stylesheet-->
+          <link rel="stylesheet" href="../static/css/user/style.default.css" id="theme-stylesheet">
+          <!-- Custom stylesheet - for your changes-->
+          <link rel="stylesheet" href="../static/css/user/custom.css">
+          <!-- Favicon-->
+          <link rel="shortcut icon" href="../static/img/favicon.ico">
+          <script type="text/javascript" src="../static/js/bootstrap.bundle.min.js"></script>
+          <script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
+          <script src="../static/js/register.js"></script>
+    </head>
 <body>
-    <div>
-        <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color:#b8e8ea;">
-
-            <!-- div1 start -->
-            <div class="container-fluid justify-content-start">
-    
-                <!-- Brand -->
-                <a href="/home"><img src="../static/img/logo.png" alt="logo" width="82" height="60"></a>
-                <ul>
-                    <li><a class="navbar-brand" href="/home">&nbsp;&nbsp;&nbsp;AutoLD</a></li>
-                    <li><p>&nbsp;&nbsp;&nbsp;让深度学习和呼吸一样自然</p></li>
-                </ul>
-            </div>
-
-            <!-- div2 start -->
-            <div class="container-fluid justify-content-end">
-                <ul class="navbar-nav">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="/usercontrol">个人中心</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="container-fluid">
-        <div class="main">
-            <form action="/reg_result" method="post" style="margin: 10px auto;">
-                <div><label></label></div>
-                <div class="row mb-3">
-                    <label class="col-md-3 col-form-label col-sm-3 col-3 intext">邮箱：</label>
-                    <div class="col-md-8 col-sm-8 col-8">
-                        <input type="text" class="form-control" placeholder="Enter Email address" name="email" id="email" required>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-3 col-sm-3 col-3 intext" >
-                        <label>验证码：</label>
-                    </div>
-                    <div class="col-md-5 col-sm-5 col-5" align="left">
-                        <input type="text" class="form-control" placeholder="Verification Code" name="vcode" id="vcode" required>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-3">
-                        <button type="button" class="btn btn-light" id="captcha_btn">发送验证码</button>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-3 col-sm-3 col-3 intext" >
-                        <label>密码：</label>
-                    </div>
-                    <div class="col-md-8 col-sm-8 col-8" align="left">
-                        <input type="password" class="form-control" placeholder="Enter password" name="password" id="password" required>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-3 col-sm-3 col-3 intext">
-                        <label>重复密码：</label>
-                    </div>
-                    <div class="col-md-8 col-sm-8 col-8" align="left">
-                        <input type="password" class="form-control" placeholder="Repeat password" name="repwd" id="repwd" required>
-                    </div>
-                </div>
-                <div class ="mb-2 row">
-                    <div class="col-md-1 col-sm-1 col-1"></div>
-                    <div class="col-md-10 col-sm-10 col-10">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" id="agreement"> 我已认真阅读并同意
-                              <a href="https://www.baidu.com/s?wd=AutoLD用户服务协议"><strong>《AutoLD用户服务协议》</strong></a>
-                            </label>
+    <div class="page login-page">
+        <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+            <div class="row">
+              <!-- Logo & Information Panel-->
+                <div class="col-lg-6">
+                    <div class="info d-flex align-items-center">
+                        <div class="content">
+                            <div class="logo">
+                              <h1>AutoLD</h1>
+                            </div>
+                          <p>让深度学习和呼吸一样自然</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12" align="center">
-                    <button type="button" class="btn btn-primary" id="reg_btn">注册</button>
+              <!-- Form Panel    -->
+                <div class="col-lg-6 bg-white">
+                    <div class="form d-flex align-items-center">
+                        <div class="content">
+                            <form class="form-validate">
+                                <div class="form-group">
+                                  <input id="email" type="email" name="registerEmail" class="input-material">
+                                  <label for="register-email" class="label-material">邮箱地址：</label>
+                                </div>
+                                <div class="form-group">
+                                  <input id="password" type="password" name="registerPassword"  class="input-material">
+                                  <label for="register-password" class="label-material">密码：</label>
+                                </div>
+                                <div class="form-group">
+                                  <input id="repwd" type="password" name="repwd"  class="input-material">
+                                  <label for="repwd" class="label-material">重复密码：</label>
+                                </div>
+                                <div class="form-group">
+                                  <input id="vcode" type="text" name="captcha" class="input-material"
+                                  style="width: 260px;">
+                                  <label for="captcha" class="label-material">验证码：</label>
+                                  <button id="captcha_btn" type="button" name="captcha_btn" class="btn btn-primary" 
+                                  style="width: 135px;">发送验证码</button>
+                                </div>
+                                <div class="form-group terms-conditions">
+                                  <input id="agreement" name="registerAgree" type="checkbox" class="checkbox-template">
+                                  <label for="agreement">我已认真阅读并同意
+                                    <a href="https://www.baidu.com/s?wd=AutoLD用户服务协议" target="_blank"><strong>《AutoLD用户服务协议》</strong></a></label>
+                                </div>
+                                <div class="form-group">
+                                  <button id="reg_btn" type="button" name="registerSubmit" class="btn btn-primary" id>注册</button>
+                                </div>
+                            </form><small>已有账号？ </small><a href="/login" class="signup">登录</a>
+                        </div>
+                    </div>
                 </div>
-                <button style="position: absolute; right: 10px; bottom: 10px" type="button" 
-                class="btn btn-light" onclick="window.location.href = '/login'">返回登录</button>
-            </form> 
+            </div>
         </div>
-</body>
+    </div>
+    <!-- JavaScript files-->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="../static/vendor/chart.js/Chart.min.js"></script>
+    <script src="../static/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <!-- Main File-->
+    <script src="../static/js/user/front.js"></script>
+  </body>
 </html>
