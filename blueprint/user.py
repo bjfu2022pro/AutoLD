@@ -11,14 +11,21 @@ import string
 bp = Blueprint("user", __name__, "/")
 mail = Mail()
 
+
 @bp.route('/')
 @bp.route('/login', methods=['get', 'post']) 
 def login():
+    """
+    登录界面
+    """
     return render_template("login.html")
 
 
 @bp.route('/login_result', methods=['get', 'post'])
 def login_checker():
+    """
+    登录检查
+    """
     email = request.values.get('phonenumber')
     password = request.values.get('password')
     info = util_user.login_check(email, password)
@@ -28,11 +35,17 @@ def login_checker():
 
 @bp.route('/register')
 def register():
+    """
+    注册界面
+    """
     return render_template("register.html")
 
 
 @bp.route('/reg_result', methods=['get', 'post'])
 def register_check():
+    """
+    注册检查
+    """
     email = request.values.get('email')
     vcode = request.values.get('vcode')
     password = str(request.values.get('password'))
