@@ -73,7 +73,7 @@
 </div>
 
 <div class="container mt-3">
-    <table class="table table-hover table-bordered" style="width: 800px;margin: 40px auto">
+    <table class="table table-hover table-bordered" style="width: 1200px;margin: 40px auto">
         <thead>
         <tr align="center">
             <th>算法名称</th>
@@ -81,19 +81,21 @@
         </tr>
         </thead>
         <tbody>
-        {% for stu in students %}
-            <tr align="center">
-                <td>
-                    <div class="form-check" style="width: 100px;margin: 20px auto">
-                        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1"
-                        >{{ stu.name }}
-                        <label class="form-check-label" for="radio1"></label>
-                    </div>
-                </td>
-                <td>
-                    <div style="width: 100px;margin: 20px auto">{{ stu.tell }}</div>
-                </td>
-            </tr>
+        {% for AI in AI_select %}
+            {% if AI[3] %}
+                <tr align="center">
+                    <td>
+                        <div class="form-check" style="width: 200px;margin: 20px auto">
+                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1"
+                            >{{ AI[1] }}
+                            <label class="form-check-label" for="radio1"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="width: 700px;margin: 20px auto">{{ AI[2] }}</div>
+                    </td>
+                </tr>
+            {% endif %}
         {% endfor %}
         </tbody>
     </table>
