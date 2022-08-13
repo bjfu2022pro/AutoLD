@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request
 from flask import Flask
 import sys
 sys.path.append("..")
-import util_AIgorithmic_mall
+import util_algorithmic_mall
 import util_calculate_mall
 
 
