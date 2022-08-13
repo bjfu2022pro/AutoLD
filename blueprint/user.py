@@ -91,7 +91,7 @@ def pwd_fgt_ck():
     忘记密码检查
     """
     email = request.values.get('email')
-    vcode = request.values.get('vcode')
+    vcode = str(request.values.get('vcode'))
     new_password = str(request.values.get('new_password'))
     new_repwd = str(request.values.get('new_repwd'))
     date_email = util_user.finder(email, "email", "email_captcha")
