@@ -1,11 +1,16 @@
+import random
+import string
+import datetime
+
 from flask import Blueprint, jsonify, render_template, request
+from flask_mail import Mail, Message
+
 import sys 
 sys.path.append("..") 
 import util_user
 import util_email
-from flask_mail import Mail, Message
-import random
-import string
+
+
 
 
 bp = Blueprint("user", __name__, "/")
@@ -50,11 +55,19 @@ def register_check():
     vcode = request.values.get('vcode')
     password = str(request.values.get('password'))
     repwd = str(request.values.get('repwd'))
-    if password != repwd:
-        return "两次密码不一致"
-    else:
-        info = util_user.add_user(email, password)
-        return info
+    date_email = util_user.finder(email, "email", "email_captcha")
+    deltime = datetime.timedelta(seconds=300)
+    if date_email:
+        create_time = date_email[0][3]
+        time_inter = datetime.datetime.now()-create_time
+        if vcode == date_email[0][2] and time_inter < deltime:
+            if password != repwd:
+                return jsonify({"code":100})
+            else:
+                util_user.add_user(email, password)
+                return jsonify({"code":200})
+        else :
+            return jsonify({"code":300})
 
 
 @bp.route('/usercontrol')
@@ -70,13 +83,17 @@ def password_forget():
 @bp.route('/mail', methods=['post', 'get'])
 def send_vcode():
     email = request.values.get("email")
-    vcode = "".join(random.sample(string.digits, 4))
-    mail_body = "您的验证码是：{}".format(vcode)
-    message = Message(
-        subject="test",
-        recipients=[email],
-        body=mail_body
-    )
-    mail.send(message)
-    util_email.captcha_insert(email, vcode)
-    return jsonify({"code":200})
+    reged = util_user.finder(email)
+    if reged:
+        return jsonify({"code":100})
+    else:
+        vcode = "".join(random.sample(string.digits, 4))
+        mail_body = "【AutoLD】欢迎您注册AutoLD账户，您的验证码是：{}，请不要泄露给其他人，如果不是您本人在操作，请忽略此邮件".format(vcode)
+        message = Message(
+            subject="【AutoLD】邮箱验证",
+            recipients=[email],
+            body=mail_body
+        )
+        mail.send(message)
+        util_email.captcha_insert(email, vcode)
+        return jsonify({"code":200})
