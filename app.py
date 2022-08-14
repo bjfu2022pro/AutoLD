@@ -24,7 +24,7 @@ dingdan = [
 
 @app.route('/pay_confirm')
 def confirm():
-    return render_template('index2.html')
+    return render_template('pay.html')
 
 
 if __name__ == '__main__':
