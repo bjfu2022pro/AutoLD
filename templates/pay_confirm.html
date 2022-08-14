@@ -111,9 +111,11 @@
                 <td>预计所需时间</td>
                 <td>订单号</td>
                 <td>付款人</td>
+
             </tr>
             <tr>
-                <td height="230px"></td>
+                 {% for infa in dingdan %}
+                <td height="230px">infa.dingdanhao</td>
                 <td height="230px"></td>
                 <td height="230px"></td>
                 <td height="230px"></td>
@@ -121,6 +123,7 @@
                 <td height="230px"></td>
                 <td height="230px"></td>
             </tr>
+              {% endfor %}
             <tr align="center">
                 <td height="4px"><a href="/">修改</a></td>
                 <td height="4px"><a href="/">修改</a></td>
