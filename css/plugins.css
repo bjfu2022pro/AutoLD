@@ -1,0 +1,21 @@
+/*********************************************************************************
+
+    Template Name: Fsulting - Financial Consulting Bootstrap 4 Template
+	Description: Fsulting is a beautiful and unique financial & consulting html template which comes with bootstrap 4 framework.
+	Version: 1
+
+	Note: This is plugins css. All plugins css files import here.
+
+**********************************************************************************/
+
+@import url(plugins/fakeloader.css);
+@import url(plugins/meanmenu.css);
+@import url(plugins/font-awesome.min.css);
+@import url(plugins/flaticon.css);
+@import url(plugins/pe-icon-7-stroke.css);
+@import url(plugins/slick.min.css);
+@import url(plugins/animate.min.css);
+@import url(plugins/animated-headline.css);
+@import url(plugins/select2.min.css);
+@import url(plugins/datepicker.min.css);
+@import url(plugins/lightgallery.min.css);
