@@ -58,19 +58,14 @@ def add_user(name, password):
     """
     :param name:用户名
     :param password:密码
-    :return:判断手机号是否被注册，新手机号则注册成功，旧手机号则提示被注册
+    :return:判断邮箱是否被注册，新邮箱则注册成功，旧邮箱则提示被注册
     作用：向数据表中添加一个用户
     """
     conn, cursor = get_conn()
-    result = finder(name)
-    if result:
-        return "手机号已被注册"
-    else:
-        sql = f"insert into user values(null,%s,%s);"
-        param = (name, password)
-        cursor.execute(sql, param)
-        conn.commit()
-        return "注册成功"
+    sql = f"insert into user values(null,%s,%s);"
+    param = (name, password)
+    cursor.execute(sql, param)
+    conn.commit()
     conn_close(conn, cursor)
 
 
@@ -88,17 +83,16 @@ def delete_user(value, property="id"):
     conn_close(conn, cursor)
 
 
-def update_info(id, name, password):
+def update_info(name, password):
     """
     更新用户信息
-    :param id: 用户id，此为筛选条件
-    :param name: 新用户名
+    :param name: 用户名,此为筛选条件
     :param password: 新密码
     :return: 无
     """
     conn, cursor = get_conn()
-    sql = "update user set username =%s, password=%s where id = %s"
-    cursor.execute(sql,(name, password, id))
+    sql = "update user set password=%s where username = %s"
+    cursor.execute(sql, (password, name))
     conn.commit()
     conn_close(conn, cursor)
 
