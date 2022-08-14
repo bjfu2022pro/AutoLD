@@ -81,8 +81,8 @@ function reset_pwd(){
             data:{
                 "email":email,
                 "vcode":vcode,
-                "password":new_password,
-                "repwd":new_repwd
+                "new_password":new_password,
+                "new_repwd":new_repwd
             },
             success:function(res){
                 var code = res['code'];

@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AutoLD_支付界面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href='http://fonts.googleapis.com/css?family=Lato|Fjalla+One' rel='stylesheet' type='text/css'>
+    <!-- Le styles -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <style>
+        .anniu {
+            position: relative;
+            left: 1000px;
+        }
+    </style>
+</head>
+
+
+<body>
+<!-- Main Menu end -->
+<div class="wrap bg1">
+    <div class="container"> <!-- Header starts -->
+        <div class="hero-unit">
+            <h1 align="center">订单信息</h1>
+            <div class="row-fluid">
+                <div class="header-image">
+                    <div class="biaoti">
+                        <div style="height:50px"></div>
+                        <table class="table table-bordered table-striped">
+                            <tr class="activeRow">
+                                <td>算法类型</td>
+                                <td>算法配置</td>
+                                <td>数据集</td>
+                                <td>交易金额</td>
+                                <td>预计所需时间</td>
+                                <td>订单号</td>
+                                <td>付款人</td>
+                            </tr>
+                             {% for infa in danding %}
+                            <tr>
+                                <td height="230px">infa.dingdanhao</td>
+                                <td height="230px"></td>
+                                <td height="230px"></td>
+                                <td height="230px"></td>
+                                <td height="230px"></td>
+                                <td height="230px"></td>
+                                <td height="230px"></td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <td height="4px"><a href="/">修改</a></td>
+                                <td height="4px"><a href="/">修改</a></td>
+                                <td height="4px"><a href="/">修改</a></td>
+                                <td height="4px"></td>
+                                <td height="4px"></td>
+                                <td height="4px"></td>
+                                <td height="4px"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="zhifu" align="center">
+                        支付方式：
+                        <input type="radio" name="choice">微信 <input type="radio" name="choice">支付宝 <input type="radio"
+                                                                                                          name="choice">银行卡
+                        <input
+                                type="radio" name="choice">支付币 <br>
+                        <br/>
+                    </div>
+                    <div class="anniu">
+                        <button type="button" class="btn btn-info" style="height: 40px;width: 70px">取消</button>
+                        <button type="button" class="btn btn-warning" style="height: 40px;width: 70px;">支付</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+
+<div style="display:none">
+    <script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript'
+            charset='gb2312'></script>
+</div>
+
+
+</body>
+</html>
