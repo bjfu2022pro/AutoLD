@@ -31,8 +31,8 @@ def login_checker():
     """
     登录检查
     """
-    email = request.values.get('phonenumber')
-    password = request.values.get('password')
+    email = request.values.get('login-username')
+    password = request.values.get('login-password')
     info = util_user.login_check(email, password)
     print(info)
     return info
