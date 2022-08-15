@@ -81,8 +81,18 @@ def register_check():
 
 @bp.route('/usercontrol')
 def user_control():
+    """
+    个人中心界面
+    """
     return render_template("usercontrol.html")
 
+
+@bp.route('/password_change')
+def password_change():
+    """
+    更改密码界面
+    """
+    return render_template("usercontrol.html")
 
 @bp.route('/password_forget')
 def password_forget():
