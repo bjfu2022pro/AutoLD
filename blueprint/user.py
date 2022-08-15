@@ -19,7 +19,7 @@ mail = Mail()
 
 @bp.route('/')
 @bp.route('/home', methods=['get', 'post']) 
-def login():
+def home():
     """
     首页
     """
