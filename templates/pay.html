@@ -44,13 +44,13 @@
                             </tr>
                              {% for infa in dingdan %}
                             <tr>
-                                <td height="230px">{{infa.dingdanhao}}</td>
-                                <td height="230px"></td>
-                                <td height="230px"></td>
-                                <td height="230px"></td>
-                                <td height="230px"></td>
-                                <td height="230px"></td>
-                                <td height="230px"></td>
+                                <td height="230px">{{infa.leixing}}</td>
+                                <td height="230px">{{infa.peizhi}}</td>
+                                <td height="230px">{{infa.leixing}}</td>
+                                <td height="230px">{{infa.shujuji}}</td>
+                                <td height="230px">{{infa.jine}}</td>
+                                <td height="230px">{{infa.shijian}}</td>
+                                <td height="230px">{{infa.fukuanren}}</td>
                             </tr>
                             {% endfor %}
                             <tr>
@@ -73,7 +73,7 @@
                         <br/>
                     </div>
                     <div class="anniu">
-                        <button type="button" class="btn btn-info" style="height: 40px;width: 70px">取消</button>
+                        <button type="button" onclick="window.location.href = '/algorithmic_mall'" class="btn btn-info" style="height: 40px;width: 70px">取消</button>
                         <button type="button" class="btn btn-warning" style="height: 40px;width: 70px;">支付</button>
                     </div>
                 </div>
