@@ -24,7 +24,6 @@ def before_request():
             g.info = info[0]
         except:
             g.info = None
-        print(g.info)
 
 
 @app.context_processor
