@@ -39,11 +39,10 @@ def login_checker():
     """
     登录检查
     """
-    email = request.values.get('loginUsername')
-    password = request.values.get('loginPassword')
-    info = util_user.login_check(email, password)
-    print(info)
-    return info
+    email = request.values.get('email')
+    password = request.values.get('password')
+    code = util_user.login_check(email, password)
+    return jsonify({"code":code})
 
 
 @bp.route('/register')
