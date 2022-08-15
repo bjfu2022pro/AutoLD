@@ -41,17 +41,17 @@ def login_check(name, pwd):
     """
     :param name:用户名
     :param pwd:密码
-    :return:字符串
+    :return:code:200成功,code:100密码错误,code:300邮箱未注册
     作用：判断用户的输入是无效用户名、不匹配的账号密码还是成功登录
     """
     result = finder(name)
     if result:
         if pwd == result[0][2]:
-            return "欢迎登录"
+            return 200
         else:
-            return "密码错误！"
+            return 100
     else:
-        return "用户名错误"
+        return 300
 
 
 def add_user(name, password):
