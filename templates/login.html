@@ -26,49 +26,48 @@
         <script src="../static/js/js-login/login.js"></script>
     </head>
 <body>
-<div class="page login-page">
-    <div class="container d-flex align-items-center">
-        <div class="form-holder has-shadow">
-            <div class="row">
-                <!-- Logo & Information Panel-->
-                <div class="col-lg-6">
-                    <div class="info d-flex align-items-center">
-                        <div class="content">
-                            <div class="logo">
-                                <h1>AutoLD</h1>
+    <div class="page login-page">
+        <div class="container d-flex align-items-center">
+            <div class="form-holder has-shadow">
+                <div class="row">
+                    <!-- Logo & Information Panel-->
+                    <div class="col-lg-6">
+                        <div class="info d-flex align-items-center">
+                            <div class="content">
+                                <div class="logo">
+                                    <h1>AutoLD</h1>
+                                </div>
+                                <p>让深度学习和呼吸一样自然</p>
                             </div>
-                            <p>让深度学习和呼吸一样自然</p>
                         </div>
                     </div>
-                </div>
-                <!-- Form Panel    -->
-                <div class="col-lg-6 bg-white">
-                    <div class="form d-flex align-items-center">
-                        <div class="content">
-                            <form method="post" class="form-validate" action="/login_result">
-                                <div class="form-group">
-                                    <input id="email" type="text" name="loginUsername" required
-                                           data-msg="请输入邮箱号" class="input-material">
-                                    <label for="email" class="label-material">邮箱:</label>
-                                </div>
-                                <div class="form-group">
-                                    <input id="password" type="password" name="loginPassword" required
-                                           data-msg="请输入密码" class="input-material">
-                                    <label for="password" class="label-material">密码:</label>
-                                </div>
-                                <button id="log_btn" type="button" name="loginSubmit" class="btn btn-primary" id>登录</button>
-                            </form>
-                            <a href = "/password_forget" class="forgot-pass">忘记密码?</a><br>
-                            <small>是否拥有账号？</small>
-                            <a href = "/register" class="signup">注册</a>
+                    <!-- Form Panel    -->
+                    <div class="col-lg-6 bg-white">
+                        <div class="form d-flex align-items-center">
+                            <div class="content">
+                                <form method="post" class="form-validate" action="/login_result">
+                                    <div class="form-group">
+                                        <input id="email" type="text" name="loginUsername" required
+                                               data-msg="请输入邮箱号" class="input-material">
+                                        <label for="email" class="label-material">邮箱:</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="password" type="password" name="loginPassword" required
+                                               data-msg="请输入密码" class="input-material">
+                                        <label for="password" class="label-material">密码:</label>
+                                    </div>
+                                    <button id="log_btn" type="button" name="loginSubmit" class="btn btn-primary" id>登录</button>
+                                </form>
+                                <a href = "/password_forget" class="forgot-pass">忘记密码?</a><br>
+                                <small>是否拥有账号？</small>
+                                <a href = "/register" class="signup">注册</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-</div>
 <!-- JavaScript files-->
 <script src="../static/js/js-login/jquery.min.js"></script>
 <script src="../static/js/js-login/popper.min.js"></script>
