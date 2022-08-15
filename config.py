@@ -7,3 +7,6 @@ MAIL_DEBUG = True
 MAIL_USERNAME = "larfchan@qq.com"
 MAIL_PASSWORD = "padxehdlqjlzbjbb"
 MAIL_DEFAULT_SENDER = "larfchan@qq.com"
+
+#session 配置
+SECRET_KEY = 'autoldNo1'

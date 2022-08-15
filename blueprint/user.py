@@ -2,7 +2,10 @@ import random
 import string
 import datetime
 
-from flask import Blueprint, jsonify, render_template, request
+from flask import (Blueprint, jsonify, 
+                    render_template, 
+                    request, session,
+                    redirect, g)
 from flask_mail import Mail, Message
 
 import sys 
@@ -42,6 +45,8 @@ def login_checker():
     email = request.values.get('email')
     password = request.values.get('password')
     code = util_user.login_check(email, password)
+    if code == 200:
+        session['email'] = email
     return jsonify({"code":code})
 
 
