@@ -18,12 +18,12 @@ mail = Mail()
 
 
 @bp.route('/')
-@bp.route('/index')
+@bp.route('/home')
 def index():
     """
     主页
     """
-    return render_template("index.html")
+    return render_template("home.html")
 
 
 @bp.route('/login', methods=['get', 'post']) 
