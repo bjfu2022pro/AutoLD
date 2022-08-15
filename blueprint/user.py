@@ -92,7 +92,7 @@ def password_change():
     """
     更改密码界面
     """
-    return render_template("usercontrol.html")
+    return render_template("password_change.html")
 
 @bp.route('/password_forget')
 def password_forget():
