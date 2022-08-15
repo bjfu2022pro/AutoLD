@@ -18,6 +18,14 @@ mail = Mail()
 
 
 @bp.route('/')
+@bp.route('/home')
+def index():
+    """
+    主页
+    """
+    return render_template("home.html")
+
+
 @bp.route('/login', methods=['get', 'post']) 
 def login():
     """
@@ -31,8 +39,8 @@ def login_checker():
     """
     登录检查
     """
-    email = request.values.get('phonenumber')
-    password = request.values.get('password')
+    email = request.values.get('loginUsername')
+    password = request.values.get('loginPassword')
     info = util_user.login_check(email, password)
     print(info)
     return info

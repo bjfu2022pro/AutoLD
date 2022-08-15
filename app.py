@@ -1,5 +1,6 @@
-from flask import Flask
-from blueprint import user_bp , mall_bp
+from flask import Flask, render_template
+from blueprint import user_bp, mall_bp
+
 import config
 from flask_mail import Mail
 
