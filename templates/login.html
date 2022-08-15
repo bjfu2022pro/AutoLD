@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AutoLD_login</title>
+    <title>AutoLD_欢迎登录</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -45,7 +45,7 @@
                 <div class="col-lg-6 bg-white">
                     <div class="form d-flex align-items-center">
                         <div class="content">
-                            <form method="post" class="form-validate">
+                            <form method="post" class="form-validate" action="/login_result">
                                 <div class="form-group">
                                     <input id="login-username" type="text" name="loginUsername" required
                                            data-msg="Please enter your username" class="input-material">
@@ -56,12 +56,12 @@
                                            data-msg="Please enter your password" class="input-material">
                                     <label for="login-password" class="label-material">请输入密码</label>
                                 </div>
-                                <a id="login" onclick="window.location.href = '/login_result'" class="btn btn-primary">登录</a>
+                                <input type="submit" class="btn btn-primary" value="登录">
                                 <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                             </form>
-                            <a onclick="window.location.href = '/password_forget'" class="forgot-pass">忘记密码?</a><br>
+                            <a href = "/password_forget" class="forgot-pass">忘记密码?</a><br>
                             <small>是否拥有账号？</small>
-                            <a onclick="window.location.href = '/register'" class="signup">注册</a>
+                            <a href = "/register" class="signup">注册</a>
                         </div>
                     </div>
                 </div>
