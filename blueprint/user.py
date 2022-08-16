@@ -103,7 +103,13 @@ def password_change():
     """
     更改密码界面
     """
-    return render_template("password_change.html")
+    if hasattr(g, 'info'):
+        if g.info is None:
+            return redirect('/login')
+        else:
+            return render_template("password_change.html")
+    else:
+        return redirect('/login')
 
 
 @bp.route('/password_forget')
