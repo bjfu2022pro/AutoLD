@@ -47,12 +47,6 @@
             </div>
 
             <ul class="nav">
-                <li>
-                    <a href="dashboard.html">
-                        <i class="pe-7s-graph"></i>
-                        <p>主页</p>
-                    </a>
-                </li>
                 <li class="active">
                     <a href="user.html">
                         <i class="pe-7s-user"></i>
@@ -68,7 +62,13 @@
                 <li>
                     <a href="typography.html">
                         <i class="pe-7s-news-paper"></i>
-                        <p>查看订单</p>
+                        <p>我的订单</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="pe-7s-graph"></i>
+                        <p>我的账单</p>
                     </a>
                 </li>
                 <li>
@@ -143,8 +143,13 @@
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label>邮箱地址</label>
-                                                <input type="text" class="form-control" disabled placeholder="用户邮箱（预留）" value="">
+                                                {% if info %}
+                                                <label>用户邮箱</label>
+                                                <input type="text" class="form-control" disabled placeholder="{{info}}" value="">
+                                                {% else %}
+                                                <label>邮箱</label>
+                                                <input type="text" class="form-control" disabled placeholder="占位" value="">
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="col-md-3">

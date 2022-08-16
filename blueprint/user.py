@@ -2,7 +2,10 @@ import random
 import string
 import datetime
 
-from flask import Blueprint, jsonify, render_template, request
+from flask import (Blueprint, jsonify, 
+                    render_template, 
+                    request, session,
+                    redirect, g)
 from flask_mail import Mail, Message
 
 import sys 
@@ -42,6 +45,8 @@ def login_checker():
     email = request.values.get('email')
     password = request.values.get('password')
     code = util_user.login_check(email, password)
+    if code == 200:
+        session['email'] = email
     return jsonify({"code":code})
 
 
@@ -93,6 +98,7 @@ def password_change():
     更改密码界面
     """
     return render_template("password_change.html")
+
 
 @bp.route('/password_forget')
 def password_forget():
@@ -167,3 +173,24 @@ def send_vcode():
         mail.send(message)
         util_email.captcha_insert(email, vcode)
         return jsonify({"code":200})
+
+
+@bp.route('/pwd_change', methods=['post', 'get'])
+def pwd_change():
+    email = request.values.get("email")
+    old_password = request.values.get("old_password")
+    new_password = request.values.get("new_password")
+    new_repwd = request.values.get("new_repwd")
+    this_user = util_user.finder(email)
+    if old_password == this_user[0][2]:
+        if new_password == new_repwd:
+            if new_password == old_password:
+                return jsonify({"code": 100})   # 新密码与旧密码相同
+            else:
+                util_user.update_info(email, new_password)
+                return jsonify({"code": 200})   # 成功更改
+        else:
+            return jsonify({"code": 300})       # 两次新密码输入不一致
+    else:
+        return jsonify({"code": 400})           # 旧密码不正确
+
