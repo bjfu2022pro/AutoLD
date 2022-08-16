@@ -32,7 +32,7 @@ def context_processor():
         if g.info is None:
             return {}
         else:
-            return {"info": g.info[1]}
+            return {"info": g.info}
     else:
         return {}
 

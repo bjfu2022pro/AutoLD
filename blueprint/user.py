@@ -89,7 +89,13 @@ def user_control():
     """
     个人中心界面
     """
-    return render_template("usercontrol.html")
+    if hasattr(g,'info'):
+        if g.info is None:
+            return redirect('/login')
+        else: 
+            return render_template("usercontrol.html")
+    else:
+        return redirect('/login')
 
 
 @bp.route('/password_change')
