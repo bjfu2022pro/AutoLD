@@ -93,7 +93,7 @@ def update_info(email, value,  property = 'password' ):
     :return: 无
     """
     conn, cursor = get_conn()
-    sql = f"update user set {property}=%s where email = %s"
+    sql = f"update user_formal set {property}=%s where email = %s"
     cursor.execute(sql, (value, email))
     conn.commit()
     conn_close(conn, cursor)
