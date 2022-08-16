@@ -111,7 +111,7 @@
                         </li>
                         <li>
                             <a href="">
-                              （预留）账户余额：xx元
+                              账户余额：{{info[4]}}元
                             </a>
                           </li>
                           <li>
@@ -143,40 +143,20 @@
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                {% if info %}
                                                 <label>用户邮箱</label>
                                                 <input type="text" class="form-control" disabled placeholder="" value="{{info[1]}}">
-                                                {% else %}
-                                                <label>邮箱</label>
-                                                <input type="text" class="form-control" disabled placeholder="邮箱" value="">
-                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>用户昵称</label>
-                                                <input type="text" class="form-control" placeholder="用户昵称（预留）" value="">
+                                                <input type="text" class="form-control" placeholder="" value="{{info[3]}}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">用户信息</label>
-                                                <input type="email" class="form-control" placeholder="预留">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>用户信息</label>
-                                                <input type="text" class="form-control" placeholder="预留" value="预留">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>用户信息</label>
-                                                <input type="text" class="form-control" placeholder="预留" value="预留">
+                                                <label for="exampleInputEmail1">性别</label>
+                                                <input type="email" class="form-control" placeholder="{{info[5]}}">
                                             </div>
                                         </div>
                                     </div>
@@ -184,8 +164,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>用户信息</label>
-                                                <input type="text" class="form-control" placeholder="预留" value="预留">
+                                                <label>个人界面</label>
+                                                <input type="text" class="form-control" placeholder="" value="{{info[8]}}">
                                             </div>
                                         </div>
                                     </div>
@@ -193,8 +173,8 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>用户信息</label>
-                                                <input type="text" class="form-control" placeholder="预留" value="预留">
+                                                <label>所属单位</label>
+                                                <input type="text" class="form-control" placeholder="" value="{{info[7]}}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -215,7 +195,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>关于我自己</label>
-                                                <textarea rows="5" class="form-control" placeholder="描述你自己一下吧" value="Mike"></textarea>
+                                                <textarea rows="5" class="form-control" placeholder="描述你自己一下吧" >{{info[6]}}</textarea>
                                             </div>
                                         </div>
                                     </div>
