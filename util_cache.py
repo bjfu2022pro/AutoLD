@@ -17,10 +17,9 @@ def get_conn():
     return conn, cursor
 
 def add(title, introduce):
-
     conn, cursor = get_conn()
-    sql = f"insert into cache values(%s,%s)"
-    param = (title, introduce)
+    sql = f"insert into details_cache values(%s,%s)"
+    param = ( title, introduce)
     cursor.execute(sql, param)
     conn.commit()
     conn_close(conn, cursor)
@@ -29,7 +28,16 @@ def add(title, introduce):
 def find_all():
     conn, cursor = get_conn()
     # 执行查询操作
-    sql = "select * from cache"
+    sql = "select * from details_cache"
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    conn_close(conn, cursor)
+    return result
+
+
+def finder(value, property="id", table="ai_select"):
+    conn, cursor = get_conn()
+    sql = f"select * from {table} where {property}=\'{value}\'"
     cursor.execute(sql)
     result = cursor.fetchall()
     conn_close(conn, cursor)
@@ -43,10 +51,11 @@ def delete(value, property="title"):
     :return: 无
     """
     conn, cursor = get_conn()
-    sql = f"delete from cache where {property} = %s"
+    sql = f"delete from details_cache where {property} = %s"
     cursor.execute(sql, [value])
     conn.commit()
     conn_close(conn, cursor)
+
 
 def conn_close(conn, cursor):
     """
