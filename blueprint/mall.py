@@ -12,15 +12,6 @@ import util_pay
 
 bp = Blueprint("mall", __name__, "/")
 
-dingdan = [
-    {
-        'dingdanhao': 1000, 'peizhi': '空',
-        'leixing': '空', 'shujuji': '空',
-        'jine': '空', 'shijian': '空',
-        'fukuanren': '大公园'
-    }
-]
-
 
 @bp.route('/algorithmic_mall', methods=['get', 'post'])
 def algorithmic():
@@ -52,12 +43,14 @@ def cache():
 def confirm():
     return render_template('pay.html', dingdan=dingdan)
 
+
 @bp.route('/algorithmic_details', methods=['get', 'post'])
 def details():
     details = util_cache.find_all()
     print(details)
     util_cache.delete(details[0][0])
     return render_template("algorithmic_details.html", details=details)
+
 
 @bp.route('/my_bill')
 def my_bill():
