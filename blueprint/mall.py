@@ -5,6 +5,7 @@ import sys
 sys.path.append("..")
 import util_algorithmic_mall
 import util_calculate_mall
+import util_cache
 
 
 bp = Blueprint("mall", __name__, "/")
