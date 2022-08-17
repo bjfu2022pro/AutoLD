@@ -2,7 +2,10 @@ import random
 import string
 import datetime
 
-from flask import Blueprint, jsonify, render_template, request
+from flask import (Blueprint, jsonify, 
+                    render_template, 
+                    request, session,
+                    redirect, g)
 from flask_mail import Mail, Message
 
 import sys 
@@ -34,16 +37,25 @@ def login():
     return render_template("login.html")
 
 
+@bp.route("/logout")
+def logout():
+    """
+    清除session中所有的数据
+    """
+    session.clear()
+    return redirect('/login')
+
 @bp.route('/login_result', methods=['get', 'post'])
 def login_checker():
     """
     登录检查
     """
-    email = request.values.get('loginUsername')
-    password = request.values.get('loginPassword')
-    info = util_user.login_check(email, password)
-    print(info)
-    return info
+    email = request.values.get('email')
+    password = request.values.get('password')
+    code = util_user.login_check(email, password)
+    if code == 200:
+        session['email'] = email
+    return jsonify({"code":code})
 
 
 @bp.route('/register')
@@ -82,7 +94,30 @@ def register_check():
 
 @bp.route('/usercontrol')
 def user_control():
-    return render_template("usercontrol.html")
+    """
+    个人中心界面
+    """
+    if hasattr(g,'info'):
+        if g.info is None:
+            return redirect('/login')
+        else: 
+            return render_template("usercontrol.html")
+    else:
+        return redirect('/login')
+
+
+@bp.route('/password_change')
+def password_change():
+    """
+    更改密码界面
+    """
+    if hasattr(g, 'info'):
+        if g.info is None:
+            return redirect('/login')
+        else:
+            return render_template("password_change.html")
+    else:
+        return redirect('/login')
 
 
 @bp.route('/password_forget')
@@ -158,3 +193,24 @@ def send_vcode():
         mail.send(message)
         util_email.captcha_insert(email, vcode)
         return jsonify({"code":200})
+
+
+@bp.route('/pwd_change', methods=['post', 'get'])
+def pwd_change():
+    email = request.values.get("email")
+    old_password = request.values.get("old_password")
+    new_password = request.values.get("new_password")
+    new_repwd = request.values.get("new_repwd")
+    this_user = util_user.finder(email)
+    if old_password == this_user[0][2]:
+        if new_password == new_repwd:
+            if new_password == old_password:
+                return jsonify({"code": 100})   # 新密码与旧密码相同
+            else:
+                util_user.update_info(email, new_password)
+                return jsonify({"code": 200})   # 成功更改
+        else:
+            return jsonify({"code": 300})       # 两次新密码输入不一致
+    else:
+        return jsonify({"code": 400})           # 旧密码不正确
+

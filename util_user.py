@@ -1,3 +1,4 @@
+from unittest import result
 import pymysql
 from flask import Flask
 from flask import request
@@ -21,7 +22,7 @@ def get_conn():
     return conn, cursor
 
 
-def finder(value, property="username", table="user"):
+def finder(value, property="email", table="user_formal"):
     """
     :param value: 筛选的值
     :param property:筛选的属性
@@ -37,33 +38,33 @@ def finder(value, property="username", table="user"):
     return result
 
 
-def login_check(name, pwd):
+def login_check(email, pwd):
     """
-    :param name:用户名
+    :param email:用户名
     :param pwd:密码
-    :return:字符串
+    :return:code:200成功,code:100密码错误,code:300邮箱未注册
     作用：判断用户的输入是无效用户名、不匹配的账号密码还是成功登录
     """
-    result = finder(name)
+    result = finder(email)
     if result:
         if pwd == result[0][2]:
-            return "欢迎登录"
+            return 200
         else:
-            return "密码错误！"
+            return 100
     else:
-        return "用户名错误"
+        return 300
 
 
-def add_user(name, password):
+def add_user(email, password):
     """
-    :param name:用户名
+    :param email:用户名
     :param password:密码
     :return:判断邮箱是否被注册，新邮箱则注册成功，旧邮箱则提示被注册
     作用：向数据表中添加一个用户
     """
     conn, cursor = get_conn()
-    sql = f"insert into user values(null,%s,%s);"
-    param = (name, password)
+    sql = f"insert into user_formal values(null,%s,%s,null,0,null,null,null,null);"
+    param = (email, password)
     cursor.execute(sql, param)
     conn.commit()
     conn_close(conn, cursor)
@@ -77,22 +78,23 @@ def delete_user(value, property="id"):
     :return: 无
     """
     conn, cursor = get_conn()
-    sql = f"delete from user where {property} = %s"
+    sql = f"delete from user_formal where {property} = %s"
     cursor.execute(sql, [value])
     conn.commit()
     conn_close(conn, cursor)
 
 
-def update_info(name, password):
+def update_info(email, value,  property = 'password' ):
     """
     更新用户信息
     :param name: 用户名,此为筛选条件
-    :param password: 新密码
+    :param value: 新值
+    :param property:筛选用属性
     :return: 无
     """
     conn, cursor = get_conn()
-    sql = "update user set password=%s where username = %s"
-    cursor.execute(sql, (password, name))
+    sql = f"update user_formal set {property}=%s where email = %s"
+    cursor.execute(sql, (value, email))
     conn.commit()
     conn_close(conn, cursor)
 
