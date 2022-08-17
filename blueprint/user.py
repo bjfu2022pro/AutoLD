@@ -37,6 +37,14 @@ def login():
     return render_template("login.html")
 
 
+@bp.route("/logout")
+def logout():
+    """
+    清除session中所有的数据
+    """
+    session.clear()
+    return redirect('/login')
+
 @bp.route('/login_result', methods=['get', 'post'])
 def login_checker():
     """
