@@ -65,10 +65,3 @@ def my_bill():
     print(email)
     my_bill =util_pay.show_orders(email)
     return render_template('my_bill.html',my_bill=my_bill)
-@bp.route('/algorithmic_details', methods=['get', 'post'])
-def details():
-    details = util_cache.find_all()
-    print(details)
-    util_cache.delete(details[0][0])
-    return render_template("algorithmic_details.html", details=details)
-
