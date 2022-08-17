@@ -99,11 +99,12 @@
                             <a href="/algorithmic_mall">
                                 算法商城
                             </a>
-                          </li><li>
+                        </li>
+                        <li>
                             <a href="/calculate_mall">
                                 算力商城
                             </a>
-                          </li>
+                        </li>
                         <li>
                             <a href="">
                                 充值
@@ -113,8 +114,8 @@
                             <a href="">
                               账户余额：{{info[4]}}元
                             </a>
-                          </li>
-                          <li>
+                        </li>
+                        <li>
                             <a href="/password_change">
                               更改密码
                             </a>
@@ -124,7 +125,7 @@
                               改绑邮箱
                             </a>
                         </li>
-                          <li>
+                        <li>
                             <a href="{{ url_for('user.logout')}}">
                               注销登录
                             </a>
@@ -149,19 +150,19 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>用户邮箱</label>
-                                                <input type="text" class="form-control" disabled placeholder="" value="{{info[1]}}">
+                                                <input id="email" name="email" type="email" class="form-control" disabled placeholder="" value="{{info[1]}}">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>用户昵称</label>
-                                                <input type="text" class="form-control" placeholder="" value="{{info[3]}}">
+                                                <input id="username" name="username" type="text" class="form-control" placeholder="" value="{{info[3]}}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">性别</label>
-                                                <input type="email" class="form-control" placeholder="{{info[5]}}">
+                                                <label>性别</label>
+                                                <input id="gender" name="gender" type="text" class="form-control" placeholder="" value="{{info[5]}}">
                                             </div>
                                         </div>
                                     </div>
@@ -170,7 +171,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>个人界面</label>
-                                                <input type="text" class="form-control" placeholder="" value="{{info[8]}}">
+                                                <input id="grjm" name="grjm" type="text" class="form-control" placeholder="" value="{{info[8]}}">
                                             </div>
                                         </div>
                                     </div>
@@ -179,7 +180,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>所属单位</label>
-                                                <input type="text" class="form-control" placeholder="" value="{{info[7]}}">
+                                                <input id="company" name="company" type="text" class="form-control" placeholder="" value="{{info[7]}}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -200,12 +201,12 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>关于我自己</label>
-                                                <textarea rows="5" class="form-control" placeholder="描述你自己一下吧" >{{info[6]}}</textarea>
+                                                <textarea rows="5" class="form-control" placeholder="描述你自己一下吧" id="describe" name="describe"></textarea>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                    <button id="update_btn" name="update_btn" type="button" class="btn btn-info btn-fill pull-right">更新个人信息</button>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -262,10 +263,13 @@
 
 
 </body>
-
+    <script>
+        document.getElementById("describe").value="{{ info[6] }}"
+    </script>
     <!--   Core JS Files   -->
     <script src="../static/js/js_usercontrol/jquery-1.10.2.js" type="text/javascript"></script>
 	<script src="../static/js/js_usercontrol/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../static/js/js_usercontrol/update_info.js"></script>
 
 	<!--  Checkbox, Radio & Switch Plugins -->
 	<script src="../static/js/js_usercontrol/bootstrap-checkbox-radio-switch.js"></script>

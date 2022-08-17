@@ -266,3 +266,21 @@ def pwd_change():
     else:
         return jsonify({"code": 400})           # 旧密码不正确
 
+
+@bp.route('/user_update')
+def user_update():
+    """
+        更新用户信息
+    """
+    username = request.values.get("username")
+    gender = request.values.get("gender")
+    company = request.values.get("company")
+    grjm = request.values.get("grjm")
+    describe = request.values.get("describe")
+    util_user.update_info(g.info[1], username, "username")
+    util_user.update_info(g.info[1], gender, "gender")
+    util_user.update_info(g.info[1], company, "company")
+    util_user.update_info(g.info[1], grjm, "link")
+    util_user.update_info(g.info[1], describe, "self_intro")
+    return jsonify({"code": 200})
+
