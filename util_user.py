@@ -99,6 +99,33 @@ def update_info(email, value,  property = 'password' ):
     conn_close(conn, cursor)
 
 
+def update_email(new_email, old_email):
+    """
+    :param new_email:
+    :param old_email:
+    :return:无
+    """
+    conn, cursor = get_conn()
+    sql = f"update user_formal set email=%s where email = %s"
+    cursor.execute(sql, (new_email, old_email))
+    conn.commit()
+    conn_close(conn, cursor)
+
+
+def email_change(new_email, old_email):
+    """"
+    :param new_email:
+    :param old_email:
+    :return:
+    """
+    result = finder(old_email)
+    if result:
+        update_email(new_email, old_email)
+        return 100
+    else:
+        return 200
+
+
 def conn_close(conn, cursor):
     """
     关闭连接与指针
