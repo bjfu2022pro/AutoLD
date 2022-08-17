@@ -12,6 +12,15 @@ import util_pay
 
 bp = Blueprint("mall", __name__, "/")
 
+dingdan = [
+    {
+        'dingdanhao': 1000, 'peizhi': '空',
+        'leixing': '空', 'shujuji': '空',
+        'jine': '空', 'shijian': '空',
+        'fukuanren': '大公园'
+    }
+]
+
 
 @bp.route('/algorithmic_mall', methods=['get', 'post'])
 def algorithmic():
