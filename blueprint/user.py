@@ -45,6 +45,7 @@ def logout():
     session.clear()
     return redirect('/login')
 
+
 @bp.route('/login_result', methods=['get', 'post'])
 def login_checker():
     """
@@ -214,3 +215,7 @@ def pwd_change():
     else:
         return jsonify({"code": 400})           # 旧密码不正确
 
+
+@bp.route('/instance')
+def my_instance():
+    return render_template('my_instance.html')
