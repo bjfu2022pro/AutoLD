@@ -56,14 +56,8 @@
                 </a>
             </div>
 
-            <ul class="nav">
+                <ul class="nav">
                 <li>
-                    <a href="dashboard.html">
-                        <i class="pe-7s-graph"></i>
-                        <p>主页</p>
-                    </a>
-                </li>
-                <li class="active">
                     <a href="user.html">
                         <i class="pe-7s-user"></i>
                         <p>个人信息</p>
@@ -75,10 +69,16 @@
                         <p>我的实例</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="typography.html">
-                        <i class="pe-7s-news-paper" ></i>
-                        <p>查看订单</p>
+                        <i class="pe-7s-news-paper"></i>
+                        <p>我的订单</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="pe-7s-graph"></i>
+                        <p>我的账单</p>
                     </a>
                 </li>
                 <li>
@@ -169,7 +169,7 @@
                                 {% endfor %}
                             </table>
                          <div  style="height:50px;">
-                             <button class="btn btn-warning"  id="daochu" style="height: 40px;width: 70px;" type="submit">导出</button>
+                             <button class="btn btn-warning"  id="daochu" style="height: 40px;width: 70px;" type="button">导出</button>
                         </div>
                         </div>
                     </div>
