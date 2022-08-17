@@ -52,6 +52,7 @@ def cache():
 def confirm():
     return render_template('pay.html', dingdan=dingdan)
 
+
 @bp.route('/algorithmic_details', methods=['get', 'post'])
 def details():
     details = util_cache.find_all()
@@ -59,9 +60,12 @@ def details():
     util_cache.delete(details[0][0])
     return render_template("algorithmic_details.html", details=details)
 
+
 @bp.route('/my_bill')
 def my_bill():
     email = g.info[1]
     print(email)
     my_bill =util_pay.show_orders(email)
     return render_template('my_bill.html',my_bill=my_bill)
+
+
