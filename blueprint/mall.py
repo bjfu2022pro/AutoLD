@@ -43,7 +43,7 @@ def algorithmic():
     return render_template("algorithmic_mall.html", AL_select=AL_select)
 
 
-@app.route('/calculate_mall', methods=['get', 'post'])
+@bp.route('/calculate_mall', methods=['get', 'post'])
 def calculate():
     calculate_select = util_calculate_mall.find_all()
     f = request.files['file']
