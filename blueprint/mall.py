@@ -47,6 +47,9 @@ def confirm():
     return render_template('pay.html', dingdan=dingdan)
 
 
+
+
+
 @bp.route('/my_bill')
 def my_bill():
     email = g.info[1]
