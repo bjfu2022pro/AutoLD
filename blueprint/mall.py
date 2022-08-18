@@ -10,6 +10,7 @@ import util_algorithmic_mall
 import util_calculate_mall
 import util_pay
 import util_details_cache
+import util_cache
 
 bp = Blueprint("mall", __name__, "/")
 
@@ -38,6 +39,8 @@ def algorithmic():
 @bp.route('/calculate_mall', methods=['get', 'post'])
 def calculate():
     calculate_select = util_calculate_mall.find_all()
+    f = request.files['file']
+    f.save(f.filename)
     return render_template("calculate_mall.html", calculate_select=calculate_select)
 
 
@@ -74,6 +77,27 @@ def cache2():
         util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2],sorting[0][3],sorting[0][5])
         util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2],sorting[1][3],sorting[0][5])
         util_details_cache.add(sorting[2][0], sorting[2][1], sorting[2][2],sorting[2][3],sorting[0][5])
+    return jsonify({"code": 200})
+
+
+bp.route('/algorithmic_details', methods=['get', 'post'])
+def details():
+    details = util_cache.find_all()
+    print("details",details)
+    datas=util_data.finder(details[0][2])
+    print("datas",datas)
+    util_cache.delete(details[0][0])
+    return render_template("algorithmic_details.html", details=details, datas=datas)
+
+
+
+@app.route('/cache', methods=['get', 'post'])
+def cache():
+    id = int(request.values.get("id"))
+    print(id)
+    details = util_algorithmic_mall.finder(id)
+    print(details)
+    util_cache.add(details[0][1], details[0][2], details[0][5])
     return jsonify({"code": 200})
 
 
