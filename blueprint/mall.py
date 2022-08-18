@@ -75,14 +75,14 @@ def cache2():
     sorting = util_details_cache.finder(sort)
     print("sorting", sorting)
     if len(sorting) == 1:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2],sorting[0][3],sorting[0][5])
+        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
     elif len(sorting) == 2:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2],sorting[0][3],sorting[0][5])
-        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2],sorting[1][3],sorting[0][5])
+        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
+        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2], sorting[1][3], sorting[0][5])
     else:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2],sorting[0][3],sorting[0][5])
-        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2],sorting[1][3],sorting[0][5])
-        util_details_cache.add(sorting[2][0], sorting[2][1], sorting[2][2],sorting[2][3],sorting[0][5])
+        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
+        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2], sorting[1][3], sorting[0][5])
+        util_details_cache.add(sorting[2][0], sorting[2][1], sorting[2][2], sorting[2][3], sorting[0][5])
     return jsonify({"code": 200})
 
 
@@ -109,7 +109,7 @@ def cache():
 
 @bp.route('/my_instance', methods=['post', 'get'])
 def my_instance():
-    if hasattr(g,'info'):
+    if hasattr(g, 'info'):
         if g.info is None:
             return redirect('/login')
         else:
@@ -117,3 +117,10 @@ def my_instance():
             return render_template("my_instance.html", my_instance=my_instance)
     else:
         return redirect('/login')
+
+
+@bp.route('/canl', methods=['post', 'get'])
+def canl():
+    danhao=request.values.get('danhao')
+    util_pay.orders_canl(danhao)
+    return jsonify({"cod":400})

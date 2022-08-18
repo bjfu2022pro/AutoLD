@@ -44,3 +44,13 @@ def daochu(email):
 
     biaoge.to_excel(zonglujing, index=False)
     return lujing
+
+def orders_canl(danhao):
+    conn, cursor = util_user.get_conn()
+    cursor = conn.cursor()
+    dingdanhao=int(danhao)
+    sql=f"update orders set state='cancel' where id = \'{dingdanhao}\'"
+    cursor.execute(sql)
+    conn.commit()
+    util_user.conn_close(conn, cursor)
+    return None
