@@ -1,8 +1,9 @@
 from flask import Blueprint, render_template, request
 import util_user, util_pay
 from flask import Flask
+
 import sys
-from flask import g
+from flask import g, jsonify
 
 sys.path.append("..")
 import util_algorithmic_mall
@@ -42,6 +43,14 @@ def confirm():
 @bp.route('/my_bill')
 def my_bill():
     email = g.info[1]
-    print(email)
-    my_bill =util_pay.show_orders(email)
-    return render_template('my_bill.html',my_bill=my_bill)
+    my_bill = util_pay.show_orders(email)
+    return render_template('my_bill.html', my_bill=my_bill)
+
+
+@bp.route('/expt', methods=['get', 'post'])
+def expt():
+    email = g.info[1]
+    lujing = util_pay.daochu(email)
+    return jsonify({"od": 400, "lujing": lujing})
+
+

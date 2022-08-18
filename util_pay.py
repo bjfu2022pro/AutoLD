@@ -1,7 +1,9 @@
+import os
+
 import pymysql
 import util_user
 import config
-from flask import render_template, app
+from flask import render_template, app, make_response
 from sqlalchemy import create_engine
 import pandas as pd
 
@@ -12,7 +14,6 @@ def show_orders(email):
     sql = f"select * from orders where youxiang = \'{email}\'"
     cursor.execute(sql)
     result = cursor.fetchall()
-    print(result)
     util_user.conn_close(conn, cursor)
     return result
 
@@ -31,9 +32,15 @@ def deleter_ordering():
     cursor = conn.cursor()
 
 
-def daochu():
+def daochu(email):
     conn, cursor = util_user.get_conn()
-    biaoge = pd.read_sql("""select*from orders
-    """, con=conn)
-    biaoge.to_excel("我的订单.xlsx", index=False)
+    sql = f"select * from orders where youxiang = \'{email}\'"
+    biaoge = pd.read_sql(sql, con=conn)
 
+    dangqian = os.getcwd()
+    lujing = "static/export/我的订单.xlsx"
+
+    zonglujing = f"{dangqian}/{lujing}"
+
+    biaoge.to_excel(zonglujing, index=False)
+    return lujing
