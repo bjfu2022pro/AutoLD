@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, g
-from blueprint import user_bp, mall_bp
+from blueprint import user_bp, mall_bp, in_bp
 
 import config
 from flask_mail import Mail
@@ -13,6 +13,7 @@ mail.init_app(app)
 
 app.register_blueprint(user_bp)
 app.register_blueprint(mall_bp)
+app.register_blueprint(in_bp)
 
 
 @app.before_request
@@ -38,4 +39,4 @@ def context_processor():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(threaded=True)
