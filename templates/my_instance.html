@@ -30,6 +30,25 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link rel="shortcut icon" href="../static/img/ourfavicon.ico">
+    <style>
+		.more{
+			background-color: #dddddd;
+            height:50px;
+            width:200px;
+            position: absolute;
+            left: 80%;
+            top: 40%;
+            transform: translateX(-45%);
+            padding: 4px 0;
+            display: none;
+		}
+		.about{
+			width:50px; height:70px;
+            position: relative;
+            padding: 8px;
+		}
+		.about:hover .more{display:block;}
+    </style>
 </head>
 
 <body>
@@ -55,7 +74,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="/instance">
+                    <a href="/my_instance">
                         <i class="pe-7s-note2"></i>
                         <p>我的实例</p>
                     </a>
@@ -100,11 +119,12 @@
                             <a href="/algorithmic_mall">
                                 算法商城
                             </a>
-                          </li><li>
+                        </li>
+                        <li>
                             <a href="/calculate_mall">
                                 算力商城
                             </a>
-                          </li>
+                        </li>
                         <li>
                             <a href="">
                                 充值
@@ -114,13 +134,18 @@
                             <a href="">
                               账户余额：{{info[4]}}元
                             </a>
-                          </li>
-                          <li>
+                        </li>
+                        <li>
                             <a href="/password_change">
                               更改密码
                             </a>
                         </li>
-                          <li>
+                        <li>
+                            <a href="/email_change">
+                              改绑邮箱
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ url_for('user.logout')}}">
                               注销登录
                             </a>
@@ -137,7 +162,7 @@
                     <div class="col-md-12">
                         <div class="card" style="height:800px">
                             <table class="table table-striped" align="center" style="height: 30px">
-                                <tr>
+                                <tr align="center">
                                     <td>实例号</td>
                                     <td>算法名称</td>
                                     <td>数据集</td>
@@ -145,23 +170,37 @@
                                     <td>开始时间</td>
                                     <td>状态</td>
                                     <td>详情</td>
+                                    <td></td>
                                 </tr>
                                  {% for instance in my_instance %}
-                                <tr>
+                                <tr align="center">
                                     <td>{{ instance[0] }}</td>
                                     <td>{{ instance[2] }}</td>
                                     <td>{{ instance[3] }}</td>
                                     <td>{{ instance[4] }}</td>
                                     <td>{{ instance[7] }}</td>
                                     <td>{{ instance[8] }}</td>
-                                    <td>详情</td>
+                                    <td><span class="about nav-link">
+                                            <div style="color:#56adff;">详情
+                                                <span style="color: #000;" class="more">
+                                                支付时间：{{ instance[6] }}<br>结束时间：{{ instance[9] }}
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </td>
+                                    <td align="center">
+                                        <button class="btn btn-warning"  id="begin"
+                                            style="height: 40px;width: 60px;"type="button">
+                                            开始</button>
+                                        <button class="btn btn-warning"  id="download"
+                                            style="height: 40px;width: 60px;" type="button">
+                                            下载</button>
+                                    </td>
                                     </tr>
                                 {% endfor %}
                             </table>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

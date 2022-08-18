@@ -285,3 +285,10 @@ def user_update():
     util_user.update_info(g.info[1], describe, "self_intro")
     return jsonify({"code": 200})
 
+
+@bp.route('/aboutus')
+def aboutus():
+    """
+    关于我们界面
+    """
+    return render_template("aboutus.html")
