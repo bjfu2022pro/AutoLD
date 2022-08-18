@@ -26,6 +26,36 @@ def find_all():
     conn_close(conn, cursor)
     return result
 
+def finder(value, property="id", table="ai_select"):
+    """
+    :param value: 筛选的值
+    :param property:筛选的属性
+    :param table:筛选的表
+    :return: 返回一个元组，元组内元素是每一个符合value的数据库条目组成的元素
+    作用：以筛选property属性为value的数据库条目
+    """
+    conn, cursor = get_conn()
+    sql = f"select * from {table} where {property}=\'{value}\'"
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    conn_close(conn, cursor)
+    return result
+
+# def finder2(value, property="sort", table="ai_select"):
+#     """
+#     :param value: 筛选的值
+#     :param property:筛选的属性
+#     :param table:筛选的表
+#     :return: 返回一个元组，元组内元素是每一个符合value的数据库条目组成的元素
+#     作用：以筛选property属性为value的数据库条目
+#     """
+#     conn, cursor = get_conn()
+#     sql = f"select * from {table} where {property}=\'{value}\'"
+#     cursor.execute(sql)
+#     result = cursor.fetchall()
+#     conn_close(conn, cursor)
+#     return result
+
 def conn_close(conn, cursor):
     """
     关闭连接与指针
