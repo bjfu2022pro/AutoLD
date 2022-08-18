@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 import util_user, util_pay
 from flask import Flask
 
@@ -8,6 +8,7 @@ from flask import g, jsonify
 sys.path.append("..")
 import util_algorithmic_mall
 import util_calculate_mall
+import util_instance
 import util_pay
 import util_details_cache
 
@@ -59,6 +60,7 @@ def expt():
     lujing = util_pay.daochu(email)
     return jsonify({"od": 400, "lujing": lujing})
 
+
 @bp.route('/cache2', methods=['get', 'post'])
 def cache2():
     sort = int(request.values.get("sort"))
@@ -77,3 +79,13 @@ def cache2():
     return jsonify({"code": 200})
 
 
+@bp.route('/my_instance', methods=['post', 'get'])
+def my_instance():
+    if hasattr(g,'info'):
+        if g.info is None:
+            return redirect('/login')
+        else:
+            my_instance = util_instance.find_instance(g.info[1])
+            return render_template("my_instance.html", my_instance=my_instance)
+    else:
+        return redirect('/login')
