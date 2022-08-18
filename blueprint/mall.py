@@ -12,6 +12,7 @@ import util_instance
 import util_pay
 import util_details_cache
 import util_cache
+import util_data
 
 bp = Blueprint("mall", __name__, "/")
 
