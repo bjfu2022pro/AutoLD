@@ -134,4 +134,8 @@ def canl():
 def upload():
     f = request.files['file']
     f.save(f.filename)
-    return jsonify({"code": 200})
+    print("filename", f.filename)
+    if f.filename != None:
+        return jsonify({"code": 200})
+    else:
+        return jsonify({"code": 100})
