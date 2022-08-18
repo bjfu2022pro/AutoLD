@@ -3,6 +3,8 @@ import torchvision.datasets as dataset
 import torchvision.transforms as transforms
 import torch.utils.data as data_utils
 import os
+import datetime
+import util_instance
 
 
 class CNN(torch.nn.Module):
@@ -24,7 +26,7 @@ class CNN(torch.nn.Module):
 
 
 #data
-def cls(dset, email, id):
+def cls(dset, email, in_id):
     train_data = dataset.MNIST(root=dset,
                             train=True,
                             transform=transforms.ToTensor(),
@@ -93,9 +95,13 @@ def cls(dset, email, id):
 
 
     #save
-    path = f"C:/model/{email}/{id}"
+    path = f"C:/model/{email}/{in_id}"
 
     if not os.path.exists(path):
         os.makedirs(path)
 
     torch.save(cnn.state_dict(), f'{path}/model.pkl')
+    ntime = str(datetime.datetime.now()).split(".")[0]
+    ntime = datetime.datetime.strptime(ntime, '%Y-%m-%d %H:%M:%S')
+    util_instance.update_info(in_id, ntime, 'end_time')
+    util_instance.update_info(in_id, 2, 'state')
