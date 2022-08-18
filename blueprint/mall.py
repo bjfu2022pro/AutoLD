@@ -91,7 +91,7 @@ def details():
 
 
 
-@app.route('/cache', methods=['get', 'post'])
+@bp.route('/cache', methods=['get', 'post'])
 def cache():
     id = int(request.values.get("id"))
     print(id)
