@@ -16,10 +16,10 @@ def get_conn():
     cursor = conn.cursor()
     return conn, cursor
 
-def add(title, introduce):
+def add(title, introduce, sort):
     conn, cursor = get_conn()
-    sql = f"insert into details_cache values(%s,%s)"
-    param = ( title, introduce)
+    sql = f"insert into details_cache values(%s,%s,%s)"
+    param = ( title, introduce, sort)
     cursor.execute(sql, param)
     conn.commit()
     conn_close(conn, cursor)

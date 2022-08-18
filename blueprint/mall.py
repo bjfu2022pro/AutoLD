@@ -26,8 +26,9 @@ dingdan = [
 ]
 
 
-@bp.route('/algorithmic_mall', methods=['get', 'post'])
+bp.route('/algorithmic_mall', methods=['get', 'post'])
 def algorithmic():
+    # AL_select = util_algorithmic_mall.find_all()
     AL_select = util_details_cache.find_all()
     print("AL_select", AL_select)
     if len(AL_select) == 1:
@@ -35,10 +36,14 @@ def algorithmic():
     elif len(AL_select) == 2:
         util_details_cache.delete(AL_select[0][1])
         util_details_cache.delete(AL_select[1][1])
+    # else:
+    #     util_details_cache.delete(AL_select[0][1])
+    #     util_details_cache.delete(AL_select[1][1])
+    #     util_details_cache.delete(AL_select[2][1])
     return render_template("algorithmic_mall.html", AL_select=AL_select)
 
 
-@bp.route('/calculate_mall', methods=['get', 'post'])
+@app.route('/calculate_mall', methods=['get', 'post'])
 def calculate():
     calculate_select = util_calculate_mall.find_all()
     f = request.files['file']
@@ -86,7 +91,8 @@ def cache2():
     return jsonify({"code": 200})
 
 
-bp.route('/algorithmic_details', methods=['get', 'post'])
+
+@bp.route('/algorithmic_details', methods=['get', 'post'])
 def details():
     details = util_cache.find_all()
     print("details",details)
@@ -109,7 +115,7 @@ def cache():
 
 @bp.route('/my_instance', methods=['post', 'get'])
 def my_instance():
-    if hasattr(g,'info'):
+    if hasattr(g, 'info'):
         if g.info is None:
             return redirect('/login')
         else:
@@ -117,3 +123,10 @@ def my_instance():
             return render_template("my_instance.html", my_instance=my_instance)
     else:
         return redirect('/login')
+
+
+@bp.route('/canl', methods=['post', 'get'])
+def canl():
+    danhao=request.values.get('danhao')
+    util_pay.orders_canl(danhao)
+    return jsonify({"cod":400})
