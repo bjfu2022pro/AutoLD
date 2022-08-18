@@ -26,8 +26,9 @@ dingdan = [
 ]
 
 
-@bp.route('/algorithmic_mall', methods=['get', 'post'])
+bp.route('/algorithmic_mall', methods=['get', 'post'])
 def algorithmic():
+    # AL_select = util_algorithmic_mall.find_all()
     AL_select = util_details_cache.find_all()
     print("AL_select", AL_select)
     if len(AL_select) == 1:
@@ -35,10 +36,14 @@ def algorithmic():
     elif len(AL_select) == 2:
         util_details_cache.delete(AL_select[0][1])
         util_details_cache.delete(AL_select[1][1])
+    # else:
+    #     util_details_cache.delete(AL_select[0][1])
+    #     util_details_cache.delete(AL_select[1][1])
+    #     util_details_cache.delete(AL_select[2][1])
     return render_template("algorithmic_mall.html", AL_select=AL_select)
 
 
-@bp.route('/calculate_mall', methods=['get', 'post'])
+@app.route('/calculate_mall', methods=['get', 'post'])
 def calculate():
     calculate_select = util_calculate_mall.find_all()
     f = request.files['file']
@@ -75,18 +80,19 @@ def cache2():
     sorting = util_details_cache.finder(sort)
     print("sorting", sorting)
     if len(sorting) == 1:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
+        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2],sorting[0][3],sorting[0][5])
     elif len(sorting) == 2:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
-        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2], sorting[1][3], sorting[0][5])
+        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2],sorting[0][3],sorting[0][5])
+        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2],sorting[1][3],sorting[0][5])
     else:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
-        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2], sorting[1][3], sorting[0][5])
-        util_details_cache.add(sorting[2][0], sorting[2][1], sorting[2][2], sorting[2][3], sorting[0][5])
+        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2],sorting[0][3],sorting[0][5])
+        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2],sorting[1][3],sorting[0][5])
+        util_details_cache.add(sorting[2][0], sorting[2][1], sorting[2][2],sorting[2][3],sorting[0][5])
     return jsonify({"code": 200})
 
 
-bp.route('/algorithmic_details', methods=['get', 'post'])
+
+@bp.route('/algorithmic_details', methods=['get', 'post'])
 def details():
     details = util_cache.find_all()
     print("details",details)
