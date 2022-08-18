@@ -107,6 +107,11 @@ def user_control():
         return redirect('/login')
 
 
+@bp.route('/recharge')
+def recharge():
+    return render_template('recharge.html')
+
+
 @bp.route('/password_change')
 def password_change():
     """
