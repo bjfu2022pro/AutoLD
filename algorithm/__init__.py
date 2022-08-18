@@ -1,2 +1,2 @@
-import CNN
-import regression
+from .cn import cls as cls
+from .regression import regress as regress

@@ -23,13 +23,35 @@ def get_conn():
     return conn, cursor
 
 
-def find_instance(mail):
+def find_instance(email):
     """
-
-    :param :邮箱号
+    :param email:邮箱号
     :return: 该邮箱所对应所有实例
     """
-    return finder(mail, "email", "instance")
+    return finder(email, "email", "instance")
+
+
+def find_instance_byid(in_id):
+    """
+    :param in_id:实例号
+    :return: 实例编号所对应实例
+    """
+    return finder(in_id, "id", "instance")
+
+
+def update_info(in_id, value,  property = 'state' ):
+    """
+    更新用户信息
+    :param name: 用户名,此为筛选条件
+    :param value: 新值
+    :param property:筛选用属性
+    :return: 无
+    """
+    conn, cursor = get_conn()
+    sql = f"update instance set {property}=%s where id = %s"
+    cursor.execute(sql, (value, in_id))
+    conn.commit()
+    conn_close(conn, cursor)
 
 
 def conn_close(conn, cursor):
