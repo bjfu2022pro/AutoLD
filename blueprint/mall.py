@@ -26,7 +26,7 @@ dingdan = [
 ]
 
 
-bp.route('/algorithmic_mall', methods=['get', 'post'])
+@bp.route('/algorithmic_mall', methods=['get', 'post'])
 def algorithmic():
     # AL_select = util_algorithmic_mall.find_all()
     AL_select = util_details_cache.find_all()
