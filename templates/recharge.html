@@ -10,8 +10,6 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
 
-    <script src="../static/js/pay/jquery.js"></script>
-    <script src="../static/js/pay/bill.js"></script>
 
     <!-- Bootstrap core CSS     -->
     <link href="../static/css/css-usercontrol/bootstrap.min.css" rel="stylesheet"/>
@@ -32,7 +30,12 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="../static/img/ourfavicon.ico">
-
+    <style>
+        #chongzhi_btn {
+            position: relative;
+            left: 1020px;
+        }
+    </style>
 </head>
 
 <body>
@@ -63,20 +66,20 @@
                         <p>我的实例</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="my_bill">
                         <i class="pe-7s-news-paper"></i>
                         <p>我的订单</p>
                     </a>
                 </li>
                 <li>
-                    <a href="dashboard">
+                    <a href="dashboard.html">
                         <i class="pe-7s-graph"></i>
                         <p>我的账单</p>
                     </a>
                 </li>
                 <li>
-                    <a href="icons">
+                    <a href="icons.html">
                         <i class="pe-7s-science"></i>
                         <p>发票管理</p>
                     </a>
@@ -135,44 +138,32 @@
             </div>
         </nav>
 
-
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+                    </div>
+                    <div class="col-md-12">
                         <div class="card" style="height:800px">
-                            <table class="table table-striped" align="center" style="height: 30px">
-                                <tr>
-                                    <td>订单号</td>
-                                    <td>邮箱</td>
-                                    <td>算法类型</td>
-                                    <td>数据集</td>
-                                    <td>GPU/CPU</td>
-                                    <td>交易金额</td>
-                                    <td>创建时间</td>
-                                </tr>
-                                {% for bill in my_bill %}
-                                    <tr>
-                                        <td>{{ bill[0] }}</td>
-                                        <td>{{ bill[1] }}</td>
-                                        <td>{{ bill[2] }}</td>
-                                        <td>{{ bill[3] }}</td>
-                                        <td>{{ bill[4] }}</td>
-                                        <td>{{ bill[5] }}</td>
-                                        <td>{{ bill[6] }}</td>
-                                    </tr>
-                                {% endfor %}
-                            </table>
+                            <div style="height:3px"></div>
+                            <h3>请输入充值金额：<span class="label label-default"></span></h3>
+                            <div class="input-group">
+                                <span class="input-group-addon">￥</span>
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                     aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                    <span class="sr-only">45% Complete</span>
+                                </div>
+                            </div>
                             <div style="height:50px;">
-                                <button class="btn btn-warning" id="daochu_btn" style="height: 40px;width: 70px;"
-                                        ype="button">
-                                    导出
+                                <button class="btn btn-info" id="chongzhi_btn" style="height: 40px;width: 70px;"
+                                        type="button">导出
                                 </button>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
