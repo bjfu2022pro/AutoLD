@@ -1,6 +1,7 @@
 import torch
 import os
-
+import util_instance
+import datetime
 
 # data
 
@@ -21,7 +22,7 @@ class Net(torch.nn.Module):
         return out
 
 
-def regress(dataset, email, id):
+def regress(dataset, email, in_id):
     ff = open(dataset).readlines()
     data = []
     for item in ff:
@@ -72,9 +73,12 @@ def regress(dataset, email, id):
         loss_test = loss_func(pred, y_data) * 0.001  # 计算loss
         print("ite:{} loss_test:{}".format(i, loss_test))
 
-    path = f"C:/model/{email}/{id}"
+    path = f"C:/model/{email}/{in_id}"
 
     if not os.path.exists(path):
         os.makedirs(path)
 
     torch.save(net.state_dict(), f'{path}/model.pkl')
+    ntime = str(datetime.datetime.now()).split(".")[0]
+    ntime = datetime.datetime.strptime(ntime, '%Y-%m-%d %H:%M:%S')
+    util_instance.update_info(in_id, ntime, 'end_time')
