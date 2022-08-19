@@ -142,12 +142,44 @@ function select() {
         })
     })
 }
-
-function dataselect() {
-    $("#submit").on("click", function (event) {
+function da_to_ca(){
+    $("#data1").on("click", function (event) {
         $.ajax({
-            url: "/upload",
+            url: "/calculate_cache",
             method: "POST",
+            data: {
+                "data": $('#data1').attr('value'),
+            },
+            success: function (res) {
+                var code = res['code'];
+                if (code == 200) {
+                    window.location.href = "/calculate_mall";
+                }
+            }
+        })
+    })
+    $("#data2").on("click", function (event) {
+        $.ajax({
+            url: "/calculate_cache",
+            method: "POST",
+            data: {
+                "data": $('#data2').attr('value'),
+            },
+            success: function (res) {
+                var code = res['code'];
+                if (code == 200) {
+                    window.location.href = "/calculate_mall";
+                }
+            }
+        })
+    })
+    $("#data3").on("click", function (event) {
+        $.ajax({
+            url: "/calculate_cache",
+            method: "POST",
+            data: {
+                "data": $('#data3').attr('value'),
+            },
             success: function (res) {
                 var code = res['code'];
                 if (code == 200) {
@@ -159,7 +191,9 @@ function dataselect() {
 
 }
 
+
 $(function () {
     findmore();
     select();
+    da_to_ca();
 });

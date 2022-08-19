@@ -48,6 +48,7 @@
             padding: 8px;
 		}
 		.about:hover .more{display:block;}
+
     </style>
 </head>
 
@@ -167,37 +168,92 @@
                                     <td>算法名称</td>
                                     <td>数据集</td>
                                     <td>GPU</td>
-                                    <td>开始时间</td>
+                                    <td>支付时间</td>
                                     <td>状态</td>
                                     <td>详情</td>
                                     <td></td>
                                 </tr>
-                                 {% for instance in my_instance %}
-                                <tr align="center">
-                                    <td>{{ instance[0] }}</td>
-                                    <td>{{ instance[2] }}</td>
-                                    <td>{{ instance[3] }}</td>
-                                    <td>{{ instance[4] }}</td>
-                                    <td>{{ instance[7] }}</td>
-                                    <td>{{ instance[8] }}</td>
-                                    <td><span class="about nav-link">
-                                            <div style="color:#56adff;">详情
-                                                <span style="color: #000;" class="more">
-                                                支付时间：{{ instance[6] }}<br>结束时间：{{ instance[9] }}
-                                                </span>
-                                            </div>
-                                        </span>
-                                    </td>
-                                    <td align="center">
-                                        <button class="btn btn-warning"  id="begin"
-                                            style="height: 40px;width: 60px;"type="button">
-                                            开始</button>
-                                        <button class="btn btn-warning"  id="download"
-                                            style="height: 40px;width: 60px;" type="button">
-                                            下载</button>
-                                    </td>
-                                    </tr>
-                                {% endfor %}
+                                    {% for instance in my_instance %}
+                                        {% if instance[8] == "0" %}
+                                            <tr align="center">
+                                                <td id="dingdanId{{ loop.index }}">{{ instance[0] }}</td>
+                                                <td>{{ instance[2] }}</td>
+                                                <td>{{ instance[3] }}</td>
+                                                <td>{{ instance[4] }}</td>
+                                                <td>{{ instance[6] }}</td>
+                                                <td>未开始</td>
+                                                <td>
+                                                    <span class="about nav-link">
+                                                        <div style="color:#56adff;">详情
+                                                            <span style="color: #000;" class="more">
+                                                            开始时间：未开始<br>结束时间：未开始
+                                                            </span>
+                                                        </div>
+                                                    </span>
+                                                </td>
+                                                <td align="center">
+                                                    <button class="btn btn-warning" id="begin{{ loop.index }}"
+                                                        style="height: 40px;width: 60px;"type="button">
+                                                        开始</button>
+                                                    <button class="btn btn-warning" id="download{{ loop.index }}"
+                                                        style="height: 40px;width: 60px;" type="button">
+                                                        下载</button>
+                                                </td>
+                                            </tr>
+                                        {% elif instance[8] == "1" %}
+                                            <tr align="center">
+                                                <td id="dingdanId{{ loop.index }}">{{ instance[0] }}</td>
+                                                <td>{{ instance[2] }}</td>
+                                                <td>{{ instance[3] }}</td>
+                                                <td>{{ instance[4] }}</td>
+                                                <td>{{ instance[6] }}</td>
+                                                <td>运行中</td>
+                                                <td>
+                                                    <span class="about nav-link">
+                                                        <div style="color:#56adff;">详情
+                                                            <span style="color: #000;" class="more">
+                                                            开始时间：{{ instance[7] }}<br>结束时间：运行中
+                                                            </span>
+                                                        </div>
+                                                    </span>
+                                                </td>
+                                                <td align="center">
+                                                    <button class="btn btn-warning"  id="begin{{ loop.index }}"
+                                                        style="height: 40px;width: 60px;"type="button">
+                                                        开始</button>
+                                                    <button class="btn btn-warning"  id="download{{ loop.index }}"
+                                                        style="height: 40px;width: 60px;" type="button">
+                                                        下载</button>
+                                                </td>
+                                            </tr>
+                                        {% elif instance[8] == "2" %}
+                                            <tr align="center">
+                                                <td id="dingdanId{{ loop.index }}">{{ instance[0] }}</td>
+                                                <td>{{ instance[2] }}</td>
+                                                <td>{{ instance[3] }}</td>
+                                                <td>{{ instance[4] }}</td>
+                                                <td>{{ instance[6] }}</td>
+                                                <td>完成</td>
+                                                <td>
+                                                    <span class="about nav-link">
+                                                        <div style="color:#56adff;">详情
+                                                            <span style="color: #000;" class="more">
+                                                            开始时间：{{ instance[7] }}<br>结束时间：{{ instance[9] }}
+                                                            </span>
+                                                        </div>
+                                                    </span>
+                                                </td>
+                                                <td align="center">
+                                                    <button class="btn btn-warning"  id="begin{{ loop.index }}"
+                                                        style="height: 40px;width: 60px;"type="button">
+                                                        开始</button>
+                                                    <button class="btn btn-warning"  id="download{{ loop.index }}"
+                                                        style="height: 40px;width: 60px;" type="button">
+                                                        下载</button>
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
                             </table>
                         </div>
                     </div>
@@ -233,6 +289,16 @@
     <!--   Core JS Files   -->
     <script src="../static/js/js_usercontrol/jquery-1.10.2.js" type="text/javascript"></script>
 	<script src="../static/js/js_usercontrol/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../static/js/js_instance_series/bAd.js"></script>
+    <script src="../static/js/js_instance_series/bAd1.js"></script>
+    <script src="../static/js/js_instance_series/bAd2.js"></script>
+    <script src="../static/js/js_instance_series/bAd3.js"></script>
+    <script src="../static/js/js_instance_series/bAd4.js"></script>
+    <script src="../static/js/js_instance_series/bAd5.js"></script>
+    <script src="../static/js/js_instance_series/bAd6.js"></script>
+    <script src="../static/js/js_instance_series/bAd7.js"></script>
+    <script src="../static/js/js_instance_series/bAd8.js"></script>
+    <script src="../static/js/js_instance_series/bAd9.js"></script>
 
 	<!--  Checkbox, Radio & Switch Plugins -->
 	<script src="../static/js/js_usercontrol/bootstrap-checkbox-radio-switch.js"></script>
@@ -242,9 +308,6 @@
 
     <!--  Notifications Plugin    -->
     <script src="../static/js/js_usercontrol/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <!---<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>--->
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="../static/js/js_usercontrol/light-bootstrap-dashboard.js"></script>

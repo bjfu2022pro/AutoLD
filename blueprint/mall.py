@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, session
 import util_user, util_pay
 from flask import Flask
 
@@ -15,6 +15,7 @@ import util_cache
 import util_data
 
 bp = Blueprint("mall", __name__, "/")
+bp.config['SECRET_KEY'] = "12asdfadfdsfasd3"
 
 dingdan = [
     {
@@ -93,9 +94,15 @@ def cache2():
 @bp.route('/algorithmic_details', methods=['get', 'post'])
 def details():
     details = util_cache.find_all()
-    print("details",details)
-    datas=util_data.finder(details[0][2])
-    print("datas",datas)
+    if details:
+        session['algorithmic']=details[0][0]
+        algorithmic=session.get('algorithmic')
+        print("algorithmic",algorithmic)
+    else :
+        pass
+    print("details", details)
+    datas = util_data.finder(details[0][2])
+    print("datas", datas)
     util_cache.delete(details[0][0])
     return render_template("algorithmic_details.html", details=details, datas=datas)
 
@@ -134,4 +141,12 @@ def canl():
 def upload():
     f = request.files['file']
     f.save(f.filename)
-    return jsonify({"code": 200})
+    print("filename", f.filename)
+    return redirect('/calculate_mall')
+
+@bp.route('/calculate_cache', methods=['get', 'post'])
+def calculate_cache():
+    data=request.values.get("data")
+    print("data",data)
+    session['datas']=data
+    return jsonify({"code":200})
