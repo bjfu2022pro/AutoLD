@@ -193,11 +193,8 @@
                                                 </td>
                                                 <td align="center">
                                                     <button class="btn btn-warning" id="begin{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;"type="button">
+                                                         type="button">
                                                         开始</button>
-                                                    <button class="btn btn-warning" id="download{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;" type="button">
-                                                        下载</button>
                                                 </td>
                                             </tr>
                                         {% elif instance[8] == "1" %}
@@ -218,12 +215,7 @@
                                                     </span>
                                                 </td>
                                                 <td align="center">
-                                                    <button class="btn btn-warning"  id="begin{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;"type="button">
-                                                        开始</button>
-                                                    <button class="btn btn-warning"  id="download{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;" type="button">
-                                                        下载</button>
+                                                    运行中
                                                 </td>
                                             </tr>
                                         {% elif instance[8] == "2" %}
@@ -233,7 +225,7 @@
                                                 <td>{{ instance[3] }}</td>
                                                 <td>{{ instance[4] }}</td>
                                                 <td>{{ instance[6] }}</td>
-                                                <td>完成</td>
+                                                <td>已完成</td>
                                                 <td>
                                                     <span class="about nav-link">
                                                         <div style="color:#56adff;">详情
@@ -244,11 +236,8 @@
                                                     </span>
                                                 </td>
                                                 <td align="center">
-                                                    <button class="btn btn-warning"  id="begin{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;"type="button">
-                                                        开始</button>
                                                     <button class="btn btn-warning"  id="download{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;" type="button">
+                                                         type="button">
                                                         下载</button>
                                                 </td>
                                             </tr>
