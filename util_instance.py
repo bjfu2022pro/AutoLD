@@ -84,9 +84,7 @@ def cost_cacualte(in_id, email):
     cost = time_intr * 0.05
     user = finder(email)
     balance = user[0][4]
-    print(balance)
     balance = balance + (5-cost)
-    print(balance)
     update(email, balance, 'balance')
 
 
