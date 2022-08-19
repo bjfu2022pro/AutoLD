@@ -1,9 +1,7 @@
-from flask import Blueprint, render_template, request, redirect, session
-from sqlalchemy.testing import db
-
+from flask import Blueprint, render_template, request, redirect
 import util_user, util_pay
 from flask import Flask
-import datetime
+
 import sys
 from flask import g, jsonify
 
@@ -17,6 +15,7 @@ import util_cache
 import util_data
 
 bp = Blueprint("mall", __name__, "/")
+
 
 dingdan = [
     {
@@ -102,9 +101,15 @@ def cache2():
 @bp.route('/algorithmic_details', methods=['get', 'post'])
 def details():
     details = util_cache.find_all()
-    print("details",details)
-    datas=util_data.finder(details[0][2])
-    print("datas",datas)
+    if details:
+        session['algorithmic']=details[0][0]
+        algorithmic=session.get('algorithmic')
+        print("algorithmic",algorithmic)
+    else :
+        pass
+    print("details", details)
+    datas = util_data.finder(details[0][2])
+    print("datas", datas)
     util_cache.delete(details[0][0])
     session['suanfa']='suanfa'
     return render_template("algorithmic_details.html", details=details, datas=datas)
@@ -145,13 +150,7 @@ def upload():
     f = request.files['file']
     f.save(f.filename)
     print("filename", f.filename)
-    return redirect('/calculate_mall')
-
-@bp.route('/quxiao',methods=['get','post'])
-def quxiao():
-    session["algorithmic"] = ""
-    session['datas'] = ""
-    session['calculate'] = ""
-    print("成功")
-    return jsonify({"cod":800})
-
+    if f.filename != None:
+        return jsonify({"code": 200})
+    else:
+        return jsonify({"code": 100})

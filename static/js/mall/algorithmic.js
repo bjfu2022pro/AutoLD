@@ -143,8 +143,26 @@ function select() {
     })
 }
 
+function dataselect() {
+    $("#submit").on("click", function (event) {
+        $.ajax({
+            url: "/upload",
+            method: "POST",
+            success: function (res) {
+                var code = res['code'];
+                if (code == 200) {
+                    alert("上传成功！");
+                    window.location.href = "/calculate_mall";
+                }else(code == 100)
+                    alert("出错啦！");
+            }
+        })
+    })
+
+}
 
 $(function () {
     findmore();
     select();
+    da_to_ca();
 });
