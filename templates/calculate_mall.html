@@ -33,6 +33,7 @@
     <script src="../static/js/mall/jquery.magnific-popup.min.js"></script>
     <script src="../static/js/mall/jquery.meanmenu.min.js"></script>
     <script src="../static/js/mall/main.js"></script>
+    <script src="../static/js/mall/algorithmic.js"></script>
 
     <style>
         div {
@@ -71,9 +72,6 @@
                         <!-- star service -->
                         <div class="col-md-4">
                             <div class="service-area">
-                                <!--<div class="service-img">
-                                    <img src="images/hv3-service-one.png" alt="service image">
-                                </div>-->
                                 <div class="service-body">
                                     <h5 class="card-title">
                                         <div>{{ ca[1] }}</div>
@@ -81,7 +79,7 @@
                                     <p class="card-text">
                                     <div class="div">{{ ca[2] }}</div>
                                     </p>
-                                    <a href="/calculate_mall">确认--></a>
+                                    <button type="button" class="btn btn-outline-primary" id="DJ{{ loop.index }}" value="{{ ca[1] }}">确认订单</button>
                                 </div>
                             </div>
                         </div><!-- end service -->
