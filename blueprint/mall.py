@@ -13,9 +13,10 @@ import util_pay
 import util_details_cache
 import util_cache
 import util_data
+import config
 
 bp = Blueprint("mall", __name__, "/")
-bp.config['SECRET_KEY'] = "12asdfadfdsfasd3"
+
 
 dingdan = [
     {
@@ -53,6 +54,9 @@ def calculate():
 @bp.route('/pay')
 def confirm():
     return render_template('pay.html', dingdan=dingdan)
+
+
+
 
 
 @bp.route('/my_bill')
