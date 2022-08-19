@@ -154,7 +154,7 @@ def upload():
     return redirect('/calculate_mall')
 
 
-@app.route('/calculate_cache', methods=['get', 'post'])
+@bp.route('/calculate_cache', methods=['get', 'post'])
 def calculate_cache():
     data=request.values.get("data")
     print("data",data)
