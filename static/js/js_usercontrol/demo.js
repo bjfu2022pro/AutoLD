@@ -150,3 +150,21 @@ demo = {
     
 }
 
+$("#chongzhi_btn").click(() => {
+    let money = $("#money").val()
+    $.ajax({
+        url: "/recharge",
+        type: "post",
+        data: {
+            "money": money,
+            "return_url": "http://127.0.0.1:5000/usercontrol"
+        },
+        success: function (data) {
+            location.href = data
+        },
+        error: function (e) {
+            alert("充值失败!");
+        }
+    });
+})
+

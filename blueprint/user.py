@@ -1,12 +1,12 @@
 import random
 import string
 import datetime
-
 from flask import (Blueprint, jsonify, 
                     render_template, 
                     request, session,
                     redirect, g)
 from flask_mail import Mail, Message
+from .pays import get_pay
 
 import sys 
 sys.path.append("..") 
@@ -107,9 +107,23 @@ def user_control():
         return redirect('/login')
 
 
-@bp.route('/recharge')
+@bp.route('/recharge', methods=['GET', 'POST'])
 def recharge():
-    return render_template('recharge.html')
+    if request.method == 'GET':
+        return render_template('recharge.html')
+    else:
+
+        email = session['email']
+        orderId = str(datetime.datetime.now().timestamp()).replace(".", "")
+        print(orderId)
+        money = float(request.values.get('money'))
+        return_url = request.values.get('return_url')
+        pay_url = get_pay(orderId, money, return_url)
+        # 发起修改
+        util_user.update_money(email, money)
+        return pay_url
+
+
 
 
 @bp.route('/password_change')
@@ -294,6 +308,8 @@ def user_update():
 @bp.route('/my_account')
 def my_account():
     return render_template('my_account.html')
+
+    
 
 
 @bp.route('/aboutus')
