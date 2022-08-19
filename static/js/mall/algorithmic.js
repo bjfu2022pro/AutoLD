@@ -155,8 +155,7 @@ function da_to_ca() {
                 var code = res['code'];
                 if (code == 200) {
                     window.location.href = "/calculate_mall";
-                } else (code == 400)
-                    window.location.href = "/pay";
+                }
             }
         })
     })
@@ -171,8 +170,7 @@ function da_to_ca() {
                 var code = res['code'];
                 if (code == 200) {
                     window.location.href = "/calculate_mall";
-                } else (code == 400)
-                    window.location.href = "/pay";
+                }
             }
         })
     })
@@ -187,8 +185,7 @@ function da_to_ca() {
                 var code = res['code'];
                 if (code == 200) {
                     window.location.href = "/calculate_mall";
-                } else (code == 400)
-                    window.location.href = "/pay";
+                }
             }
         })
     })

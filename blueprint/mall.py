@@ -86,14 +86,14 @@ def cache2():
     sorting = util_details_cache.finder(sort)
     print("sorting", sorting)
     if len(sorting) == 1:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2],sorting[0][3],sorting[0][5])
+        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
     elif len(sorting) == 2:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2],sorting[0][3],sorting[0][5])
-        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2],sorting[1][3],sorting[0][5])
+        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
+        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2], sorting[1][3], sorting[0][5])
     else:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2],sorting[0][3],sorting[0][5])
-        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2],sorting[1][3],sorting[0][5])
-        util_details_cache.add(sorting[2][0], sorting[2][1], sorting[2][2],sorting[2][3],sorting[0][5])
+        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
+        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2], sorting[1][3], sorting[0][5])
+        util_details_cache.add(sorting[2][0], sorting[2][1], sorting[2][2], sorting[2][3], sorting[0][5])
     return jsonify({"code": 200})
 
 
@@ -111,7 +111,6 @@ def details():
     datas = util_data.finder(details[0][2])
     print("datas", datas)
     util_cache.delete(details[0][0])
-   
     return render_template("algorithmic_details.html", details=details, datas=datas)
 
 
@@ -149,7 +148,7 @@ def canl():
 def upload():
     f = request.files['file']
     f.save(f.filename)
-    print("filename", f.filename)
+    print("filename",f.filename)
     session['datas'] = f.filename
     return redirect('/calculate_mall')
 
@@ -185,7 +184,12 @@ def quxiao():
 @bp.route('/DJ_cache', methods=['get', 'post'])
 def DJ_cache():
     ca=request.values.get('ca')
-    print("calculate",ca)
+    print("calculate", ca)
+    # ca_num=util_ca_number.finder(ca)
+    # num=ca_num[4]
+    # util_ca_number.update_num(num-1)
+    # if num-1==0:
+    #     util_ca_number.update_state(0)
     session['calculate'] = ca
     return jsonify({"code":200})
 
