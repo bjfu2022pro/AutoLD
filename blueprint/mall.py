@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, session
 from sqlalchemy.testing import db
 
-import util_user, util_pay
+import util_dataset
 from flask import Flask
 import datetime
 import sys
@@ -133,7 +133,20 @@ def my_instance():
             return redirect('/login')
         else:
             my_instance = util_instance.find_instance(g.info[1])
-            return render_template("my_instance.html", my_instance=my_instance)
+            my_ins = list(my_instance)
+            new_list = set()
+            for instance in my_ins:
+                ins = list(instance)
+                my_al = util_algorithmic_mall.finder(ins[2])
+                ins[2] = my_al[0][1]
+                my_ds = util_dataset.finde_dataset(ins[3])
+                ins[3] = my_ds[0][1]
+                my_ca = util_calculate_mall.finder(ins[4])
+                ins[4] = my_ca[0][1]
+                li_tuple = tuple(ins)
+                new_list.add(li_tuple)
+            new_tuple = tuple(new_list)
+            return render_template("my_instance.html", new_tuple=new_tuple)
     else:
         return redirect('/login')
 
