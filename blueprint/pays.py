@@ -40,8 +40,3 @@ def get_pay(out_trade_no, total_amount, return_url):
         notify_url=return_url + '?t=' + out_trade_no
     )
     return 'https://openapi.alipaydev.com/gateway.do?' + order_string
-
-
-print(get_pay('20220819111', 2, 'http://www.baidu.com'))
-
-
