@@ -135,7 +135,4 @@ def upload():
     f = request.files['file']
     f.save(f.filename)
     print("filename", f.filename)
-    if f.filename != None:
-        return jsonify({"code": 200})
-    else:
-        return jsonify({"code": 100})
+    return redirect('/calculate_mall')
