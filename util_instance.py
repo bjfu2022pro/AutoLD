@@ -54,6 +54,24 @@ def update_info(in_id, value,  property = 'state' ):
     conn_close(conn, cursor)
 
 
+def add_instance(email, algorithm, dataset, gpu, paytime, state):
+    """
+    :param email:邮箱
+    :param algorithm: 算法
+    :param dataset: 数据库
+    :param gpu: GPU
+    :param paytime: 支付时间
+    :param state: 状态(0,1,2,3),(未开始,运行中,完成,取消)
+    :return: 无
+    """
+    conn, cursor = get_conn()
+    sql = f"insert into instance values(null,%s,%s,%s,%s,%s,null,%s,null);"
+    param = (email, algorithm, dataset, gpu, paytime, state)
+    cursor.execute(sql, param)
+    conn.commit()
+    conn_close(conn, cursor)
+
+
 def conn_close(conn, cursor):
     """
     关闭连接与指针
