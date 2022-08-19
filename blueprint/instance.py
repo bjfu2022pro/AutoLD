@@ -30,7 +30,7 @@ def run_instance():
         ntime = datetime.datetime.strptime(ntime, '%Y-%m-%d %H:%M:%S')
         util_instance.update_info(in_id, ntime, 'begin_time')
         util_instance.update_info(in_id, 1, 'state')
-
+        #util_account.add_begin(ntime, in_id)
         t0 = threading.Thread()
         if al_id == '1':
             t0 = threading.Thread(target=regress, args=(data_path, email, result[0][0]))  
