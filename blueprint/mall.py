@@ -1,6 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, session
+from sqlalchemy.testing import db
 
-
+import util_user, util_pay
+from flask import Flask
+import datetime
 import sys
 from flask import g, jsonify
 
@@ -14,7 +17,6 @@ import util_cache
 import util_data
 
 bp = Blueprint("mall", __name__, "/")
-
 
 dingdan = [
     {
@@ -45,13 +47,20 @@ def algorithmic():
 
 @bp.route('/calculate_mall', methods=['get', 'post'])
 def calculate():
+    g.suanfa="suanfa"
     calculate_select = util_calculate_mall.find_all()
     return render_template("calculate_mall.html", calculate_select=calculate_select)
 
 
 @bp.route('/pay')
 def confirm():
-    return render_template('pay.html', dingdan=dingdan)
+        util_pay.get_orders1()
+        danhao=util_pay.get_orders2()
+        util_pay.get_orders3()
+        createTime = datetime.datetime.now()
+        session['time']=str(createTime)
+        session['danhao']=int(danhao)
+        return render_template('pay.html',time=session['time'],danhao=session['danhao'])
 
 
 
@@ -103,6 +112,7 @@ def details():
     datas = util_data.finder(details[0][2])
     print("datas", datas)
     util_cache.delete(details[0][0])
+    
     return render_template("algorithmic_details.html", details=details, datas=datas)
 
 
@@ -144,9 +154,28 @@ def upload():
     session['datas'] = f.filename
     return redirect('/calculate_mall')
 
+
+
 @bp.route('/calculate_cache', methods=['get', 'post'])
 def calculate_cache():
     data=request.values.get("data")
     print("data",data)
     session['datas']=data
     return jsonify({"code":200})
+
+
+
+
+
+
+
+
+@bp.route('/quxiao',methods=['get','post'])
+def quxiao():
+    session["algorithmic"] = ""
+    session['datas'] = ""
+    session['calculate'] = ""
+    print("成功")
+    return jsonify({"cod":800})
+
+
