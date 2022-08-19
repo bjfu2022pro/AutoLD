@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, session
-import util_user, util_pay
+
 from flask import Flask
 
 import sys
@@ -13,7 +13,6 @@ import util_pay
 import util_details_cache
 import util_cache
 import util_data
-import config
 
 bp = Blueprint("mall", __name__, "/")
 
