@@ -45,13 +45,12 @@
                     <div class="col-lg-4 col-md-6 ">
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-file"></i></div>
-                            <h4><a href="/calculate_mall">
-                                <div>{{ da[1] }}</div>
-                            </a></h4>
+                            <h4>
+                                <button type="button" class="btn-success text-body" id="data{{ loop.index }}" value="{{ da[1] }}">{{ da[1] }}</button>
+                            </h4>
                             <p>
                             <div>格式：{{ da[2] }}</div>
                             <div>数据集介绍：{{ da[3] }}</div>
-                            {#                            <div>路径：{{ da[4] }}</div>#}
                             <br>
                             </p>
                         </div>
@@ -60,10 +59,10 @@
                 <div class="col-lg-4 col-md-6 ">
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-file"></i></div>
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="/upload" method="post" enctype="multipart/form-data">
                             <h4>可选择自行上传数据集</h4>
                             <input type="file" name="file">
-                            <input type = "submit" value="上传文件"/>
+                            <input type = "submit" value="提交"/>
                         </form>
                     </div>
                 </div>
@@ -71,7 +70,6 @@
         </div>
     </section>
 </main>
-
 
 <script src="../static/vendor/mall/jquery/jquery.min.js"></script>
 <script src="../static/vendor/mall/bootstrap/js/bootstrap.bundle.min.js"></script>
