@@ -56,10 +56,10 @@ def confirm():
         util_pay.get_orders1()
         danhao=util_pay.get_orders2()
         util_pay.get_orders3()
-        createTime = datetime.datetime.now()
+        createTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         session['time']=str(createTime)
         session['danhao']=int(danhao)
-        return render_template('pay.html',time=session['time'],danhao=session['danhao'])
+        return render_template('pay.html',time=session['time'],danhao=session['danhao'],datas=session['datas'],algorithmic=session['algorithmic'],calculate=['calculate'])
 
 
 
