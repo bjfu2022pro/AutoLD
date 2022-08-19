@@ -3,7 +3,7 @@ from flask import (Blueprint, jsonify,
                     request, session,
                     redirect, g)
 import threading
-import sys
+import sys, os
 from algorithm import cls, regress
 
 import datetime
@@ -45,3 +45,22 @@ def run_instance():
         return jsonify({'code':400})
     else:
         return jsonify({'code':500})
+
+
+@bp.route('/model_download', methods=['GET', 'POST'])
+def model_download():
+    in_id = request.values.get('id')
+
+    result = util_instance.find_instance_byid(in_id)
+    email = result[0][1]
+    al_id = result[0][2]
+    state = result[0][8]
+
+    if state == '2':
+        path = f'C:\\model\\{email}\\{al_id}\\model.pkl'
+        if os.path.exists(path):
+            return jsonify({'code':200, 'path':path})
+        else:
+            return jsonify({'code':300, 'path':''})
+    else:
+        return jsonify({'code':300, 'path':''})
