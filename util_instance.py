@@ -1,6 +1,7 @@
 import pymysql
 
-from util_user import finder, update_info
+from util_user import finder
+from util_user import update_info as update
 
 
 def get_conn():
@@ -83,8 +84,10 @@ def cost_cacualte(in_id, email):
     cost = time_intr * 0.05
     user = finder(email)
     balance = user[0][4]
+    print(balance)
     balance = balance + (5-cost)
-    update_info(email, balance, 'balance')
+    print(balance)
+    update(email, balance, 'balance')
 
 
 def conn_close(conn, cursor):
