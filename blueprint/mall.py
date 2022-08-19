@@ -47,7 +47,6 @@ def algorithmic():
 
 @bp.route('/calculate_mall', methods=['get', 'post'])
 def calculate():
-    g.suanfa="suanfa"
     calculate_select = util_calculate_mall.find_all()
     return render_template("calculate_mall.html", calculate_select=calculate_select)
 
@@ -155,7 +154,7 @@ def upload():
     return redirect('/calculate_mall')
 
 
-@bp.route('/calculate_cache', methods=['get', 'post'])
+@app.route('/calculate_cache', methods=['get', 'post'])
 def calculate_cache():
     data=request.values.get("data")
     print("data",data)
@@ -164,6 +163,8 @@ def calculate_cache():
     # print("ca",ca)
     # if ca==None :
     return jsonify({"code":200})
+    # else:
+    #     return jsonify({"code": 400})
 
 
 
