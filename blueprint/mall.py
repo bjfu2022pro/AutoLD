@@ -141,6 +141,7 @@ def upload():
     f = request.files['file']
     f.save(f.filename)
     print("filename", f.filename)
+    session['datas'] = f.filename
     return redirect('/calculate_mall')
 
 @bp.route('/calculate_cache', methods=['get', 'post'])
