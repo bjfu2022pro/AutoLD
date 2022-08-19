@@ -157,7 +157,7 @@ $("#chongzhi_btn").click(() => {
         type: "post",
         data: {
             "money": money,
-            "return_url": "http://http://47.94.193.86/usercontrol"
+            "return_url": "http://47.94.193.86/usercontrol"
         },
         success: function (data) {
             location.href = data
