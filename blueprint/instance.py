@@ -1,7 +1,5 @@
 from flask import (Blueprint, jsonify, 
-                    render_template, 
-                    request, session,
-                    redirect, g)
+                    request)
 import threading
 import sys, os
 from algorithm import cls, regress

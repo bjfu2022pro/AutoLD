@@ -105,3 +105,4 @@ def cls(dset, email, in_id):                                        #可添加de
     ntime = datetime.datetime.strptime(ntime, '%Y-%m-%d %H:%M:%S')
     util_instance.update_info(in_id, ntime, 'end_time')
     util_instance.update_info(in_id, 2, 'state')
+    util_instance.cost_cacualte(in_id, email)
