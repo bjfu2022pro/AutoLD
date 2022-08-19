@@ -59,7 +59,7 @@ def confirm():
         createTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         session['time']=str(createTime)
         session['danhao']=int(danhao)
-        return render_template('pay.html',time=session['time'],danhao=session['danhao'],datas=session['datas'],algorithmic=session['algorithmic'],calculate=['calculate'])
+        return render_template('pay.html',time=session['time'],danhao=session['danhao'],datas=session['datas'],algorithmic=session['algorithmic'],calculate=session['calculate'])
 
 
 
