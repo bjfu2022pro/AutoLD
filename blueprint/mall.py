@@ -161,7 +161,12 @@ def calculate_cache():
     data=request.values.get("data")
     print("data",data)
     session['datas']=data
+    # ca = session.get('calculate')
+    # print("ca",ca)
+    # if ca==None :
     return jsonify({"code":200})
+    # else:
+    #     return jsonify({"code": 400})
 
 
 
@@ -177,5 +182,13 @@ def quxiao():
     session['calculate'] = ""
     print("成功")
     return jsonify({"cod":800})
+
+
+@bp.route('/DJ_cache', methods=['get', 'post'])
+def DJ_cache():
+    ca=request.values.get('ca')
+    print("calculate",ca)
+    session['calculate'] = ca
+    return jsonify({"code":200})
 
 
