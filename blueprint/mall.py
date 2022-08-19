@@ -46,8 +46,6 @@ def algorithmic():
 @bp.route('/calculate_mall', methods=['get', 'post'])
 def calculate():
     calculate_select = util_calculate_mall.find_all()
-    f = request.files['file']
-    f.save(f.filename)
     return render_template("calculate_mall.html", calculate_select=calculate_select)
 
 
@@ -130,3 +128,11 @@ def canl():
     danhao=request.values.get('danhao')
     util_pay.orders_canl(danhao)
     return jsonify({"cod":400})
+
+
+@bp.route('/upload', methods=['get', 'post'])
+def upload():
+    f = request.files['file']
+    f.save(f.filename)
+    print("filename", f.filename)
+    return redirect('/calculate_mall')
