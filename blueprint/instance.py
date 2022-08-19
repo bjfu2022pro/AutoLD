@@ -1,7 +1,6 @@
-from flask import (Blueprint, jsonify, 
-                    render_template, 
-                    request, session,
-                    redirect, g)
+from flask import flash
+from flask import (Blueprint, jsonify, redirect,
+                    request, send_file, send_from_directory)
 import threading
 import sys, os
 from algorithm import cls, regress
@@ -57,7 +56,7 @@ def model_download():
     state = result[0][8]
 
     if state == '2':
-        path = f'C:\\model\\{email}\\{al_id}\\model.pkl'
+        path = f'static\\model\\{email}\\{al_id}\\model.pkl'
         if os.path.exists(path):
             return jsonify({'code':200, 'path':path})
         else:

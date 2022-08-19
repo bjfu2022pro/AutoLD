@@ -1,9 +1,6 @@
 import pymysql
-from flask import Flask
-from flask import request
-from flask import render_template
-import config
-from util_user import finder
+
+from util_user import finder, update_info
 
 
 def get_conn():
@@ -70,6 +67,18 @@ def add_instance(email, algorithm, dataset, gpu, paytime, state):
     cursor.execute(sql, param)
     conn.commit()
     conn_close(conn, cursor)
+
+
+def cost_cacualte(in_id, email):
+    result = find_instance_byid(in_id)
+    begin_time = result[0][7]
+    end_time = result[0][9]
+    time_intr = (end_time - begin_time).total_seconds()
+    cost = time_intr * 0.05
+    user = finder(email)
+    balance = user[0][4]
+    balance = balance + (5-cost)
+    update_info(email, balance, 'balance')
 
 
 def conn_close(conn, cursor):
