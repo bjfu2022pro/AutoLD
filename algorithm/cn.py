@@ -95,7 +95,8 @@ def cls(dset, email, in_id):                                        #可添加de
 
 
     #save
-    path = f"C:/model/{email}/{in_id}"
+    
+    path = f"static/model/{email}/{in_id}"
 
     if not os.path.exists(path):
         os.makedirs(path)

@@ -70,7 +70,7 @@ def regress(dataset, email, in_id):                                     #可添�
         pred = net.forward(x_data)  # 前向运算 根据x计算pred
         pred = torch.squeeze(pred)
 
-    path = f"C:/model/{email}/{in_id}"
+    path = f"static/model/{email}/{in_id}"
 
     if not os.path.exists(path):
         os.makedirs(path)
