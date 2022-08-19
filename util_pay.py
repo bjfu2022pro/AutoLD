@@ -18,13 +18,33 @@ def show_orders(email):
     return result
 
 
-def add_orders():
+def get_orders1():
     conn, cursor = util_user.get_conn()
     cursor = conn.cursor()
-    sql = "insert into orders values(null,'白','白','白',233,456,'白')"
+    sql = "insert into orders values(null,'白','白','白','白',233,'白','白')"
     cursor.execute(sql)
     conn.commit()
     util_user.conn_close(conn, cursor)
+
+
+def get_orders2():
+    conn, cursor = util_user.get_conn()
+    cursor = conn.cursor()
+    sql = "select * from orders where 账户余额=233"
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    util_user.conn_close(conn, cursor)
+    return result[0][0]
+
+
+def get_orders3():
+    conn, cursor = util_user.get_conn()
+    cursor = conn.cursor()
+    sql = "delete from orders where 账户余额=233"
+    cursor.execute(sql)
+    conn.commit()
+    util_user.conn_close(conn, cursor)
+
 
 
 def deleter_ordering():
@@ -54,3 +74,6 @@ def orders_canl(danhao):
     conn.commit()
     util_user.conn_close(conn, cursor)
     return None
+
+
+

@@ -11,6 +11,7 @@ function expot() {
                     if (od == 400) {
                         var lujing = res['lujing'];
                         location.href = lujing;
+                        alert("导出成功！")
                     }
 
                 }
