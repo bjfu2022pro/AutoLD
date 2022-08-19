@@ -1,12 +1,10 @@
 function findmore() {
     $("#more1").on("click", function (event) {
-        // var title = document.getElementById("title1").value;
-        // var introduce = document.getElementById("introduce1").value;
         $.ajax({
             url: "/cache",
             method: "POST",
             data: {
-                "id": 1,
+                "id":$('#more1').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -21,7 +19,7 @@ function findmore() {
             url: "/cache",
             method: "POST",
             data: {
-                "id": 2,
+                "id":$('#more2').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -36,7 +34,7 @@ function findmore() {
             url: "/cache",
             method: "POST",
             data: {
-                "id": 3,
+                "id":$('#more3').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -51,7 +49,7 @@ function findmore() {
             url: "/cache",
             method: "POST",
             data: {
-                "id": 4,
+                "id":$('#more4').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -66,7 +64,7 @@ function findmore() {
             url: "/cache",
             method: "POST",
             data: {
-                "id": 5,
+                "id":$('#more5').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -81,7 +79,7 @@ function findmore() {
             url: "/cache",
             method: "POST",
             data: {
-                "id": 6,
+                "id":$('#more6').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -144,6 +142,7 @@ function select() {
         })
     })
 }
+
 
 $(function () {
     findmore();

@@ -58,18 +58,34 @@
                                             <li>
                                                 <a class="active text-white" href="/home">主页</a>
                                             </li>
-                                            <li>
-                                                <a class="active text-white" href="/algorithmic_mall">算法商城</a>
-                                            </li>
-                                            <li>
-                                                <a class="active text-white" href="/calculate_mall">算力商城</a>
-                                            </li>
-                                            <li>
-                                                <a class="text-white" href="/register">注册</a>
-                                            </li>
-                                            <li>
-                                                <a class="text-white" href="/aboutus">关于我们</a>
-                                            </li>
+                                            {% if info %}
+                                                <li>
+                                                    <a class="active text-white" href="/algorithmic_mall">算法商城</a>
+                                                </li>
+                                                <li>
+                                                    <a class="active text-white" href="/calculate_mall">算力商城</a>
+                                                </li>
+                                                {%if info[3]%}
+                                                    <li>
+                                                        <a class="text-white" href="/usercontrol">{{info[3]}}</a>
+                                                    </li>
+                                                {% else %}
+                                                    <li>
+                                                        <a class="text-white" href="/usercontrol">{{info[1]}}</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% else %}
+                                                <li>
+                                                    <a class="text-white" href="/login">登录</a>
+                                                </li>
+                                                <li>
+                                                    <a class="text-white" href="/register">注册</a>
+                                                </li>
+                                            {% endif %}
+                                                <li>
+                                                    <a class="text-white" href="/aboutus">关于我们</a>
+                                                </li>
+                                            
                                         </ul>
                                    </nav>
                                </div><!-- /main-menu -->
@@ -123,7 +139,11 @@
                                         </span>
                                         <h1 class="text-white wow fadeInUp f-700 pb-15" data-wow-delay=".6s" data-wow-duration="1.2s">让深度学习</h1>
                                         <h1 class="text-white wow fadeInUp f-700 pb-15" data-wow-delay=".6s" data-wow-duration="1.2s">和呼吸一样自然</h1>
-                                        <a href="/login" class="btn theme-bg mt-30 wow fadeInUp" data-wow-delay="1.5s" data-wow-duration="2s">登录</a>
+                                        {% if info %}
+                                            <a href="/algorithmic_mall" class="btn theme-bg mt-30 wow fadeInUp" data-wow-delay="1.5s" data-wow-duration="2s">前往商城</a>
+                                        {% else %}
+                                            <a href="/login" class="btn theme-bg mt-30 wow fadeInUp" data-wow-delay="1.5s" data-wow-duration="2s">登录</a>
+                                        {% endif %}    
                                     </div>
                                 </div><!-- /col -->
                             </div><!-- /row -->

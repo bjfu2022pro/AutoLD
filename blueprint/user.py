@@ -291,6 +291,11 @@ def user_update():
     return jsonify({"code": 200})
 
 
+@bp.route('/my_account')
+def my_account():
+    return render_template('my_account.html')
+
+
 @bp.route('/aboutus')
 def aboutus():
     """
