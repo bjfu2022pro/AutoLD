@@ -112,7 +112,7 @@ def details():
     datas = util_data.finder(details[0][2])
     print("datas", datas)
     util_cache.delete(details[0][0])
-    
+   
     return render_template("algorithmic_details.html", details=details, datas=datas)
 
 
@@ -155,21 +155,12 @@ def upload():
     return redirect('/calculate_mall')
 
 
-
 @bp.route('/calculate_cache', methods=['get', 'post'])
 def calculate_cache():
     data=request.values.get("data")
     print("data",data)
     session['datas']=data
     return jsonify({"code":200})
-
-
-
-
-
-
-
-
 @bp.route('/quxiao',methods=['get','post'])
 def quxiao():
     session["algorithmic"] = ""
