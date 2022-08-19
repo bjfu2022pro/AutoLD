@@ -26,7 +26,7 @@ class CNN(torch.nn.Module):
 
 
 #data
-def cls(dset, email, in_id):
+def cls(dset, email, in_id):                                        #可添加device选项,device = torch.device("device")
     train_data = dataset.MNIST(root=dset,
                             train=True,
                             transform=transforms.ToTensor(),
@@ -50,7 +50,7 @@ def cls(dset, email, in_id):
 
     #net
 
-    cnn = CNN()
+    cnn = CNN()                                                         #cnn.to(device)
 
     #loss
 
@@ -64,9 +64,9 @@ def cls(dset, email, in_id):
 
     for epoch in range(5):
         for i, (images, labels) in enumerate(train_loader):
-            outputs = cnn(images)
-            loss = loss_func(outputs, labels)
-
+            outputs = cnn(images)                                       #images.to(device)
+            loss = loss_func(outputs, labels)                           #labels.to(device)                                                            
+                                                                        
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
@@ -80,7 +80,7 @@ def cls(dset, email, in_id):
             loss_test = 0
             accuracy = 0
             for i, (images, labels) in enumerate(test_loader):
-                outputs = cnn(images)
+                outputs = cnn(images)                                   #images.to(device) /n labels.to(device)
                 loss_test += loss_func(outputs, labels)
                 _, pred = outputs.max(1)
                 accuracy += (pred == labels).sum().item()

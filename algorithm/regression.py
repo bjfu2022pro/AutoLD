@@ -22,8 +22,8 @@ class Net(torch.nn.Module):
         return out
 
 
-def regress(dataset, email, in_id):
-    ff = open(dataset).readlines()
+def regress(dataset, email, in_id):                                     #可添加device参数
+    ff = open(dataset).readlines()                                      #device = torch.device("device")
     data = []
     for item in ff:
         out = re.sub(r"\s{2,}", " ", item).strip()
@@ -40,7 +40,7 @@ def regress(dataset, email, in_id):
 
     # net
 
-    net = Net(13, 1)
+    net = Net(13, 1)                                                     #net.to(device)
 
     # loss
 
@@ -53,8 +53,8 @@ def regress(dataset, email, in_id):
     # trainer
 
     for i in range(10000):
-        x_data = torch.tensor(X_train, dtype=torch.float32)
-        y_data = torch.tensor(Y_train, dtype=torch.float32)
+        x_data = torch.tensor(X_train, dtype=torch.float32)               #x_data.to(device)
+        y_data = torch.tensor(Y_train, dtype=torch.float32)               #y_data.to(device)
         pred = net.forward(x_data)  # 前向运算 根据x计算pred
         pred = torch.squeeze(pred)
         loss_pred = loss_func(pred, y_data) * 0.001  # 计算loss
@@ -65,8 +65,8 @@ def regress(dataset, email, in_id):
 
 
         # test
-        x_data = torch.tensor(X_test, dtype=torch.float32)
-        y_data = torch.tensor(Y_test, dtype=torch.float32)
+        x_data = torch.tensor(X_test, dtype=torch.float32)                   #x_data.to(device)
+        y_data = torch.tensor(Y_test, dtype=torch.float32)                   #y_data.to(device)
         pred = net.forward(x_data)  # 前向运算 根据x计算pred
         pred = torch.squeeze(pred)
 
