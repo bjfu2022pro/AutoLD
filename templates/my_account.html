@@ -30,25 +30,6 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="../static/img/ourfavicon.ico">
-    <style>
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            padding: 12px 16px;
-        }
-
-        .dropdown:hover.dropdown-content {
-            display: block;
-        }
-    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -66,19 +47,19 @@
 
             <ul class="nav">
                 <li>
-                    <a href="user.html">
+                    <a href="usercontrol">
                         <i class="pe-7s-user"></i>
                         <p>个人信息</p>
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="my_instance">
                         <i class="pe-7s-note2"></i>
                         <p>我的实例</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="my_bill">
                         <i class="pe-7s-news-paper"></i>
                         <p>我的订单</p>
                     </a>
@@ -125,7 +106,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="recharge">
                                 充值
                             </a>
                         </li>
@@ -172,13 +153,33 @@
                             <td>交易金额</td>
                             <td>余额支付</td>
                         </tr>
-                        <tr align="center">
-                            <td>{{ begin_time }}</td>
-                            <td>{{ type }}</td>
-                            <td>{{ name }}</td>
-                            <td>{{ money }}</td>
-                            <td>{{ payment }}</td>
-                        </tr>
+                        {% for acc in account %}
+                             {% if acc==account[0] %}
+                                   <tr align="center">
+                                   <td>{{ acc[2] }}</td>
+                                   <td>{{ acc[4] }}</td>
+                                   <td>{{ acc[5] }}</td>
+                                   <td>{{ acc[6] }}</td>
+                                   <td>{{ acc[7] }}</td>
+                                   </tr>
+                             {% elif acc==account[1] %}
+                                   <tr align="center">
+                                   <td>{{ acc[2] }}</td>
+                                   <td>{{ acc[4] }}</td>
+                                   <td>{{ acc[5] }}</td>
+                                   <td>{{ acc[6] }}</td>
+                                   <td>{{ acc[7] }}</td>
+                                   </tr>
+                             {% elif acc==account[2] %}
+                                   <tr align="center">
+                                   <td>{{ acc[2] }}</td>
+                                   <td>{{ acc[4] }}</td>
+                                   <td>{{ acc[5] }}</td>
+                                   <td>{{ acc[6] }}</td>
+                                   <td>{{ acc[7] }}</td>
+                                   </tr>
+                             {% endif %}
+                        {% endfor %}
                     </table>
                 </div>
             </div>
