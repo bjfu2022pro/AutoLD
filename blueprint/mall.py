@@ -150,7 +150,7 @@ def my_instance():
 
 @bp.route('/canl', methods=['post', 'get'])
 def canl():
-    cal = (util_ca_number.finder(session['calculate']) + 1)
+    cal = (util_ca_number.finder(session['calculate'])+ 1)
     util_ca_number.update_num(cal, session['calculate'])
     danhao = request.values.get('danhao')
     util_pay.orders_canl(danhao)
@@ -199,10 +199,6 @@ def DJ_cache():
     ca=str(request.values.get('ca'))
     print("calculate", ca)
     session['calculate'] = ca
-    ca_num=util_ca_number.finder(ca)
-    print(ca_num)
-    num=int(ca_num[0][4])-1
-    util_ca_number.update_num(num, ca_num[0][1])
     return jsonify({"code":200})
 
 
@@ -212,6 +208,11 @@ def zhifu():
     yue = float(g.info[4])
     if (yue > 5.0):
         yue = yue - 5.0
+        ca = session.get('calculate')
+        ca_num=util_ca_number.finder(ca)
+        print(ca_num)
+        num=int(ca_num[0][4])-1
+        util_ca_number.update_num(num, ca_num[0][1])
         util_user.update_info(email, yue, 'balance')
         util_pay.save_orders(session['danhao'],email,session['algorithmic'],session['datas'],session['calculate'],session['time'],'prossessing')
         util_instance.add_instance(email,session['algorithmic'],session['datas'],session['calculate'],session['danhao'],session['time'])
