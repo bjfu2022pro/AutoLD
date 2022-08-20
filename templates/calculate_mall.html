@@ -42,9 +42,8 @@
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 3;
         }
-
     </style>
 </head>
 <body class="home-hostio" id="home-hostio">
@@ -68,7 +67,7 @@
         <div class="service-option" style="margin-top: 0px">
             <div class="row">
                 {% for ca in calculate_select %}
-                    {% if ca[3] %}
+                    {% if ca[4] %}
                         <!-- star service -->
                         <div class="col-md-4">
                             <div class="service-area">
@@ -77,9 +76,32 @@
                                         <div>{{ ca[1] }}</div>
                                     </h5>
                                     <p class="card-text">
+                                    <div>可用数量：{{ ca[4] }}</div>
+                                    <br>
                                     <div class="div">{{ ca[2] }}</div>
                                     </p>
-                                    <button type="button" class="btn btn-outline-primary" id="DJ{{ loop.index }}" value="{{ ca[1] }}">确认订单</button>
+                                    <button type="button" class="btn btn-outline-primary" id="DJ{{ loop.index }}"
+                                            value="{{ ca[1] }}">确认订单
+                                    </button>
+                                </div>
+                            </div>
+                        </div><!-- end service -->
+                    {% else %}
+                        <!-- star service -->
+                        <div class="col-md-4">
+                            <div class="service-area">
+                                <div class="service-body">
+                                    <h5 class="card-title">
+                                        <div>{{ ca[1] }}</div>
+                                    </h5>
+                                    <p class="card-text">
+                                    <div>可用数量：{{ ca[4] }}</div>
+                                    <br>
+                                    <div class="div">{{ ca[2] }}</div>
+                                    </p>
+                                    <button type="button" class="btn btn-outline-primary" id="DJ{{ loop.index }}"
+                                            value="{{ ca[1] }}" disabled>确认订单
+                                    </button>
                                 </div>
                             </div>
                         </div><!-- end service -->

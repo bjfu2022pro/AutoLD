@@ -35,3 +35,19 @@ def conn_close(conn, cursor):
     """
     conn.close()
     cursor.close()
+
+def finder(value, property="GPU_or_CPU", table="cal_select"):
+    conn, cursor = get_conn()
+    sql = f"select * from {table} where {property}=\'{value}\'"
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    conn_close(conn, cursor)
+    return result
+
+def update_num(value, GPU, property = 'num'):
+    conn, cursor = get_conn()
+    sql = f"update cal_select set {property}=%s where GPU_or_CPU = %s"
+    cursor.execute(sql, (value,GPU))
+    conn.commit()
+    conn_close(conn, cursor)
+
