@@ -1,6 +1,6 @@
 import torch
 import os
-import util_instance
+import util_instance, util_account
 import datetime
 
 # data
@@ -22,7 +22,7 @@ class Net(torch.nn.Module):
         return out
 
 
-def regress(dataset, email, in_id):                                     #可添加device参数
+def regress(dataset, email, in_id, device):                                     #可添加device参数
     ff = open(dataset).readlines()                                      #device = torch.device("device")
     data = []
     for item in ff:
@@ -79,7 +79,7 @@ def regress(dataset, email, in_id):                                     #可添�
     ntime = str(datetime.datetime.now()).split(".")[0]
     ntime = datetime.datetime.strptime(ntime, '%Y-%m-%d %H:%M:%S')
     util_instance.update_info(in_id, ntime, 'end_time')
-    #util_account.add_end(ntime, in_id)
+    util_account.add_end(ntime, in_id)
     util_instance.update_info(in_id, 2, 'state')
     util_instance.cost_cacualte(in_id, email)
     
