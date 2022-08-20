@@ -63,8 +63,10 @@ def model_download():
     if state == '2':
         path = f'static\\model\\{email}\\{al_id}\\model.pkl'
         if os.path.exists(path):
+            print(path,'存在')
             return jsonify({'code':200, 'path':path})
         else:
+            print(path,'不存在')
             return jsonify({'code':300, 'path':''})
     else:
         return jsonify({'code':300, 'path':''})
