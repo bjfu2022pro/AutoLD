@@ -11,6 +11,7 @@ sys.path.append("..")
 import util_instance
 import util_dataset
 import util_pay
+import util_account
 
 
 bp = Blueprint("instance", __name__, "/")
@@ -23,6 +24,7 @@ def run_instance():
     result = util_instance.find_instance_byid(in_id)
     email = result[0][1]
     al_id = result[0][2]
+    od_id = result[0][5]
     data = util_dataset.finde_dataset(result[0][3])
     data_path = data[0][4]
     state = result[0][8]
@@ -31,11 +33,11 @@ def run_instance():
         ntime = datetime.datetime.strptime(ntime, '%Y-%m-%d %H:%M:%S')
         util_instance.update_info(in_id, ntime, 'begin_time')
         util_instance.update_info(in_id, 1, 'state')
-        util_pay.upd_state(result[0][5])
-        #util_account.add_begin(ntime, in_id)
+        util_account.add_begin(ntime, in_id, email)
+        util_pay.upd_state(od_id)
         t0 = threading.Thread()
         if al_id == '1':
-            t0 = threading.Thread(target=regress, args=(data_path, email, result[0][0]))  
+            t0 = threading.Thread(target=regress, args=(data_path, email, result[0][0], ))  
         elif al_id == '2':
             t0 = threading.Thread(target=cls, args=(data_path, email, result[0][0]))
         t0.start()
