@@ -15,7 +15,7 @@ import util_pay
 import util_details_cache
 import util_cache
 import util_data
-
+import util_ca_number
 bp = Blueprint("mall", __name__, "/")
 
 dingdan = [
@@ -196,14 +196,13 @@ def quxiao():
 
 @bp.route('/DJ_cache', methods=['get', 'post'])
 def DJ_cache():
-    ca=request.values.get('ca')
+    ca=str(request.values.get('ca'))
     print("calculate", ca)
-    # ca_num=util_ca_number.finder(ca)
-    # num=ca_num[4]
-    # util_ca_number.update_num(num-1)
-    # if num-1==0:
-    #     util_ca_number.update_state(0)
     session['calculate'] = ca
+    ca_num=util_ca_number.finder(ca)
+    print(ca_num)
+    num=int(ca_num[0][4])-1
+    util_ca_number.update_num(num, ca_num[0][1])
     return jsonify({"code":200})
 
 
