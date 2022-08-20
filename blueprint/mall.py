@@ -150,10 +150,11 @@ def my_instance():
 
 @bp.route('/canl', methods=['post', 'get'])
 def canl():
-    ca_num = util_ca_number.finder(session['calculate'])
+    danhao = request.values.get('danhao')
+    gpu=util_pay.get_dingdan(danhao)
+    ca_num = util_ca_number.finder(gpu)
     num = int(ca_num[0][4]) + 1
     util_ca_number.update_num(num, ca_num[0][1])
-    danhao = request.values.get('danhao')
     util_pay.orders_canl(danhao)
     id=int(danhao)
     util_instance.state_change(id)

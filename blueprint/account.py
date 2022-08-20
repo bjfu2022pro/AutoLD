@@ -1,14 +1,9 @@
-from flask import (Blueprint, jsonify,
-                    render_template,
-                    request, session,
-                    redirect, g)
+from flask import (Blueprint, render_template)
 
 import sys
 sys.path.append("..")
 import util_user
-import util_account
-import time
-import datetime
+
 
 
 bp = Blueprint("account", __name__, "/")

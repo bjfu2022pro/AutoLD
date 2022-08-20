@@ -89,3 +89,12 @@ def upd_state(o_id):
     return None
 
 
+def get_dingdan(dingdan):
+    conn, cursor = util_user.get_conn()
+    cursor = conn.cursor()
+    sql = f"select * from orders where id = \'{dingdan}\'"
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    util_user.conn_close(conn, cursor)
+    return result[0][4]
+    
