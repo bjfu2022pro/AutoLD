@@ -52,12 +52,13 @@ def update_info(in_id, value,  property = 'state' ):
     conn_close(conn, cursor)
 
 
-def add_instance(email, algorithm, dataset, gpu, paytime):
+def add_instance(email, algorithm, dataset, gpu, tr_id, paytime):
     """
     :param email:邮箱
     :param algorithm: 算法
     :param dataset: 数据库
     :param gpu: GPU
+    :param tr_id: 订单号
     :param paytime: 支付时间
     :param state: 状态(0,1,2,3),(未开始,运行中,完成,取消)
     :return: 无
@@ -69,9 +70,17 @@ def add_instance(email, algorithm, dataset, gpu, paytime):
     dt_id = dt_result[0][0]
     gpu_result = finder(gpu, 'GPU/CPU', 'calculate_select')
     gpu_id = gpu_result[0][0]
-    sql = f"insert into instance values(null,%s,%s,%s,%s,%s,null,%s,null);"
-    param = (email, al_id, dt_id, gpu_id, paytime, 0)
+    sql = f"insert into instance values(null,%s,%s,%s,%s,%s,null,%s,null,%s,null);"
+    param = (email, al_id, dt_id, gpu_id, tr_id, paytime, 0)
     cursor.execute(sql, param)
+    conn.commit()
+    conn_close(conn, cursor)
+
+
+def state_change(tr_id):
+    conn, cursor = get_conn()
+    sql = f"update instance set state=%s where tr_id = %s"
+    cursor.execute(sql, (3, tr_id))
     conn.commit()
     conn_close(conn, cursor)
 

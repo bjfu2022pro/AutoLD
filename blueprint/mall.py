@@ -206,6 +206,8 @@ def zhifu():
     if (yue > 5.0):
         yue = yue - 5.0
         util_user.update_info(email, yue, 'balance')
+        util_pay.save_orders(session['danhao'],email,session['algorithmic'],session['datas'],session['calculate'],session['time'],'prossessing')
+
         return jsonify({'cod': 200})
     else:
         return jsonify({"cod": 400})
