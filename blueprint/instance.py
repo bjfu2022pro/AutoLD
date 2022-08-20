@@ -57,11 +57,11 @@ def model_download():
 
     result = util_instance.find_instance_byid(in_id)
     email = result[0][1]
-    al_id = result[0][2]
+    in_id = result[0][0]
     state = result[0][8]
 
     if state == '2':
-        path = f'static\\model\\{email}\\{al_id}\\model.pkl'
+        path = f'static\\model\\{email}\\{in_id}\\model.pkl'
         if os.path.exists(path):
             print(path,'存在')
             return jsonify({'code':200, 'path':path})
