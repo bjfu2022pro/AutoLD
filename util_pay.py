@@ -1,5 +1,4 @@
 import os
-
 import pymysql
 import util_user
 import config
@@ -11,7 +10,7 @@ import pandas as pd
 def show_orders(email):
     conn, cursor = util_user.get_conn()
     cursor = conn.cursor()
-    sql = f"select * from orders where youxiang = \'{email}\'"
+    sql = f"select * from orders where mailbox = \'{email}\'"
     cursor.execute(sql)
     result = cursor.fetchall()
     util_user.conn_close(conn, cursor)
@@ -21,7 +20,7 @@ def show_orders(email):
 def get_orders1():
     conn, cursor = util_user.get_conn()
     cursor = conn.cursor()
-    sql = "insert into orders values(null,'白','白','白','白',233,'白','白')"
+    sql = "insert into orders values(null,'hong','q','w','q','233','a','c')"
     cursor.execute(sql)
     conn.commit()
     util_user.conn_close(conn, cursor)
@@ -30,7 +29,7 @@ def get_orders1():
 def get_orders2():
     conn, cursor = util_user.get_conn()
     cursor = conn.cursor()
-    sql = "select * from orders where 账户余额=233"
+    sql = "select * from orders where deposit='233'"
     cursor.execute(sql)
     result = cursor.fetchall()
     util_user.conn_close(conn, cursor)
@@ -40,15 +39,10 @@ def get_orders2():
 def get_orders3():
     conn, cursor = util_user.get_conn()
     cursor = conn.cursor()
-    sql = "delete from orders where 账户余额=233"
+    sql = "delete from orders where deposit='233'"
     cursor.execute(sql)
     conn.commit()
     util_user.conn_close(conn, cursor)
-
-
-def deleter_ordering():
-    conn, cursor = util_user.get_conn()
-    cursor = conn.cursor()
 
 
 def daochu(email):
@@ -79,8 +73,8 @@ def orders_canl(danhao):
 def save_orders(n_id, n_mailbox, n_algorithm, n_datas, n_gpu, n_time, n_state):
     conn, cursor = util_user.get_conn()
     cursor = conn.cursor()
-    sql = f"insert into orders values(%d,%s,%s,%s,%s,%d,%s,%s)"
-    param = (n_id, n_mailbox, n_algorithm, n_datas, n_gpu, 5, n_time, n_state)
+    sql = f"insert into orders values(%s,%s,%s,%s,%s,%s,%s,%s)"
+    param = (n_id, n_mailbox, n_algorithm, n_datas, n_gpu, '￥5', n_time, n_state)
     cursor.execute(sql, param)
     conn.commit()
     util_user.conn_close(conn, cursor)
@@ -93,3 +87,5 @@ def upd_state(o_id):
     conn.commit()
     util_user.conn_close(conn, cursor)
     return None
+
+
