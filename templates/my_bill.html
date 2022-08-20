@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="my_instance">
                         <i class="pe-7s-note2"></i>
                         <p>我的实例</p>
                     </a>
@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="dashboard">
+                    <a href="my_account">
                         <i class="pe-7s-graph"></i>
                         <p>我的账单</p>
                     </a>
@@ -120,14 +120,19 @@
                                 账户余额：{{ info[4] }}元
                             </a>
                         </li>
-                        <li>
+                         <li>
                             <a href="/password_change">
-                                更改密码
+                              更改密码
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                注销登录
+                            <a href="/email_change">
+                              改绑邮箱
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('user.logout')}}">
+                              注销登录
                             </a>
                         </li>
                     </ul>
