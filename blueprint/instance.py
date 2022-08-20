@@ -8,10 +8,8 @@ from algorithm import cls, regress
 import datetime
 
 sys.path.append("..") 
-import util_instance
-import util_dataset
-import util_pay
-import util_account
+import util_instance, util_dataset
+import util_pay, util_account, util_ca_number
 
 
 bp = Blueprint("instance", __name__, "/")
@@ -25,6 +23,9 @@ def run_instance():
     email = result[0][1]
     al_id = result[0][2]
     od_id = result[0][5]
+    cal_id = result[0][4]
+    cal_result = util_ca_number.finder(cal_id, 'id')
+    cal_name = cal_result[0][1]
     data = util_dataset.finde_dataset(result[0][3])
     data_path = data[0][4]
     state = result[0][8]
@@ -37,9 +38,9 @@ def run_instance():
         util_pay.upd_state(od_id)
         t0 = threading.Thread()
         if al_id == '1':
-            t0 = threading.Thread(target=regress, args=(data_path, email, result[0][0], ))  
+            t0 = threading.Thread(target=regress, args=(data_path, email, result[0][0], cal_name))
         elif al_id == '2':
-            t0 = threading.Thread(target=cls, args=(data_path, email, result[0][0]))
+            t0 = threading.Thread(target=cls, args=(data_path, email, result[0][0], cal_name))
         t0.start()
         return jsonify({'code':200})
     elif state == '1':

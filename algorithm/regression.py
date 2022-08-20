@@ -1,6 +1,6 @@
 import torch
 import os
-import util_instance, util_account
+import util_instance, util_account, util_ca_number
 import datetime
 
 # data
@@ -81,5 +81,8 @@ def regress(dataset, email, in_id, device):                                     
     util_instance.update_info(in_id, ntime, 'end_time')
     util_account.add_end(ntime, in_id)
     util_instance.update_info(in_id, 2, 'state')
+    ca_num = util_ca_number.finder(device)
+    num=int(ca_num[0][4])+1
+    util_ca_number.update_num(num, ca_num[0][1])
     util_instance.cost_cacualte(in_id, email)
     
