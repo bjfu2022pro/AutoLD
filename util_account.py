@@ -6,7 +6,7 @@ def add_begin(begin_time, in_id, email):
     添加开始时间
     """
     conn, cursor = util_user.get_conn()
-    sql = f"insert into account values(null, %s, %s,null,'消费', null, '实例', %s, null);"
+    sql = f"insert into account values(null, %s, %s,null,'消费', '实例', null,  null, %s);"
     param = (email, begin_time, in_id)
     cursor.execute(sql, param)
     conn.commit()
