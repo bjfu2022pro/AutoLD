@@ -46,7 +46,6 @@ def get_orders3():
     util_user.conn_close(conn, cursor)
 
 
-
 def deleter_ordering():
     conn, cursor = util_user.get_conn()
     cursor = conn.cursor()
@@ -54,7 +53,7 @@ def deleter_ordering():
 
 def daochu(email):
     conn, cursor = util_user.get_conn()
-    sql = f"select * from orders where youxiang = \'{email}\'"
+    sql = f"select * from orders where mailbox = \'{email}\'"
     biaoge = pd.read_sql(sql, con=conn)
 
     dangqian = os.getcwd()
@@ -65,15 +64,32 @@ def daochu(email):
     biaoge.to_excel(zonglujing, index=False)
     return lujing
 
+
 def orders_canl(danhao):
     conn, cursor = util_user.get_conn()
     cursor = conn.cursor()
-    dingdanhao=int(danhao)
-    sql=f"update orders set state='cancel' where id = \'{dingdanhao}\'"
+    dingdanhao = int(danhao)
+    sql = f"update orders set state='cancel' where id = \'{dingdanhao}\'"
     cursor.execute(sql)
     conn.commit()
     util_user.conn_close(conn, cursor)
     return None
 
 
+def save_orders(n_id, n_mailbox, n_algorithm, n_datas, n_gpu, n_time, n_state):
+    conn, cursor = util_user.get_conn()
+    cursor = conn.cursor()
+    sql = f"insert into orders values(%d,%s,%s,%s,%s,%d,%s,%s)"
+    param = (n_id, n_mailbox, n_algorithm, n_datas, n_gpu, 5, n_time, n_state)
+    cursor.execute(sql, param)
+    conn.commit()
+    util_user.conn_close(conn, cursor)
 
+def upd_state(o_id):
+    conn, cursor = util_user.get_conn()
+    cursor = conn.cursor()
+    sql = f"update orders set state='finish' where id = \'{o_id}\'"
+    cursor.execute(sql)
+    conn.commit()
+    util_user.conn_close(conn, cursor)
+    return None
