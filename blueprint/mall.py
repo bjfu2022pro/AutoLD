@@ -7,6 +7,8 @@ import datetime
 import sys
 from flask import g, jsonify
 
+from util_email import update_info
+import util_user
 sys.path.append("..")
 import util_algorithmic_mall
 import util_calculate_mall
@@ -53,16 +55,14 @@ def calculate():
 
 @bp.route('/pay')
 def confirm():
-        util_pay.get_orders1()
-        danhao=util_pay.get_orders2()
-        util_pay.get_orders3()
-        createTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        session['time']=str(createTime)
-        session['danhao']=int(danhao)
-        return render_template('pay.html',time=session['time'],danhao=session['danhao'],datas=session['datas'],algorithmic=session['algorithmic'],calculate=session['calculate'])
-
-
-
+    util_pay.get_orders1()
+    danhao = util_pay.get_orders2()
+    util_pay.get_orders3()
+    createTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    session['time'] = str(createTime)
+    session['danhao'] = int(danhao)
+    return render_template('pay.html', time=session['time'], danhao=session['danhao'], datas=session['datas'],
+                           algorithmic=session['algorithmic'], calculate=session['calculate'])
 
 
 @bp.route('/my_bill')
@@ -97,22 +97,20 @@ def cache2():
     return jsonify({"code": 200})
 
 
-
 @bp.route('/algorithmic_details', methods=['get', 'post'])
 def details():
     details = util_cache.find_all()
     if details:
-        session['algorithmic']=details[0][0]
-        algorithmic=session.get('algorithmic')
-        print("algorithmic",algorithmic)
-    else :
+        session['algorithmic'] = details[0][0]
+        algorithmic = session.get('algorithmic')
+        print("algorithmic", algorithmic)
+    else:
         pass
     print("details", details)
     datas = util_data.finder(details[0][2])
     print("datas", datas)
     util_cache.delete(details[0][0])
     return render_template("algorithmic_details.html", details=details, datas=datas)
-
 
 
 @bp.route('/cache', methods=['get', 'post'])
@@ -152,46 +150,40 @@ def my_instance():
 
 @bp.route('/canl', methods=['post', 'get'])
 def canl():
-    danhao=request.values.get('danhao')
+    danhao = request.values.get('danhao')
     util_pay.orders_canl(danhao)
-    return jsonify({"cod":400})
+    return jsonify({"cod": 400})
 
 
 @bp.route('/upload', methods=['get', 'post'])
 def upload():
     f = request.files['file']
     f.save(f.filename)
-    print("filename",f.filename)
+    print("filename", f.filename)
     session['datas'] = f.filename
     return redirect('/calculate_mall')
 
 
 @bp.route('/calculate_cache', methods=['get', 'post'])
 def calculate_cache():
-    data=request.values.get("data")
-    print("data",data)
-    session['datas']=data
+    data = request.values.get("data")
+    print("data", data)
+    session['datas'] = data
     # ca = session.get('calculate')
     # print("ca",ca)
     # if ca==None :
-    return jsonify({"code":200})
+    return jsonify({"code": 200})
     # else:
     #     return jsonify({"code": 400})
 
 
-
-
-
-
-
-
-@bp.route('/quxiao',methods=['get','post'])
+@bp.route('/quxiao', methods=['get', 'post'])
 def quxiao():
     session["algorithmic"] = ""
     session['datas'] = ""
     session['calculate'] = ""
     print("成功")
-    return jsonify({"cod":800})
+    return jsonify({"cod": 800})
 
 
 @bp.route('/DJ_cache', methods=['get', 'post'])
@@ -205,4 +197,15 @@ def DJ_cache():
     util_ca_number.update_num(num, ca_num[0][1])
     return jsonify({"code":200})
 
+@bp.route('/zhifu', methods=['get', 'post'])
+def zhifu():
+    email = g.info[1]
+    yue = float(g.info[4])
+    if (yue > 5.0):
+        yue = yue - 5.0
+        util_user.update_info(email, yue, 'balance')
+        util_pay.save_orders(session['danhao'],email,session['algorithmic'],session['datas'],session['calculate'],session['time'],'prossessing')
 
+        return jsonify({'cod': 200})
+    else:
+        return jsonify({"cod": 400})

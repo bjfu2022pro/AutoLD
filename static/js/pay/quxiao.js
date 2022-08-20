@@ -9,7 +9,7 @@ function quxiao() {
                 success: function (res) {
                     var cod = res['cod'];
                     if (cod == 800) {
-                        window.location.replace("algorithmic_mall");
+                        window.location.replace("home");
                         alert("订单已取消！");
 
                     }

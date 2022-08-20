@@ -4,7 +4,7 @@ import torchvision.transforms as transforms
 import torch.utils.data as data_utils
 import os
 import datetime
-import util_instance
+import util_instance, util_account
 
 
 class CNN(torch.nn.Module):
@@ -105,6 +105,6 @@ def cls(dset, email, in_id):                                        #可添加de
     ntime = str(datetime.datetime.now()).split(".")[0]
     ntime = datetime.datetime.strptime(ntime, '%Y-%m-%d %H:%M:%S')
     util_instance.update_info(in_id, ntime, 'end_time')
-    #util_account.add_end(ntime, in_id)
+    util_account.add_end(ntime, in_id)
     util_instance.update_info(in_id, 2, 'state')
     util_instance.cost_cacualte(in_id, email)
