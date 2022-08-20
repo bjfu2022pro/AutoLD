@@ -17,7 +17,7 @@ import util_pay
 import util_details_cache
 import util_cache
 import util_data
-
+import util_ca_number
 bp = Blueprint("mall", __name__, "/")
 
 dingdan = [
@@ -150,6 +150,8 @@ def my_instance():
 
 @bp.route('/canl', methods=['post', 'get'])
 def canl():
+    cal = (util_ca_number.finder(session['calculate']) + 1)
+    util_ca_number.update_num(cal, session['calculate'])
     danhao = request.values.get('danhao')
     util_pay.orders_canl(danhao)
     id=int(danhao)
@@ -181,9 +183,13 @@ def calculate_cache():
 
 @bp.route('/quxiao', methods=['get', 'post'])
 def quxiao():
+    cal=(util_ca_number.finder(session['calculate'])+1)
+    util_ca_number.update_num(cal,session['calculate'])
     session["algorithmic"] = ""
     session['datas'] = ""
     session['calculate'] = ""
+
+    util_ca_number.update_num()
     print("成功")
     return jsonify({"cod": 800})
 
