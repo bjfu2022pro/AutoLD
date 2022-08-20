@@ -1,6 +1,7 @@
 import pymysql
 
-from util_user import finder, update_info
+from util_user import finder
+from util_user import update_info as update
 
 
 def get_conn():
@@ -51,7 +52,7 @@ def update_info(in_id, value,  property = 'state' ):
     conn_close(conn, cursor)
 
 
-def add_instance(email, algorithm, dataset, gpu, paytime, state):
+def add_instance(email, algorithm, dataset, gpu, paytime):
     """
     :param email:邮箱
     :param algorithm: 算法
@@ -62,8 +63,14 @@ def add_instance(email, algorithm, dataset, gpu, paytime, state):
     :return: 无
     """
     conn, cursor = get_conn()
+    al_result = finder(algorithm, '算法名称', 'ai_select')
+    al_id = al_result[0][0]
+    dt_result = finder(dataset, '数据集名称', 'dataset')
+    dt_id = dt_result[0][0]
+    gpu_result = finder(gpu, 'GPU/CPU', 'calculate_select')
+    gpu_id = gpu_result[0][0]
     sql = f"insert into instance values(null,%s,%s,%s,%s,%s,null,%s,null);"
-    param = (email, algorithm, dataset, gpu, paytime, state)
+    param = (email, al_id, dt_id, gpu_id, paytime, 0)
     cursor.execute(sql, param)
     conn.commit()
     conn_close(conn, cursor)
@@ -78,7 +85,7 @@ def cost_cacualte(in_id, email):
     user = finder(email)
     balance = user[0][4]
     balance = balance + (5-cost)
-    update_info(email, balance, 'balance')
+    update(email, balance, 'balance')
 
 
 def conn_close(conn, cursor):
