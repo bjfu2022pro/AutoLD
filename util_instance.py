@@ -69,7 +69,7 @@ def add_instance(email, algorithm, dataset, gpu, paytime):
     dt_id = dt_result[0][0]
     gpu_result = finder(gpu, 'GPU/CPU', 'calculate_select')
     gpu_id = gpu_result[0][0]
-    sql = f"insert into instance values(null,%s,%s,%s,%s,%s,null,%s,null);"
+    sql = f"insert into instance values(null,%s,%s,%s,%s,null,%s,null,%s,null);"
     param = (email, al_id, dt_id, gpu_id, paytime, 0)
     cursor.execute(sql, param)
     conn.commit()
