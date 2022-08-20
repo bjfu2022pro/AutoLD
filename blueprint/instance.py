@@ -69,4 +69,5 @@ def model_download():
             print(path,'不存在')
             return jsonify({'code':300, 'path':''})
     else:
+        print('meihaone')
         return jsonify({'code':300, 'path':''})
