@@ -17,7 +17,7 @@ import util_pay
 import util_details_cache
 import util_cache
 import util_data
-import util_ca_number
+
 bp = Blueprint("mall", __name__, "/")
 
 dingdan = [
@@ -152,6 +152,8 @@ def my_instance():
 def canl():
     danhao = request.values.get('danhao')
     util_pay.orders_canl(danhao)
+    id=int(danhao)
+    util_instance.state_change(id)
     return jsonify({"cod": 400})
 
 
@@ -188,14 +190,16 @@ def quxiao():
 
 @bp.route('/DJ_cache', methods=['get', 'post'])
 def DJ_cache():
-    ca=str(request.values.get('ca'))
+    ca = request.values.get('ca')
     print("calculate", ca)
+    # ca_num=util_ca_number.finder(ca)
+    # num=ca_num[4]
+    # util_ca_number.update_num(num-1)
+    # if num-1==0:
+    #     util_ca_number.update_state(0)
     session['calculate'] = ca
-    ca_num=util_ca_number.finder(ca)
-    print(ca_num)
-    num=int(ca_num[0][4])-1
-    util_ca_number.update_num(num, ca_num[0][1])
-    return jsonify({"code":200})
+    return jsonify({"code": 200})
+
 
 @bp.route('/zhifu', methods=['get', 'post'])
 def zhifu():
@@ -205,7 +209,7 @@ def zhifu():
         yue = yue - 5.0
         util_user.update_info(email, yue, 'balance')
         util_pay.save_orders(session['danhao'],email,session['algorithmic'],session['datas'],session['calculate'],session['time'],'prossessing')
-
+        util_instance.add_instance(email,session['algorithmic'],session['datas'],session['calculate'],session['danhao'],session['time'])
         return jsonify({'cod': 200})
     else:
         return jsonify({"cod": 400})
