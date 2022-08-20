@@ -68,7 +68,7 @@ def add_instance(email, algorithm, dataset, gpu, tr_id, paytime):
     al_id = al_result[0][0]
     dt_result = finder(dataset, '数据集名称', 'dataset')
     dt_id = dt_result[0][0]
-    gpu_result = finder(gpu, 'GPU/CPU', 'calculate_select')
+    gpu_result = finder(gpu, 'GPU_or_CPU', 'cal_select')
     gpu_id = gpu_result[0][0]
     sql = f"insert into instance values(null,%s,%s,%s,%s,%s,%s,null,%s,null);"
     param = (email, al_id, dt_id, gpu_id, tr_id, paytime, 0)
