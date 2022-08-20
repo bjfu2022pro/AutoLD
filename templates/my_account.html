@@ -134,58 +134,57 @@
                 </div>
             </div>
         </nav>
-    </div>
-</div>
-
-
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="card" style="height:400px; width: 1096px; margin-left: 150px; text-align: center">
-                    <table class="table table-striped " align="center"
-                           style="margin-top: -520px; width: 995px; margin-left:99px">
-                        <tr>
-                            <td>交易时间</td>
-                            <td>交易类型</td>
-                            <td>产品名称</td>
-                            <td>交易金额</td>
-                            <td>余额支付</td>
-                        </tr>
-                        {% for acc in account %}
-                             {% if acc==account[0] %}
-                                   <tr align="center">
-                                   <td>{{ acc[2] }}</td>
-                                   <td>{{ acc[4] }}</td>
-                                   <td>{{ acc[5] }}</td>
-                                   <td>{{ acc[6] }}</td>
-                                   <td>{{ acc[7] }}</td>
-                                   </tr>
-                             {% elif acc==account[1] %}
-                                   <tr align="center">
-                                   <td>{{ acc[2] }}</td>
-                                   <td>{{ acc[4] }}</td>
-                                   <td>{{ acc[5] }}</td>
-                                   <td>{{ acc[6] }}</td>
-                                   <td>{{ acc[7] }}</td>
-                                   </tr>
-                             {% elif acc==account[2] %}
-                                   <tr align="center">
-                                   <td>{{ acc[2] }}</td>
-                                   <td>{{ acc[4] }}</td>
-                                   <td>{{ acc[5] }}</td>
-                                   <td>{{ acc[6] }}</td>
-                                   <td>{{ acc[7] }}</td>
-                                   </tr>
-                             {% endif %}
-                        {% endfor %}
-                    </table>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card" style="height:800px">
+                            <table class="table table-striped" align="center" style="height: 30px">
+                                <tr align="center">
+                                    <td>交易时间</td>
+                                    <td>交易类型</td>
+                                    <td>产品名称</td>
+                                    <td>交易金额</td>
+                                    <td>余额支付</td>
+                                </tr>
+                                {% for acc in account %}
+                                     {% if acc==account[0] %}
+                                           <tr align="center">
+                                           <td>{{ acc[2] }}</td>
+                                           <td>{{ acc[4] }}</td>
+                                           <td>{{ acc[5] }}</td>
+                                           <td>{{ acc[6] }}</td>
+                                           <td>{{ acc[7] }}</td>
+                                           </tr>
+                                     {% elif acc==account[1] %}
+                                           <tr align="center">
+                                           <td>{{ acc[2] }}</td>
+                                           <td>{{ acc[4] }}</td>
+                                           <td>{{ acc[5] }}</td>
+                                           <td>{{ acc[6] }}</td>
+                                           <td>{{ acc[7] }}</td>
+                                           </tr>
+                                     {% elif acc==account[2] %}
+                                           <tr align="center">
+                                           <td>{{ acc[2] }}</td>
+                                           <td>{{ acc[4] }}</td>
+                                           <td>{{ acc[5] }}</td>
+                                           <td>{{ acc[6] }}</td>
+                                           <td>{{ acc[7] }}</td>
+                                           </tr>
+                                     {% endif %}
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 
 </body>

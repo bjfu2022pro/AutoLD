@@ -1,4 +1,5 @@
 import util_user
+import datetime
 
 
 def add_begin(begin_time, in_id, email):
@@ -19,10 +20,11 @@ def add_end(end_time, in_id, property='end_time'):
     """
     conn, cursor = util_user.get_conn()
     result = util_user.finder(in_id, "in_id", "account")
-    begin_time = result[0][1]
-    payment = (end_time - begin_time).total_seconds()*0.05
+    begin_time = result[0][2]
+    time_inter = (end_time - begin_time).total_seconds()
+    payment = time_inter * 0.05
     money = -payment
-    sql = "update account set 'end_time' = %s, 'payment' = %s, 'money' = %s where in_id = %s"
+    sql = "update account set end_time = %s, payment = %s, money = %s where in_id = %s"
     cursor.execute(sql, (end_time, payment, money, in_id))
     conn.commit()
     util_user.conn_close(conn, cursor)
