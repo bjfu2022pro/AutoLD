@@ -150,8 +150,9 @@ def my_instance():
 
 @bp.route('/canl', methods=['post', 'get'])
 def canl():
-    cal = (util_ca_number.finder(session['calculate']) + 1)
-    util_ca_number.update_num(cal, session['calculate'])
+    ca_num = util_ca_number.finder(session['calculate'])
+    num = int(ca_num[0][4]) + 1
+    util_ca_number.update_num(num, ca_num[0][1])
     danhao = request.values.get('danhao')
     util_pay.orders_canl(danhao)
     id=int(danhao)
@@ -183,27 +184,23 @@ def calculate_cache():
 
 @bp.route('/quxiao', methods=['get', 'post'])
 def quxiao():
-    cal=(util_ca_number.finder(session['calculate'])+1)
-    util_ca_number.update_num(cal,session['calculate'])
     session["algorithmic"] = ""
     session['datas'] = ""
     session['calculate'] = ""
-
-    util_ca_number.update_num()
-    print("成功")
     return jsonify({"cod": 800})
 
 
 @bp.route('/DJ_cache', methods=['get', 'post'])
 def DJ_cache():
-    ca=str(request.values.get('ca'))
+    ca = request.values.get('ca')
     print("calculate", ca)
+    # ca_num=util_ca_number.finder(ca)
+    # num=ca_num[4]
+    # util_ca_number.update_num(num-1)
+    # if num-1==0:
+    #     util_ca_number.update_state(0)
     session['calculate'] = ca
-    ca_num=util_ca_number.finder(ca)
-    print(ca_num)
-    num=int(ca_num[0][4])-1
-    util_ca_number.update_num(num, ca_num[0][1])
-    return jsonify({"code":200})
+    return jsonify({"code": 200})
 
 
 @bp.route('/zhifu', methods=['get', 'post'])
