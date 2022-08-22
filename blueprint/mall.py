@@ -31,7 +31,8 @@ dingdan = [
 
 @bp.route('/algorithmic_mall', methods=['get', 'post'])
 def algorithmic():
-    AL_select = util_algorithmic_mall.finder2(session.get('sort'))
+    sort=session.get('sort')
+    AL_select = util_algorithmic_mall.finder2(sort)
     return render_template("algorithmic_mall.html", AL_select=AL_select)
 
 
