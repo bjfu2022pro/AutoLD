@@ -1,6 +1,5 @@
-from flask import flash
-from flask import (Blueprint, jsonify, redirect,
-                    request, send_file, send_from_directory)
+
+from flask import (Blueprint, jsonify,  request)
 import threading
 import sys, os
 from algorithm import cls, regress

@@ -16,6 +16,7 @@ def get_conn():
     cursor = conn.cursor()
     return conn, cursor
 
+
 def conn_close(conn, cursor):
     """
     关闭连接与指针
@@ -25,6 +26,7 @@ def conn_close(conn, cursor):
     """
     conn.close()
     cursor.close()
+
 
 def finder(value, property="sort", table="dataset"):
     conn, cursor = get_conn()

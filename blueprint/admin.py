@@ -1,8 +1,7 @@
 from flask import (Blueprint, jsonify, 
                     render_template, 
-                    request, session,
-                    redirect, g)
-import util_user
+                    request)
+
 import sys 
 sys.path.append("..") 
 import util_pay
@@ -20,6 +19,7 @@ def admin_login():
 def admin_bill():
     bill=util_pay.show_all_orders()
     return render_template('admin_bill.html',my_bill=bill)
+
 
 @bp.route('/examine',methods=['post', 'get'])
 def examine():

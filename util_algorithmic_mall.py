@@ -1,5 +1,6 @@
 import pymysql
 
+
 def get_conn():
     """
     无需输入
@@ -16,6 +17,7 @@ def get_conn():
     cursor = conn.cursor()
     return conn, cursor
 
+
 # 查询所有
 def find_all():
     conn, cursor = get_conn()
@@ -25,6 +27,7 @@ def find_all():
     result = cursor.fetchall()
     conn_close(conn, cursor)
     return result
+
 
 def finder(value, property="id", table="ai_select"):
     """
@@ -41,6 +44,7 @@ def finder(value, property="id", table="ai_select"):
     conn_close(conn, cursor)
     return result
 
+
 def finder2(value, property="sort", table="ai_select"):
     conn, cursor = get_conn()
     sql = f"select * from {table} where {property}=\'{value}\'"
@@ -48,6 +52,7 @@ def finder2(value, property="sort", table="ai_select"):
     result = cursor.fetchall()
     conn_close(conn, cursor)
     return result
+
 
 def conn_close(conn, cursor):
     """

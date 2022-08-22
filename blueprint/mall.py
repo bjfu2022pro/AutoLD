@@ -1,13 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, session
-from sqlalchemy.testing import db
 
 import util_dataset
-from flask import Flask
 import datetime
 import sys
 from flask import g, jsonify
 
-from util_email import update_info
+
 import util_user
 sys.path.append("..")
 import util_algorithmic_mall
@@ -17,15 +15,6 @@ import util_pay
 import util_data
 import util_ca_number
 bp = Blueprint("mall", __name__, "/")
-
-dingdan = [
-    {
-        'dingdanhao': 1000, 'peizhi': '空',
-        'leixing': '空', 'shujuji': '空',
-        'jine': '空', 'shijian': '空',
-        'fukuanren': '大公园'
-    }
-]
 
 
 @bp.route('/algorithmic_mall', methods=['get', 'post'])
@@ -108,7 +97,7 @@ def my_instance():
                 ins[4] = my_ca[0][1]
                 li_tuple = tuple(ins)
                 new_list.add(li_tuple)
-            new_tuple = tuple(new_list)
+            new_tuple = sorted(tuple(new_list))
             return render_template("my_instance.html", new_tuple=new_tuple)
     else:
         return redirect('/login')

@@ -1,7 +1,6 @@
 import pymysql
 
 
-
 def get_conn():
     """
     无需输入
@@ -97,6 +96,7 @@ def update_info(email, value,  property = 'password' ):
     cursor.execute(sql, (value, email))
     conn.commit()
     conn_close(conn, cursor)
+
 
 def update_money(email, money):
     """

@@ -1,5 +1,5 @@
-function captcha_email(){
-    $("#captcha_btn").on("click", function (event){
+function captcha_email1(){
+    $("#captcha_btn1").on("click", function (event){
         var email = $("input[id='email']").val();
         var $this = $(this);
         if (!email) {
@@ -47,11 +47,62 @@ function captcha_email(){
 })
 }
 
+
+function captcha_email2(){
+    $("#captcha_btn2").on("click", function (event){
+        var new_email = $("input[id='new_email']").val();
+        var $this = $(this);
+        if (!new_email) {
+            alert("请输入新邮箱!");
+            return;
+        }
+        var strLength = new_email.length;
+        var index1 = new_email.indexOf("@");
+        var index2 = new_email.indexOf(".", index1);
+        if (index1 == -1 || index2 == -1 || index2 <= index1 + 1 || index1 == 0 || index2 == strLength - 1) {
+            alert("邮箱地址不合法!");
+            return;
+        }
+
+        $.ajax({url: "/new_email",
+                method: "POST",
+                data:{"new_email": new_email
+            },
+            success:function(res){
+            var code = res['code'];
+            if (code == 200){
+                //取消点击事件
+                $this.off("click");
+                //倒计时
+                var countDown = 60;
+                var timer = setInterval(function()
+                {
+                    countDown -= 1;
+                    if (countDown > 0) {
+                        $this.text(countDown + "秒后再发送");
+                    } else {
+                        $this.text("获取验证码");
+                        captchaBtn();
+                        clearInterval(timer);
+                    }
+                },1000)
+            alert("验证码发送成功，五分钟内有效");
+        }
+             else if (code == 100) {
+                  alert("该邮箱已被注册");
+        }
+    }
+})
+})
+}
+
+
 function reset(){
     $("#reset_email").on("click",function(event) {
         var email = $("input[name='email']").val();
         var new_email = $("input[name='new_email']").val();
-        var vcode = $("input[name='vcode']").val();
+        var vcode1 = $("input[name='vcode1']").val();
+        var vcode2 = $("input[name='vcode2']").val();
         var strLength1 = email.length;
         var index1 = email.indexOf("@");
         var index2 = email.indexOf(".", index1);
@@ -70,7 +121,7 @@ function reset(){
             alert("邮箱地址不合法!");
             return;
         }
-        if (!vcode) {
+        if ((!vcode1) || (!vcode2)) {
             alert("请输入验证码！");
             return;
         }
@@ -81,7 +132,8 @@ function reset(){
                 data: {
                     "email": email,
                     "new_email": new_email,
-                    "vcode": vcode
+                    "vcode1": vcode1,
+                    "vcode2": vcode2,
                 },
                 success: function (res) {
                     var code = res['code'];
@@ -100,6 +152,7 @@ function reset(){
     })
         }
 $(function(){
-    captcha_email();
+    captcha_email1();
+    captcha_email2();
     reset();
 });
