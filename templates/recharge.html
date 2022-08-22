@@ -33,7 +33,6 @@
     <style>
         #chongzhi_btn {
             position: relative;
-            left: 1020px;
         }
     </style>
 </head>
@@ -44,49 +43,49 @@
     <div class="sidebar" data-color="purple" data-image="../static/img/sidebar-5.webp">
 
         <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
-
-        <div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="/" class="simple-text">
-                    AutoLD
-                </a>
+    
+    
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="/" class="simple-text">
+                        AutoLD
+                    </a>
+                </div>
+    
+                <ul class="nav">
+                    <li>
+                        <a href="/usercontrol">
+                            <i class="pe-7s-user"></i>
+                            <p>个人信息</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/my_instance">
+                            <i class="pe-7s-note2"></i>
+                            <p>我的实例</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/my_bill">
+                            <i class="pe-7s-news-paper"></i>
+                            <p>我的订单</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/my_account">
+                            <i class="pe-7s-graph"></i>
+                            <p>我的账单</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="invoice_list.html">
+                            <i class="pe-7s-science"></i>
+                            <p>发票管理</p>
+                        </a>
+                    </li>
+                </ul>
             </div>
-
-            <ul class="nav">
-                <li>
-                    <a href="usercontrol">
-                        <i class="pe-7s-user"></i>
-                        <p>个人信息</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="table.html">
-                        <i class="pe-7s-note2"></i>
-                        <p>我的实例</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="my_bill">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>我的订单</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="dashboard.html">
-                        <i class="pe-7s-graph"></i>
-                        <p>我的账单</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="pe-7s-science"></i>
-                        <p>发票管理</p>
-                    </a>
-                </li>
-            </ul>
         </div>
-    </div>
 
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
@@ -130,7 +129,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                注销登录
+                                退出登录
                             </a>
                         </li>
                     </ul>
@@ -144,15 +143,17 @@
                     <div class="col-md-12">
                     </div>
                     <div class="col-md-12">
-                        <div class="card" style="height:400px">
-                            <h4 align="center">请输入充值金额<span class="label label-default"></span></h4>
-                            <div class="input-group">
-                                <span class="input-group-addon">￥</span>
-                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <form>
+                            <div class="card" style="height:400px">
+                                <h4 align="center">请输入充值金额<span class="label label-default"></span></h4>
+                                <div align="center" class="input-group">
+                                    <span class="input-group-addon">￥</span>
+                                    <input type="text" id="money" name="money" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                </div>
+                                <div style="height:20px"></div>
+                                <div align="center" ><button type="button" class="btn btn-warning" style="height: 40px;width: 70px;" id="chongzhi_btn">支付</button></div>
                             </div>
-                            <div style="height:20px"></div>
-                            <div ><button type="button" class="btn btn-warning" style="height: 40px;width: 70px;" id="chongzhi_btn">支付</button></div>
-                        </div>
+                        </form>
 
                     </div>
                 </div>

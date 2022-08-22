@@ -1,6 +1,6 @@
 import torch
 import os
-import util_instance
+import util_instance, util_account, util_ca_number
 import datetime
 
 # data
@@ -22,7 +22,7 @@ class Net(torch.nn.Module):
         return out
 
 
-def regress(dataset, email, in_id):                                     #可添加device参数
+def regress(dataset, email, in_id, device):                                     #可添加device参数
     ff = open(dataset).readlines()                                      #device = torch.device("device")
     data = []
     for item in ff:
@@ -70,7 +70,7 @@ def regress(dataset, email, in_id):                                     #可添�
         pred = net.forward(x_data)  # 前向运算 根据x计算pred
         pred = torch.squeeze(pred)
 
-    path = f"C:/model/{email}/{in_id}"
+    path = f"static/model/{email}/{in_id}"
 
     if not os.path.exists(path):
         os.makedirs(path)
@@ -79,4 +79,10 @@ def regress(dataset, email, in_id):                                     #可添�
     ntime = str(datetime.datetime.now()).split(".")[0]
     ntime = datetime.datetime.strptime(ntime, '%Y-%m-%d %H:%M:%S')
     util_instance.update_info(in_id, ntime, 'end_time')
+    util_account.add_end(ntime, in_id)
     util_instance.update_info(in_id, 2, 'state')
+    ca_num = util_ca_number.finder(device)
+    num=int(ca_num[0][4])+1
+    util_ca_number.update_num(num, ca_num[0][1])
+    util_instance.cost_cacualte(in_id, email)
+    

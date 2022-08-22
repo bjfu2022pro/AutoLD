@@ -1,10 +1,10 @@
-function findmore() {
+function al_to_da() {
     $("#more1").on("click", function (event) {
         $.ajax({
             url: "/cache",
             method: "POST",
             data: {
-                "id":$('#more1').attr('value')
+                "id": $('#more1').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -19,7 +19,7 @@ function findmore() {
             url: "/cache",
             method: "POST",
             data: {
-                "id":$('#more2').attr('value')
+                "id": $('#more2').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -34,7 +34,7 @@ function findmore() {
             url: "/cache",
             method: "POST",
             data: {
-                "id":$('#more3').attr('value')
+                "id": $('#more3').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -49,7 +49,7 @@ function findmore() {
             url: "/cache",
             method: "POST",
             data: {
-                "id":$('#more4').attr('value')
+                "id": $('#more4').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -64,7 +64,7 @@ function findmore() {
             url: "/cache",
             method: "POST",
             data: {
-                "id":$('#more5').attr('value')
+                "id": $('#more5').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -79,7 +79,7 @@ function findmore() {
             url: "/cache",
             method: "POST",
             data: {
-                "id":$('#more6').attr('value')
+                "id": $('#more6').attr('value')
             },
             success: function (res) {
                 var code = res['code'];
@@ -93,7 +93,7 @@ function findmore() {
 }
 
 
-function select() {
+function al_to_al() {
     $("#btn1").on("click", function (event) {
         // var title = document.getElementById("title1").value;
         // var introduce = document.getElementById("introduce1").value;
@@ -142,7 +142,8 @@ function select() {
         })
     })
 }
-function da_to_ca(){
+
+function da_to_ca() {
     $("#data1").on("click", function (event) {
         $.ajax({
             url: "/calculate_cache",
@@ -191,9 +192,104 @@ function da_to_ca(){
 
 }
 
+function ca_to_dj() {
+    $("#DJ1").on("click", function (event) {
+        $.ajax({
+            url: "/DJ_cache",
+            method: "POST",
+            data: {
+                "ca": $('#DJ1').attr('value')
+            },
+            success: function (res) {
+                var code = res['code'];
+                if (code == 200) {
+                    window.location.href = "/pay";
+                }
+            }
+        })
+    })
+    $("#DJ2").on("click", function (event) {
+        $.ajax({
+            url: "/DJ_cache",
+            method: "POST",
+            data: {
+                "ca": $('#DJ2').attr('value')
+            },
+            success: function (res) {
+                var code = res['code'];
+                if (code == 200) {
+                    window.location.href = "/pay";
+                }
+            }
+        })
+    })
+    $("#DJ3").on("click", function (event) {
+        $.ajax({
+            url: "/DJ_cache",
+            method: "POST",
+            data: {
+                "ca": $('#DJ3').attr('value')
+            },
+            success: function (res) {
+                var code = res['code'];
+                if (code == 200) {
+                    window.location.href = "/pay";
+                }
+            }
+        })
+    })
+    $("#DJ4").on("click", function (event) {
+        $.ajax({
+            url: "/DJ_cache",
+            method: "POST",
+            data: {
+                "ca": $('#DJ4').attr('value')
+            },
+            success: function (res) {
+                var code = res['code'];
+                if (code == 200) {
+                    window.location.href = "/pay";
+                }
+            }
+        })
+    })
+    $("#DJ5").on("click", function (event) {
+        $.ajax({
+            url: "/DJ_cache",
+            method: "POST",
+            data: {
+                "ca": $('#DJ5').attr('value')
+            },
+            success: function (res) {
+                var code = res['code'];
+                if (code == 200) {
+                    window.location.href = "/pay";
+                }
+            }
+        })
+    })
+    $("#DJ6").on("click", function (event) {
+        $.ajax({
+            url: "/DJ_cache",
+            method: "POST",
+            data: {
+                "ca": $('#DJ6').attr('value')
+            },
+            success: function (res) {
+                var code = res['code'];
+                if (code == 200) {
+                    window.location.href = "/pay";
+                }
+            }
+        })
+    })
+
+}
 
 $(function () {
-    findmore();
-    select();
+    al_to_da();
+    al_to_al();
     da_to_ca();
+    ca_to_dj();
+
 });

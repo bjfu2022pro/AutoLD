@@ -19,6 +19,9 @@
             left: 1000px;
         }
     </style>
+    <script src="../static/js/pay/jquery.js"></script>
+    <script src="../static/js/pay/zhifu.js"></script>
+    <script src="../static/js/pay/quxiao.js"></script>
 </head>
 
 
@@ -34,51 +37,51 @@
                         <div style="height:50px"></div>
                         <table class="table table-bordered table-striped">
                             <tr class="activeRow">
-                                <td>算法类型</td>
-                                <td>算法配置</td>
-                                <td>数据集</td>
-                                <td>交易金额</td>
-                                <td>预计所需时间</td>
                                 <td>订单号</td>
-                                <td>付款人</td>
+                                <td>账号</td>
+                                <td>算法类型</td>
+                                <td>数据集</td>
+                                <td>GPU-CPU</td>
+                                <td>时间</td>
+                                <td>定金</td>
                             </tr>
-                             {% for infa in dingdan %}
                             <tr>
-                                <td height="230px">{{infa.leixing}}</td>
-                                <td height="230px">{{infa.peizhi}}</td>
-                                <td height="230px">{{infa.leixing}}</td>
-                                <td height="230px">{{infa.shujuji}}</td>
-                                <td height="230px">{{infa.jine}}</td>
-                                <td height="230px">{{infa.shijian}}</td>
-                                <td height="230px">{{info[1]}}</td>
+                                <td height="230px">{{ danhao }}</td>
+                                <td height="230px">{{ info[1] }}</td>
+                                <td height="230px">{{ algorithmic }}</td>
+                                <td height="230px">{{ datas }}</td>
+                                <td height="230px">{{ calculate }}</td>
+                                <td height="230px">{{time}}</td>
+                                <td height="230px">5￥</td>
                             </tr>
-                            {% endfor %}
                             <tr>
-                                <td height="4px"><a href="/">修改</a></td>
-                                <td height="4px"><a href="/">修改</a></td>
-                                <td height="4px"><a href="/">修改</a></td>
                                 <td height="4px"></td>
                                 <td height="4px"></td>
+                                <td height="4px"><a href="/algorithmic_mall">修改</a></td>
+                                <td height="4px"></td>
+                                <td height="4px"><a href="/calculate_mall">修改</a></td>
                                 <td height="4px"></td>
                                 <td height="4px"></td>
                             </tr>
                         </table>
                     </div>
-                    <div class="zhifu" align="center">
-                        支付方式：
-                        <input type="radio" name="choice">微信 <input type="radio" name="choice">支付宝 <input type="radio"
-                                                                                                          name="choice">银行卡
-                        <input
-                                type="radio" name="choice">支付币 <br>
-                        <br/>
-                    </div>
                     <div class="anniu">
-                        <button type="button" onclick="window.location.href = '/algorithmic_mall'" class="btn btn-info" style="height: 40px;width: 70px">取消</button>
-                        <button type="button" class="btn btn-warning" style="height: 40px;width: 70px;" id="pay-btn">支付</button>
+                        <button type="button"  class="btn btn-info" style="height: 40px;width: 70px" id="quxiao_btn">取消</button>
+                        <button type="button" class="btn btn-warning" style="height: 40px;width: 70px;" id="zhifu_btn">支付</button>
                     </div>
                 </div>
             </div>
         </div>
+         <div class="alert alert-primary d-flex align-items-center" role="alert">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                     class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16"
+                                     role="img" aria-label="Warning:">
+                                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                </svg>
+                                <div>
+                                    交易产生的费用会根据算力配置、实例实际运行时间计算，未使用的金额会在实例运行结束后返还到用户的余额中
+                                </div>
+                            </div>
     </div>
 </div>
 

@@ -87,7 +87,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/my_account">
                         <i class="pe-7s-graph"></i>
                         <p>我的账单</p>
                     </a>
@@ -112,7 +112,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <p class="navbar-brand" href="#">我的订单</p>
+                    <p class="navbar-brand" href="#">我的实例</p>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -127,12 +127,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="/recharge">
                                 充值
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="#">
                               账户余额：{{info[4]}}元
                             </a>
                         </li>
@@ -173,7 +173,7 @@
                                     <td>详情</td>
                                     <td></td>
                                 </tr>
-                                    {% for instance in my_instance %}
+                                    {% for instance in new_tuple %}
                                         {% if instance[8] == "0" %}
                                             <tr align="center">
                                                 <td id="dingdanId{{ loop.index }}">{{ instance[0] }}</td>
@@ -193,11 +193,8 @@
                                                 </td>
                                                 <td align="center">
                                                     <button class="btn btn-warning" id="begin{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;"type="button">
+                                                         type="button">
                                                         开始</button>
-                                                    <button class="btn btn-warning" id="download{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;" type="button">
-                                                        下载</button>
                                                 </td>
                                             </tr>
                                         {% elif instance[8] == "1" %}
@@ -218,12 +215,7 @@
                                                     </span>
                                                 </td>
                                                 <td align="center">
-                                                    <button class="btn btn-warning"  id="begin{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;"type="button">
-                                                        开始</button>
-                                                    <button class="btn btn-warning"  id="download{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;" type="button">
-                                                        下载</button>
+                                                    运行中
                                                 </td>
                                             </tr>
                                         {% elif instance[8] == "2" %}
@@ -233,7 +225,7 @@
                                                 <td>{{ instance[3] }}</td>
                                                 <td>{{ instance[4] }}</td>
                                                 <td>{{ instance[6] }}</td>
-                                                <td>完成</td>
+                                                <td>已完成</td>
                                                 <td>
                                                     <span class="about nav-link">
                                                         <div style="color:#56adff;">详情
@@ -244,11 +236,8 @@
                                                     </span>
                                                 </td>
                                                 <td align="center">
-                                                    <button class="btn btn-warning"  id="begin{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;"type="button">
-                                                        开始</button>
                                                     <button class="btn btn-warning"  id="download{{ loop.index }}"
-                                                        style="height: 40px;width: 60px;" type="button">
+                                                         type="button">
                                                         下载</button>
                                                 </td>
                                             </tr>

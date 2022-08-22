@@ -1,8 +1,5 @@
-from unittest import result
 import pymysql
-from flask import Flask
-from flask import request
-from flask import render_template
+
 
 
 def get_conn():
@@ -70,6 +67,9 @@ def add_user(email, password):
     conn_close(conn, cursor)
 
 
+
+
+
 def delete_user(value, property="id"):
     """
     删除property属性符合value值的用户
@@ -95,6 +95,20 @@ def update_info(email, value,  property = 'password' ):
     conn, cursor = get_conn()
     sql = f"update user_formal set {property}=%s where email = %s"
     cursor.execute(sql, (value, email))
+    conn.commit()
+    conn_close(conn, cursor)
+
+def update_money(email, money):
+    """
+    更新用户余额3
+    :param name: 用户名,此为筛选条件
+    :param value: 新值
+    :param property:筛选用属
+    :return: 无
+    """
+    conn, cursor = get_conn()
+    sql = f"update user_formal set balance=balance + %s where email = %s"
+    cursor.execute(sql, (money, email))
     conn.commit()
     conn_close(conn, cursor)
 

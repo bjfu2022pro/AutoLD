@@ -4,7 +4,7 @@ import torchvision.transforms as transforms
 import torch.utils.data as data_utils
 import os
 import datetime
-import util_instance
+import util_instance, util_account, util_ca_number
 
 
 class CNN(torch.nn.Module):
@@ -26,7 +26,7 @@ class CNN(torch.nn.Module):
 
 
 #data
-def cls(dset, email, in_id):                                        #可添加device选项,device = torch.device("device")
+def cls(dset, email, in_id, device):                                        #可添加device选项,device = torch.device("device")
     train_data = dataset.MNIST(root=dset,
                             train=True,
                             transform=transforms.ToTensor(),
@@ -95,7 +95,8 @@ def cls(dset, email, in_id):                                        #可添加de
 
 
     #save
-    path = f"C:/model/{email}/{in_id}"
+    
+    path = f"static/model/{email}/{in_id}"
 
     if not os.path.exists(path):
         os.makedirs(path)
@@ -104,4 +105,9 @@ def cls(dset, email, in_id):                                        #可添加de
     ntime = str(datetime.datetime.now()).split(".")[0]
     ntime = datetime.datetime.strptime(ntime, '%Y-%m-%d %H:%M:%S')
     util_instance.update_info(in_id, ntime, 'end_time')
+    util_account.add_end(ntime, in_id)
     util_instance.update_info(in_id, 2, 'state')
+    ca_num = util_ca_number.finder(device)
+    num=int(ca_num[0][4])+1
+    util_ca_number.update_num(num, ca_num[0][1])
+    util_instance.cost_cacualte(in_id, email)

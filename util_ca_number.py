@@ -16,46 +16,15 @@ def get_conn():
     cursor = conn.cursor()
     return conn, cursor
 
-def add(title, introduce, sort):
-    conn, cursor = get_conn()
-    sql = f"insert into details_cache values(%s,%s,%s)"
-    param = ( title, introduce, sort)
-    cursor.execute(sql, param)
-    conn.commit()
-    conn_close(conn, cursor)
-
 # 查询所有
 def find_all():
     conn, cursor = get_conn()
     # 执行查询操作
-    sql = "select * from details_cache"
+    sql = "select * from cal_select"
     cursor.execute(sql)
     result = cursor.fetchall()
     conn_close(conn, cursor)
     return result
-
-
-def finder(value, property="id", table="ai_select"):
-    conn, cursor = get_conn()
-    sql = f"select * from {table} where {property}=\'{value}\'"
-    cursor.execute(sql)
-    result = cursor.fetchall()
-    conn_close(conn, cursor)
-    return result
-
-def delete(value, property="title"):
-    """
-    删除property属性符合value值的用户
-    :param value: 筛选值
-    :param property:筛选条件
-    :return: 无
-    """
-    conn, cursor = get_conn()
-    sql = f"delete from details_cache where {property} = %s"
-    cursor.execute(sql, [value])
-    conn.commit()
-    conn_close(conn, cursor)
-
 
 def conn_close(conn, cursor):
     """
@@ -66,3 +35,19 @@ def conn_close(conn, cursor):
     """
     conn.close()
     cursor.close()
+
+def finder(value, property="GPU_or_CPU", table="cal_select"):
+    conn, cursor = get_conn()
+    sql = f"select * from {table} where {property}=\'{value}\'"
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    conn_close(conn, cursor)
+    return result
+
+def update_num(value, GPU, property = 'num'):
+    conn, cursor = get_conn()
+    sql = f"update cal_select set {property}=%s where GPU_or_CPU = %s"
+    cursor.execute(sql, (value,GPU))
+    conn.commit()
+    conn_close(conn, cursor)
+
