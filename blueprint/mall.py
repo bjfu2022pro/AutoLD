@@ -76,22 +76,17 @@ def cache2():
 
 @bp.route('/algorithmic_details', methods=['get', 'post'])
 def details():
-    details = util_cache.find_all()
-    if details:
-        session['algorithmic'] = details[0][0]
-        algorithmic = session.get('algorithmic')
-    else:
-        pass
-    datas = util_data.finder(details[0][2])
-    util_cache.delete(details[0][0])
-    return render_template("algorithmic_details.html", details=details, datas=datas)
+    datas=util_data.finder(session.get('sort2'))
+    return render_template("algorithmic_details.html", title=session.get('algorithmic'), introduce=session.get('al_introduce'), datas=datas)
 
 
 @bp.route('/cache', methods=['get', 'post'])
 def cache():
     id = int(request.values.get("id"))
     details = util_algorithmic_mall.finder(id)
-    util_cache.add(details[0][1], details[0][2], details[0][5])
+    session['algorithmic'] = details[0][1]
+    session['al_introduce']=details[0][2]
+    session['sort2']=int(details[0][5])
     return jsonify({"code": 200})
 
 
