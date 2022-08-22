@@ -14,7 +14,6 @@ import util_algorithmic_mall
 import util_calculate_mall
 import util_instance
 import util_pay
-import util_details_cache
 import util_cache
 import util_data
 import util_ca_number
@@ -32,17 +31,7 @@ dingdan = [
 
 @bp.route('/algorithmic_mall', methods=['get', 'post'])
 def algorithmic():
-    # AL_select = util_algorithmic_mall.find_all()
-    AL_select = util_details_cache.find_all()
-    if len(AL_select) == 1:
-        util_details_cache.delete(AL_select[0][1])
-    elif len(AL_select) == 2:
-        util_details_cache.delete(AL_select[0][1])
-        util_details_cache.delete(AL_select[1][1])
-    # else:
-    #     util_details_cache.delete(AL_select[0][1])
-    #     util_details_cache.delete(AL_select[1][1])
-    #     util_details_cache.delete(AL_select[2][1])
+    AL_select = util_algorithmic_mall.finder2()
     return render_template("algorithmic_mall.html", AL_select=AL_select)
 
 
@@ -81,16 +70,7 @@ def expt():
 @bp.route('/cache2', methods=['get', 'post'])
 def cache2():
     sort = int(request.values.get("sort"))
-    sorting = util_details_cache.finder(sort)
-    if len(sorting) == 1:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
-    elif len(sorting) == 2:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
-        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2], sorting[1][3], sorting[0][5])
-    else:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
-        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2], sorting[1][3], sorting[0][5])
-        util_details_cache.add(sorting[2][0], sorting[2][1], sorting[2][2], sorting[2][3], sorting[0][5])
+    session['sort']=sort
     return jsonify({"code": 200})
 
 
