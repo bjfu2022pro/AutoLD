@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session, g
-from blueprint import user_bp, mall_bp, in_bp, ac_bp
+from blueprint import (user_bp, mall_bp, 
+                        in_bp, ac_bp, ad_bp)
 
 import config
 from flask_mail import Mail
@@ -15,6 +16,7 @@ app.register_blueprint(user_bp)
 app.register_blueprint(mall_bp)
 app.register_blueprint(in_bp)
 app.register_blueprint(ac_bp)
+app.register_blueprint(ad_bp)
 
 
 @app.before_request
