@@ -1,7 +1,6 @@
 import util_user
 
 
-
 def add_begin(begin_time, in_id, email):
     """
     添加开始时间
@@ -28,4 +27,3 @@ def add_end(end_time, in_id, property='end_time'):
     cursor.execute(sql, (end_time, payment, money, in_id))
     conn.commit()
     util_user.conn_close(conn, cursor)
-

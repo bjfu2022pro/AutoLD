@@ -14,8 +14,6 @@ import util_user
 import util_email
 
 
-
-
 bp = Blueprint("user", __name__, "/")
 mail = Mail()
 
@@ -122,8 +120,6 @@ def recharge():
         # 发起修改
         util_user.update_money(email, money)
         return pay_url
-
-
 
 
 @bp.route('/password_change')
@@ -335,3 +331,4 @@ def aboutus():
     关于我们界面
     """
     return render_template("aboutus.html")
+    

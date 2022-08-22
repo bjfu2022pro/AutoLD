@@ -19,6 +19,7 @@ MIIEpgIBAAKCAQEA6bA6Za51IazXBwYn1353fShkZYYNpF0evCzV+mCXkZ8L6VoVvhzq3N6Ho2Wc/7zn
 # 沙箱登录密码 111111
 # 沙箱支付密码 111111
 
+
 def get_pay(out_trade_no, total_amount, return_url):
     # 实例化支付应用
     alipay = AliPay(

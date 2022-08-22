@@ -1,7 +1,5 @@
 import os
-
 import util_user
-
 import pandas as pd
 
 
@@ -77,6 +75,7 @@ def save_orders(n_id, n_mailbox, n_algorithm, n_datas, n_gpu, n_time, n_state):
     conn.commit()
     util_user.conn_close(conn, cursor)
 
+
 def upd_state(o_id):
     conn, cursor = util_user.get_conn()
     cursor = conn.cursor()
@@ -96,6 +95,7 @@ def get_dingdan(dingdan):
     util_user.conn_close(conn, cursor)
     return result[0][4]
 
+
 def show_all_orders():
     conn, cursor = util_user.get_conn()
     cursor = conn.cursor()
@@ -104,6 +104,7 @@ def show_all_orders():
     result = cursor.fetchall()
     util_user.conn_close(conn, cursor)
     return result
+
 
 def orders_examine(danhao):
     conn, cursor = util_user.get_conn()

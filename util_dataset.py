@@ -34,9 +34,6 @@ def finde_dataset(value, property="id", table="dataset"):
     return result
 
 
-
-
-
 def conn_close(conn, cursor):
     """
     关闭连接与指针
