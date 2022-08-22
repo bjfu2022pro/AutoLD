@@ -144,22 +144,22 @@
                         <div class="card" style="height:800px">
                             <table class="table table-striped" align="center" style="height: 30px">
                                 <tr align="center">
-                                    <td>算法序号</td>
-                                    <td>算法名称</td>
-                                    <td>算法介绍</td>
-                                    <td>算法分类</td>
-                                    <td>算法状态</td>
-                                    <td></td>
+                                    <td class="col-md-1">算法序号</td>
+                                    <td class="col-md-2">算法名称</td>
+                                    <td class="col-md-6">算法介绍</td>
+                                    <td class="col-md-1">算法分类</td>
+                                    <td class="col-md-1">算法状态</td>
+                                    <td class="col-md-1"></td>
                                 </tr>
                                     {% for algorithm in our_algorithm %}
                                         {% if algorithm[3] == 0 %}
                                             <tr align="center">
-                                                <td>{{ loop.index }}</td>
-                                                <td>{{ algorithm[1] }}</td>
-                                                <td>{{ algorithm[2] }}</td>
-                                                <td>{{ algorithm[4] }}</td>
-                                                <td>下架</td>
-                                                <td align="center">
+                                                <td class="col-md-1">{{ loop.index }}</td>
+                                                <td class="col-md-2">{{ algorithm[1] }}</td>
+                                                <td class="col-md-6">{{ algorithm[2] }}</td>
+                                                <td class="col-md-1">{{ algorithm[4] }}</td>
+                                                <td class="col-md-1">下架</td>
+                                                <td align="center" class="col-md-1">
                                                     <button class="btn btn-warning" id="up{{ loop.index }}"
                                                          type="button" value="{{ algorithm[0] }}">
                                                         上架</button>
@@ -167,12 +167,12 @@
                                             </tr>
                                         {% elif algorithm[3] == 1 %}
                                             <tr align="center">
-                                                <td>{{ loop.index }}</td>
-                                                <td>{{ algorithm[1] }}</td>
-                                                <td>{{ algorithm[2] }}</td>
-                                                <td>{{ algorithm[4] }}</td>
-                                                <td>上架</td>
-                                                <td align="center">
+                                                <td class="col-md-1">{{ loop.index }}</td>
+                                                <td class="col-md-2">{{ algorithm[1] }}</td>
+                                                <td class="col-md-6">{{ algorithm[2] }}</td>
+                                                <td class="col-md-1">{{ algorithm[4] }}</td>
+                                                <td class="col-md-1">上架</td>
+                                                <td align="center" class="col-md-1">
                                                     <button class="btn btn-warning" id="down{{ loop.index }}"
                                                          type="button" value="{{ algorithm[0] }}">
                                                         下架</button>
