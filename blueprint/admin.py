@@ -5,6 +5,7 @@ from flask import (Blueprint, jsonify,
 import sys 
 sys.path.append("..") 
 import util_pay
+import util_algorithmic_mall
 
 
 bp = Blueprint("admin", __name__, "/")
@@ -33,6 +34,30 @@ def admin_gpu():
     pass
 
 
-@bp.route('/admin_algor')
+@bp.route('/admin_algor', methods=['post', 'get'])
 def admin_algor():
-    pass
+    our_algorithm = util_algorithmic_mall.find_all2()
+    return render_template("admin_algor.html", our_algorithm=our_algorithm)
+
+
+@bp.route('/algorithm_up', methods=['post', 'get'])
+def algorithm_up():
+    al_id = int(request.values.get('id'))
+    result = util_algorithmic_mall.finder(al_id)
+    if result[0][3] == 1:
+        return jsonify({"code": 400})
+    elif result[0][3] == 0:
+        util_algorithmic_mall.change_up(al_id)
+        return jsonify({"code": 200})
+
+
+@bp.route('/algorithm_down', methods=['post', 'get'])
+def algorithm_down():
+    al_id = request.values.get('id')
+    result = util_algorithmic_mall.finder(al_id)
+    if result[0][3] == 0:
+        return jsonify({"code": 400})
+    elif result[0][3] == 1:
+        util_algorithmic_mall.change_down(al_id)
+        return jsonify({"code": 200})
+
