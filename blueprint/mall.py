@@ -14,7 +14,6 @@ import util_algorithmic_mall
 import util_calculate_mall
 import util_instance
 import util_pay
-import util_cache
 import util_data
 import util_ca_number
 bp = Blueprint("mall", __name__, "/")
