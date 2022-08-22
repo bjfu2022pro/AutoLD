@@ -95,4 +95,22 @@ def get_dingdan(dingdan):
     result = cursor.fetchall()
     util_user.conn_close(conn, cursor)
     return result[0][4]
-    
+
+def show_all_orders():
+    conn, cursor = util_user.get_conn()
+    cursor = conn.cursor()
+    sql = f"select * from orders"
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    util_user.conn_close(conn, cursor)
+    return result
+
+def orders_examine(danhao):
+    conn, cursor = util_user.get_conn()
+    cursor = conn.cursor()
+    dingdanhao = int(danhao)
+    sql = f"update orders set state='examine' where id = \'{dingdanhao}\'"
+    cursor.execute(sql)
+    conn.commit()
+    util_user.conn_close(conn, cursor)
+    return None

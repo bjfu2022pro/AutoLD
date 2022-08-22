@@ -148,21 +148,23 @@ def password_forget():
     return render_template("password_forget.html")
 
 
-@bp.route('/email_check',methods=['post', 'get'])
+@bp.route('/email_check', methods=['post', 'get'])
 def email_chenck():
     """
     改绑邮箱号检查
     """
     email = request.values.get('email')
     new_email = request.values.get('new_email')
-    vcode = str(request.values.get('vcode'))
+    vcode1 = str(request.values.get('vcode1'))
+    vcode2 = str(request.values.get('vcode2'))
     date_email = util_user.finder(email, "email", "email_captcha")
+    date_email2 = util_user.finder(new_email, "email", "email_captcha")
     result = util_user.email_change(new_email, email)
     deltime = datetime.timedelta(seconds=300)
     if date_email:
         create_time = date_email[0][3]
         time_inter = datetime.datetime.now() - create_time
-        if vcode == date_email[0][2] and time_inter < deltime:
+        if vcode1 == date_email[0][2] and vcode2 == date_email2[0][2] and time_inter < deltime:
              if result == 100:
                 return jsonify({"code": 100})
              else:
@@ -174,7 +176,7 @@ def email_chenck():
 
 
 @bp.route('/email_change')
-def enail_change():
+def email_change():
     """
     修改邮箱号界面
     """
@@ -249,7 +251,7 @@ def send_vcode():
 
 
 @bp.route('/email', methods=['post', 'get'])
-def send_email_code():
+def send_email_code1():
     email = request.values.get("email")
     reged = util_user.finder(email)
     if reged:
@@ -265,6 +267,28 @@ def send_email_code():
         return jsonify({"code": 200})
     else:
         return jsonify({"code": 100})
+
+
+@bp.route('/new_email', methods=['post', 'get'])
+def send_email_code2():
+    """
+    新邮箱验证码
+    """
+    new_email = request.values.get("new_email")
+    reged = util_user.finder(new_email)
+    if reged:
+        return jsonify({"code": 100})
+    else:
+        vcode = "".join(random.sample(string.digits, 4))
+        mail_body = "【AutoLD】您的验证码是：{}，该验证码用于确认您新绑定的邮箱号，请不要泄露给其他人，如果不是您本人在操作，请忽略此邮件".format(vcode)
+        message = Message(
+            subject="【AutoLD】改绑邮箱号-新邮箱验证",
+            recipients=[new_email],
+            body=mail_body
+        )
+        mail.send(message)
+        util_email.captcha_insert(new_email, vcode)
+        return jsonify({"code": 200})
 
 
 @bp.route('/pwd_change', methods=['post', 'get'])

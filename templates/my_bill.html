@@ -13,7 +13,7 @@
     <script src="../static/js/pay/jquery.js"></script>
     <script src="../static/js/pay/bill.js"></script>
     <script src="../static/js/pay/cancel.js"></script>
-
+    <script src="../static/js/pay/examine.js"></script>
     <!-- Bootstrap core CSS     -->
     <link href="../static/css/css-usercontrol/bootstrap.min.css" rel="stylesheet"/>
 
@@ -185,11 +185,21 @@
                                             <td>{{ bill[6] }}</td>
                                             <td>
                                                 <button class="btn btn-warning"
-                                                        style="height: 40px;width: 70px;" id="cancel_btn"
+                                                        style="height: 40px;width: 70px;" id="examine_btn"
                                                         type="button" value="{{ bill[0]}}">
                                                     取消
                                                 </button>
                                             </td>
+                                        </tr>
+                                        {% elif bill[7] == "examine" %}
+                                        <tr>
+                                            <td>{{ bill[0] }}</td>
+                                            <td>{{ bill[2] }}</td>
+                                            <td>{{ bill[3] }}</td>
+                                            <td>{{ bill[4] }}</td>
+                                            <td>{{ bill[5] }}</td>
+                                            <td>{{ bill[6] }}</td>
+                                            <td>申请取消中</td>
                                         </tr>
                                     {% elif bill[7] == "cancel" %}
                                         <tr>
