@@ -34,7 +34,6 @@ dingdan = [
 def algorithmic():
     # AL_select = util_algorithmic_mall.find_all()
     AL_select = util_details_cache.find_all()
-    print("AL_select", AL_select)
     if len(AL_select) == 1:
         util_details_cache.delete(AL_select[0][1])
     elif len(AL_select) == 2:
@@ -82,9 +81,7 @@ def expt():
 @bp.route('/cache2', methods=['get', 'post'])
 def cache2():
     sort = int(request.values.get("sort"))
-    print(sort)
     sorting = util_details_cache.finder(sort)
-    print("sorting", sorting)
     if len(sorting) == 1:
         util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
     elif len(sorting) == 2:
@@ -103,12 +100,9 @@ def details():
     if details:
         session['algorithmic'] = details[0][0]
         algorithmic = session.get('algorithmic')
-        print("algorithmic", algorithmic)
     else:
         pass
-    print("details", details)
     datas = util_data.finder(details[0][2])
-    print("datas", datas)
     util_cache.delete(details[0][0])
     return render_template("algorithmic_details.html", details=details, datas=datas)
 
@@ -116,9 +110,7 @@ def details():
 @bp.route('/cache', methods=['get', 'post'])
 def cache():
     id = int(request.values.get("id"))
-    print(id)
     details = util_algorithmic_mall.finder(id)
-    print(details)
     util_cache.add(details[0][1], details[0][2], details[0][5])
     return jsonify({"code": 200})
 
@@ -165,7 +157,6 @@ def canl():
 def upload():
     f = request.files['file']
     f.save(f.filename)
-    print("filename", f.filename)
     session['datas'] = f.filename
     return redirect('/calculate_mall')
 
@@ -173,7 +164,6 @@ def upload():
 @bp.route('/calculate_cache', methods=['get', 'post'])
 def calculate_cache():
     data = request.values.get("data")
-    print("data", data)
     session['datas'] = data
     # ca = session.get('calculate')
     # print("ca",ca)
@@ -194,7 +184,6 @@ def quxiao():
 @bp.route('/DJ_cache', methods=['get', 'post'])
 def DJ_cache():
     ca = request.values.get('ca')
-    print("calculate", ca)
     session['calculate'] = ca
     return jsonify({"code":200})
 
