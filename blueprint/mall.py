@@ -14,8 +14,6 @@ import util_algorithmic_mall
 import util_calculate_mall
 import util_instance
 import util_pay
-import util_details_cache
-import util_cache
 import util_data
 import util_ca_number
 bp = Blueprint("mall", __name__, "/")
@@ -32,18 +30,7 @@ dingdan = [
 
 @bp.route('/algorithmic_mall', methods=['get', 'post'])
 def algorithmic():
-    # AL_select = util_algorithmic_mall.find_all()
-    AL_select = util_details_cache.find_all()
-    print("AL_select", AL_select)
-    if len(AL_select) == 1:
-        util_details_cache.delete(AL_select[0][1])
-    elif len(AL_select) == 2:
-        util_details_cache.delete(AL_select[0][1])
-        util_details_cache.delete(AL_select[1][1])
-    # else:
-    #     util_details_cache.delete(AL_select[0][1])
-    #     util_details_cache.delete(AL_select[1][1])
-    #     util_details_cache.delete(AL_select[2][1])
+    AL_select = util_algorithmic_mall.finder2(session.get('sort'))
     return render_template("algorithmic_mall.html", AL_select=AL_select)
 
 
@@ -82,44 +69,23 @@ def expt():
 @bp.route('/cache2', methods=['get', 'post'])
 def cache2():
     sort = int(request.values.get("sort"))
-    print(sort)
-    sorting = util_details_cache.finder(sort)
-    print("sorting", sorting)
-    if len(sorting) == 1:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
-    elif len(sorting) == 2:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
-        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2], sorting[1][3], sorting[0][5])
-    else:
-        util_details_cache.add(sorting[0][0], sorting[0][1], sorting[0][2], sorting[0][3], sorting[0][5])
-        util_details_cache.add(sorting[1][0], sorting[1][1], sorting[1][2], sorting[1][3], sorting[0][5])
-        util_details_cache.add(sorting[2][0], sorting[2][1], sorting[2][2], sorting[2][3], sorting[0][5])
+    session['sort']=sort
     return jsonify({"code": 200})
 
 
 @bp.route('/algorithmic_details', methods=['get', 'post'])
 def details():
-    details = util_cache.find_all()
-    if details:
-        session['algorithmic'] = details[0][0]
-        algorithmic = session.get('algorithmic')
-        print("algorithmic", algorithmic)
-    else:
-        pass
-    print("details", details)
-    datas = util_data.finder(details[0][2])
-    print("datas", datas)
-    util_cache.delete(details[0][0])
-    return render_template("algorithmic_details.html", details=details, datas=datas)
+    datas=util_data.finder(session.get('sort2'))
+    return render_template("algorithmic_details.html", title=session.get('algorithmic'), introduce=session.get('al_introduce'), datas=datas)
 
 
 @bp.route('/cache', methods=['get', 'post'])
 def cache():
     id = int(request.values.get("id"))
-    print(id)
     details = util_algorithmic_mall.finder(id)
-    print(details)
-    util_cache.add(details[0][1], details[0][2], details[0][5])
+    session['algorithmic'] = details[0][1]
+    session['al_introduce']=details[0][2]
+    session['sort2']=int(details[0][5])
     return jsonify({"code": 200})
 
 
@@ -165,7 +131,6 @@ def canl():
 def upload():
     f = request.files['file']
     f.save(f.filename)
-    print("filename", f.filename)
     session['datas'] = f.filename
     return redirect('/calculate_mall')
 
@@ -173,7 +138,6 @@ def upload():
 @bp.route('/calculate_cache', methods=['get', 'post'])
 def calculate_cache():
     data = request.values.get("data")
-    print("data", data)
     session['datas'] = data
     # ca = session.get('calculate')
     # print("ca",ca)
@@ -194,7 +158,6 @@ def quxiao():
 @bp.route('/DJ_cache', methods=['get', 'post'])
 def DJ_cache():
     ca = request.values.get('ca')
-    print("calculate", ca)
     session['calculate'] = ca
     return jsonify({"code":200})
 

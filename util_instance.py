@@ -26,7 +26,12 @@ def find_instance(email):
     :param email:邮箱号
     :return: 该邮箱所对应所有实例
     """
-    return finder(email, "email", "instance")
+    conn, cursor = get_conn()
+    sql = f"select * from instance where email=%s order by id"
+    cursor.execute(sql, [email])
+    result = cursor.fetchall()
+    conn_close(conn, cursor)
+    return result
 
 
 def find_instance_byid(in_id):
