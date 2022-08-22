@@ -148,7 +148,6 @@
                                     <td>余额支付</td>
                                 </tr>
                                 {% for acc in account %}
-                                     {% if acc==account[0] %}
                                            <tr align="center">
                                            <td>{{ acc[2] }}</td>
                                            <td>{{ acc[4] }}</td>
@@ -156,23 +155,6 @@
                                            <td>{{ acc[6] }}</td>
                                            <td>{{ acc[7] }}</td>
                                            </tr>
-                                     {% elif acc==account[1] %}
-                                           <tr align="center">
-                                           <td>{{ acc[2] }}</td>
-                                           <td>{{ acc[4] }}</td>
-                                           <td>{{ acc[5] }}</td>
-                                           <td>{{ acc[6] }}</td>
-                                           <td>{{ acc[7] }}</td>
-                                           </tr>
-                                     {% elif acc==account[2] %}
-                                           <tr align="center">
-                                           <td>{{ acc[2] }}</td>
-                                           <td>{{ acc[4] }}</td>
-                                           <td>{{ acc[5] }}</td>
-                                           <td>{{ acc[6] }}</td>
-                                           <td>{{ acc[7] }}</td>
-                                           </tr>
-                                     {% endif %}
                                 {% endfor %}
                             </table>
                         </div>
