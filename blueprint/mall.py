@@ -108,7 +108,7 @@ def my_instance():
                 ins[4] = my_ca[0][1]
                 li_tuple = tuple(ins)
                 new_list.add(li_tuple)
-            new_tuple = tuple(new_list)
+            new_tuple = sorted(tuple(new_list))
             return render_template("my_instance.html", new_tuple=new_tuple)
     else:
         return redirect('/login')
