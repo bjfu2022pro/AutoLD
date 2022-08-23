@@ -34,6 +34,17 @@ def finde_dataset(value, property="id", table="dataset"):
     return result
 
 
+def add_dataset(name, path):
+    """
+    向数据集内添加一个用户自定义数据集
+    """
+    conn, cursor = get_conn()
+    sql = "insert into dataset values(null,%s,null,null,%s,0);"
+    param = (name, path)
+    cursor.execute(sql, param)
+    conn_close(conn, cursor)
+
+
 def conn_close(conn, cursor):
     """
     关闭连接与指针
