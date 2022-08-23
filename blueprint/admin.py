@@ -6,6 +6,7 @@ import sys
 sys.path.append("..") 
 import util_pay
 import util_algorithmic_mall
+import util_user
 
 
 bp = Blueprint("admin", __name__, "/")
@@ -13,7 +14,24 @@ bp = Blueprint("admin", __name__, "/")
 
 @bp.route('/admin_login')
 def admin_login():
-    pass
+    return render_template("admin_login.html")
+
+
+@bp.route('/adlog_result', methods=['get', 'post'])
+def login_checker():
+    """
+    登录检查
+    """
+    ad_name = request.values.get('ad_name')
+    password = request.values.get('password')
+    result = util_user.finder(ad_name, "name", "admin")
+    if result:
+        if password == result[0][2]:
+            return jsonify({"code": 200})
+        else:
+            return jsonify({"code": 100})
+    else:
+        return jsonify({"code": 300})
 
 
 @bp.route('/admin_bill')
