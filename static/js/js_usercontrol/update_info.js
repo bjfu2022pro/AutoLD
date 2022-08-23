@@ -28,8 +28,7 @@ function updateBtn() {
         var company = $("input[id='company']").val();
         var grjm = $("input[id='grjm']").val();
         var describe = $("textarea[id='describe']").val();
-        if(checkSqlInj(email) || checkSqlInj(username) || checkSqlInj(gender) || checkSqlInj(company) || checkSqlInj(grjm) || checkSqlInj(describe)){
-            document.getElementById('email').value = '';
+        if(checkSqlInj(username) || checkSqlInj(gender) || checkSqlInj(company) || checkSqlInj(grjm) || checkSqlInj(describe)){
             document.getElementById('username').value = '';
             document.getElementById('gender').value = '';
             document.getElementById('company').value = '';
