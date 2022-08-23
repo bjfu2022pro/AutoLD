@@ -119,15 +119,15 @@ def canl():
 @bp.route('/upload', methods=['get', 'post'])
 def upload():
     f = request.files['file']
-    session['datas'] = f.filename   #传到订单页面使用
     current_time = str(datetime.datetime.now()).replace(' ', '_').replace(':', '.')
+    session['datas'] = current_time + '_' + f.filename   #传到订单页面使用
     dataset_path = f"c:\\dataset\\user\\{g.info[1]}\\{current_time}\\{f.filename}"  #后面会传到数据集的表里
     path=f"\\dataset\\user\\{g.info[1]}\\{current_time}"
     if not os.path.exists(path):
         os.makedirs(path)
     filename = os.path.join('c:',path, f.filename)
     f.save(filename)
-    util_dataset.add_dataset(f.filename,dataset_path)
+    util_dataset.add_dataset(session.get('datas'),dataset_path)
     return redirect('/calculate_mall')
 
 
