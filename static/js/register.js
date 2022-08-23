@@ -1,3 +1,26 @@
+
+var sqlKeyWords = "select ,union ,asc ,desc ,in ,like ,into ,exec ,from ";
+sqlKeyWords += ",update ,insert ,delete ,count ,asc( ,char( ,chr( ,drop ,table ,truncat ";
+sqlKeyWords += ",mid( ,abs( ,= ,-- ,<script ,/script ";
+sqlKeyWords += ",where ,join ,create ,alter ,cast ,exists ,; , or , and ,order by ,group by ";
+//分割成数组
+var sqls = sqlKeyWords.split(",");
+ 
+function checkSqlInj(testInput) {
+	var invalid = false;
+	var chkInput = (testInput + "").toLowerCase();
+	var pos = -1;
+	for (var i = 0, n = sqls .length; i < n; i++) {
+		pos = chkInput.indexOf(sqls [i]);
+		if (pos != -1) {
+			invalid = true;
+			break;
+		}
+	}
+	return invalid;
+}
+
+
 function captchaBtn(){
     $("#captcha_btn").on("click", function(event){
         var email = $("input[id='email']").val();
@@ -45,6 +68,8 @@ function captchaBtn(){
         })
     })
 }
+
+
 function regbtn(){
     $("#reg_btn").on("click", function(event){
         var email = $("input[id='email']").val();
@@ -79,6 +104,16 @@ function regbtn(){
             alert("请重复密码!");
             return;
         }
+
+        if(checkSqlInj(email) || checkSqlInj(vcode) || checkSqlInj(password)  || checkSqlInj(repwd)){
+            document.getElementById('email').value = '';
+            document.getElementById('vcode').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('repwd').value = '';
+            alert("你的输入中有敏感词！请重新输入！");
+            return;
+        }
+
         //发送请求,ajax
         $.ajax({
             url:"/reg_result",
