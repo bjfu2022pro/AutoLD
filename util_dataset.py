@@ -42,6 +42,7 @@ def add_dataset(name, path):
     sql = "insert into dataset values(null,%s,null,null,%s,0);"
     param = (name, path)
     cursor.execute(sql, param)
+    conn.commit()
     conn_close(conn, cursor)
 
 
