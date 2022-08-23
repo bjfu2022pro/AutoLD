@@ -1,12 +1,12 @@
-
 var sqlKeyWords = "select ,union ,asc ,desc ,in ,like ,into ,exec ,from ";
 sqlKeyWords += ",update ,insert ,delete ,count ,asc( ,char( ,chr( ,drop ,table ,truncat ";
 sqlKeyWords += ",mid( ,abs( ,= ,-- ,<script ,/script ";
 sqlKeyWords += ",where ,join ,create ,alter ,cast ,exists ,; , or , and ,order by ,group by ";
 //分割成数组
 var sqls = sqlKeyWords.split(",");
- 
-function checkSqlInj(testInput) {
+
+
+function checkSqlInj(testInput) {                           //检测输入是否有sql关键词，有返回true,实际应用见108行
 	var invalid = false;
 	var chkInput = (testInput + "").toLowerCase();
 	var pos = -1;
