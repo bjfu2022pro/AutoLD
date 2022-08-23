@@ -1,3 +1,25 @@
+var sqlKeyWords = "select ,union ,asc ,desc ,in ,like ,into ,exec ,from ";
+sqlKeyWords += ",update ,insert ,delete ,count ,asc( ,char( ,chr( ,drop ,table ,truncat ";
+sqlKeyWords += ",mid( ,abs( ,= ,-- ,<script ,/script ";
+sqlKeyWords += ",where ,join ,create ,alter ,cast ,exists ,; , or , and ,order by ,group by ";
+//分割成数组
+var sqls = sqlKeyWords.split(",");
+
+
+function checkSqlInj(testInput) {                           //检测输入是否有sql关键词，有返回true,实际应用见108行
+	var invalid = false;
+	var chkInput = (testInput + "").toLowerCase();
+	var pos = -1;
+	for (var i = 0, n = sqls .length; i < n; i++) {
+		pos = chkInput.indexOf(sqls [i]);
+		if (pos != -1) {
+			invalid = true;
+			break;
+		}
+	}
+	return invalid;
+}
+
 function reset_Captcha(){
     $("#reset_captcha").on("click", function(event){
         var email = $("input[name='email']").val();
@@ -75,6 +97,16 @@ function reset_pwd(){
             alert("请重复新密码！");
             return;
         }
+
+        if(checkSqlInj(email) || checkSqlInj(vcode) || checkSqlInj(new_password)  || checkSqlInj(new_repwd)){
+            document.getElementById('email').value = '';
+            document.getElementById('vcode').value = '';
+            document.getElementById('new_password').value = '';
+            document.getElementById('new_repwd').value = '';
+            alert("你的输入中有敏感词！请重新输入！");
+            return;
+        }
+
         $.ajax({
             url:"/pwd_fgt_ck",
             method:"POST",
