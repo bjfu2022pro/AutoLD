@@ -22,7 +22,6 @@ function checkSqlInj(testInput) {                           //检测输入是否
 
 function updateBtn() {
     $("#update_btn").on("click", function (event) {
-        var email = $("input[id='email']").val();
         var username = $("input[id='username']").val();
         var gender = $("input[id='gender']").val();
         var company = $("input[id='company']").val();
@@ -41,7 +40,6 @@ function updateBtn() {
             url: "/user_update",
             method: "get",
             data: {
-                "email": email,
                 "username": username,
                 "gender": gender,
                 "company": company,
