@@ -54,6 +54,34 @@ def finder2(value, property="sort", table="ai_select"):
     return result
 
 
+def find_all2():
+    conn, cursor = get_conn()
+    # 执行查询操作
+    sql = "select * from ai_select order by sort"
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    conn_close(conn, cursor)
+    return result
+
+
+def change_up(al_id):
+    # 上架算法
+    conn, cursor = get_conn()
+    sql = f"update ai_select set state=%s where id = %s"
+    cursor.execute(sql, (1, al_id))
+    conn.commit()
+    conn_close(conn, cursor)
+
+
+def change_down(al_id):
+    # 下架算法
+    conn, cursor = get_conn()
+    sql = f"update ai_select set state=%s where id = %s"
+    cursor.execute(sql, (0, al_id))
+    conn.commit()
+    conn_close(conn, cursor)
+
+
 def conn_close(conn, cursor):
     """
     关闭连接与指针
