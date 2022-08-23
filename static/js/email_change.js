@@ -1,3 +1,28 @@
+var sqlKeyWords = "select ,union ,asc ,desc ,in ,like ,into ,exec ,from ";
+sqlKeyWords += ",update ,insert ,delete ,count ,asc( ,char( ,chr( ,drop ,table ,truncat ";
+sqlKeyWords += ",mid( ,abs( ,= ,-- ,<script ,/script ";
+sqlKeyWords += ",where ,join ,create ,alter ,cast ,exists ,; , or , and ,order by ,group by ";
+//分割成数组
+var sqls = sqlKeyWords.split(",");
+
+
+function checkSqlIn_emailchange(testInput) {                           //检测输入是否有sql关键词
+	var invalid = false;
+	var chkInput = (testInput + "").toLowerCase();
+	var pos = -1;
+	for (var i = 0, n = sqls .length; i < n; i++) {
+		pos = chkInput.indexOf(sqls [i]);
+		if (pos != -1) {
+			invalid = true;
+			break;
+		}
+	}
+	return invalid;
+}
+
+
+
+
 function captcha_email1(){
     $("#captcha_btn1").on("click", function (event){
         var email = $("input[id='email']").val();
@@ -125,6 +150,14 @@ function reset(){
             alert("请输入验证码！");
             return;
         }
+        if(checkSqlIn_emailchange(email) || checkSqlIn_emailchange(new_email)|| checkSqlIn_emailchange(vcode1) || checkSqlIn_emailchange(vcode2)){
+            document.getElementById('email').value = '';
+            document.getElementById('new_email').value = '';
+            document.getElementById('vcode1').value = '';
+            document.getElementById('vcode2').value = '';
+            alert("你的输入中有敏感词！请重新输入！");
+            return;
+        }
         $.ajax(
             {
                 url: "/email_check",
@@ -154,5 +187,6 @@ function reset(){
 $(function(){
     captcha_email1();
     captcha_email2();
+    //checkSqlIn_emailchange(testInput);
     reset();
 });
