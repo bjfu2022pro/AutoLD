@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-    <title>AutoLD_我的账单</title>
+    <title>AutoLD_我的订单</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
@@ -52,25 +52,25 @@
 
             <ul class="nav">
                 <li>
-                    <a href="usercontrol">
+                    <a href="/usercontrol">
                         <i class="pe-7s-user"></i>
                         <p>个人信息</p>
                     </a>
                 </li>
                 <li>
-                    <a href="my_instance">
+                    <a href="/my_instance">
                         <i class="pe-7s-note2"></i>
                         <p>我的实例</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="my_bill">
+                    <a href="/my_bill">
                         <i class="pe-7s-news-paper"></i>
                         <p>我的订单</p>
                     </a>
                 </li>
                 <li>
-                    <a href="my_account">
+                    <a href="/my_account">
                         <i class="pe-7s-graph"></i>
                         <p>我的账单</p>
                     </a>
@@ -111,7 +111,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="recharge">
+                            <a href="/recharge">
                                 充值
                             </a>
                         </li>
@@ -132,7 +132,7 @@
                         </li>
                         <li>
                             <a href="{{ url_for('user.logout')}}">
-                              注销登录
+                              退出登录
                             </a>
                         </li>
                     </ul>
