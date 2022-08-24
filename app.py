@@ -27,6 +27,13 @@ def before_request():
             g.info = info[0]
         except:
             g.info = None
+        email = session.get('email')
+    conf = session.get('admin_confirm')
+    if conf:
+        try:
+            g.admin_confirm = conf
+        except:
+            g.admin_confirm = None
 
 
 @app.context_processor
