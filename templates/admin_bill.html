@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-    <title>AutoLD_我的账单</title>
+    <title>AutoLD_管理员</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
@@ -40,99 +40,50 @@
 <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="../static/img/sidebar-5.webp">
 
-        <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+    <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
 
-        <div class="sidebar-wrapper">
+    	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="/" class="simple-text">
                     AutoLD
                 </a>
             </div>
 
-            <ul class="nav">
-                <li>
-                    <a href="usercontrol">
-                        <i class="pe-7s-user"></i>
-                        <p>个人信息</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="my_instance">
-                        <i class="pe-7s-note2"></i>
-                        <p>我的实例</p>
-                    </a>
-                </li>
+                <ul class="nav">
                 <li class="active">
-                    <a href="my_bill">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>我的订单</p>
+                    <a href="/admin_algor">
+                        <i class="pe-7s-user"></i>
+                        <p>算法管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="my_account">
-                        <i class="pe-7s-graph"></i>
-                        <p>我的账单</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons">
-                        <i class="pe-7s-science"></i>
-                        <p>发票管理</p>
+                    <a href="/admin_bill">
+                        <i class="pe-7s-note2"></i>
+                        <p>订单管理</p>
                     </a>
                 </li>
             </ul>
-        </div>
+    	</div>
     </div>
 
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target="#navigation-example-2">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <p class="navbar-brand" href="#">我的订单</p>
+                    <p class="navbar-brand" href="#">算法管理</p>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="/algorithmic_mall">
-                                算法商城
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/calculate_mall">
-                                算力商城
-                            </a>
-                        </li>
-                        <li>
-                            <a href="recharge">
-                                充值
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                账户余额：{{ info[4] }}元
-                            </a>
-                        </li>
-                         <li>
-                            <a href="/password_change">
-                              更改密码
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/email_change">
-                              改绑邮箱
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url_for('user.logout')}}">
-                              注销登录
+                            <a>
+                              admin
                             </a>
                         </li>
                     </ul>
@@ -146,7 +97,6 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card" style="height:800px">
-
                             <table class="table table-striped" align="center" style="height: 30px">
 
                                 <tr>
@@ -209,31 +159,9 @@
                             </table>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
-
-
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="/aboutus">
-                                关于我们
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                联系我们
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </footer>
     </div>
 </div>
 
