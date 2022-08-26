@@ -43,16 +43,8 @@ def login_checker():
 
 @bp.route('/admin_bill')
 def admin_bill():
-    if hasattr(g,'admin_confirm'):
-        if g.admin_confirm is None:
-            return redirect('/admin_login')
-        elif g.admin_confirm :
-            bill=util_pay.show_all_orders()
-            return render_template('admin_bill.html',my_bill=bill)
-        else:
-            return redirect('/admin_login')
-    else:
-        return redirect('/admin_login')
+    bill=util_pay.show_all_orders()
+    return render_template('admin_bill.html',my_bill=bill)
     
 
 
