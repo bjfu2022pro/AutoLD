@@ -58,17 +58,9 @@ def admin_bill():
 
 @bp.route('/examine',methods=['post', 'get'])
 def examine():
-    if hasattr(g,'admin_confirm'):
-        if g.admin_confirm is None:
-            return redirect('/admin_login')
-        elif g.admin_confirm :
-            danhao = request.values.get('danhao')
-            util_pay.orders_examine(danhao)
-            return jsonify({"od": 400})
-        else:
-            return redirect('/admin_login')
-    else:
-        return redirect('/admin_login')
+    danhao = request.values.get('danhao')
+    util_pay.orders_examine(danhao)
+    return jsonify({"od": 400})
     
 
 
